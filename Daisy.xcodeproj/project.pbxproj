@@ -13,6 +13,7 @@
 		A2B9C2742881F68B00506E32 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* ContentView.swift */; };
 		A2B9C2752881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2762881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
+		A2B9C2812881FA1500506E32 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2B9C2802881FA1500506E32 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2B9C2812881FA1500506E32 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +96,9 @@
 			dependencies = (
 			);
 			name = "Daisy (iOS)";
+			packageProductDependencies = (
+				A2B9C2802881FA1500506E32 /* ComposableArchitecture */,
+			);
 			productName = "Daisy (iOS)";
 			productReference = A2B9C2682881F68B00506E32 /* Daisy.app */;
 			productType = "com.apple.product-type.application";
@@ -142,6 +147,9 @@
 				Base,
 			);
 			mainGroup = A2B9C25B2881F68A00506E32;
+			packageReferences = (
+				A2B9C27F2881FA1500506E32 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = A2B9C2692881F68B00506E32 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -450,6 +458,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A2B9C27F2881FA1500506E32 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A2B9C2802881FA1500506E32 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A2B9C27F2881FA1500506E32 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A2B9C25C2881F68A00506E32 /* Project object */;
 }
