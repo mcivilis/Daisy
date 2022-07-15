@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A243B190288209C900065902 /* Daisy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A243B18F288209C900065902 /* Daisy.swift */; };
+		A243B191288209C900065902 /* Daisy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A243B18F288209C900065902 /* Daisy.swift */; };
 		A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2612881F68A00506E32 /* DaisyApp.swift */; };
 		A2B9C2722881F68B00506E32 /* DaisyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2612881F68A00506E32 /* DaisyApp.swift */; };
 		A2B9C2732881F68B00506E32 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* ContentView.swift */; };
@@ -17,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A243B18F288209C900065902 /* Daisy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daisy.swift; sourceTree = "<group>"; };
 		A2B9C2612881F68A00506E32 /* DaisyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyApp.swift; sourceTree = "<group>"; };
 		A2B9C2622881F68A00506E32 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A2B9C2632881F68B00506E32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 			children = (
 				A2B9C2612881F68A00506E32 /* DaisyApp.swift */,
 				A2B9C2622881F68A00506E32 /* ContentView.swift */,
+				A243B18F288209C900065902 /* Daisy.swift */,
 				A2B9C2632881F68B00506E32 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -185,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2B9C2732881F68B00506E32 /* ContentView.swift in Sources */,
+				A243B190288209C900065902 /* Daisy.swift in Sources */,
 				A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2B9C2742881F68B00506E32 /* ContentView.swift in Sources */,
+				A243B191288209C900065902 /* Daisy.swift in Sources */,
 				A2B9C2722881F68B00506E32 /* DaisyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

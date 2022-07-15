@@ -11,7 +11,7 @@ import SwiftUI
 struct DaisyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(daisies: Daisy.previewMany)
         }
     }
 }
