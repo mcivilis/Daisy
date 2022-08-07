@@ -136,7 +136,7 @@ struct DaisyAppView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(alignment: .leading) {
                 Picker("Filter", selection: viewStore.binding(get: \.filter, send: AppAction.filter).animation()) {
                   ForEach(Filter.allCases, id: \.self) { filter in
@@ -171,10 +171,6 @@ struct DaisyAppView: View {
               \.editMode,
               viewStore.binding(get: \.editMode, send: AppAction.editModeChanged)
             )
-            // TODO MC: Deprecated - chose between NavigationStackView and NavigationSplitView
-            // https://developer.apple.com/documentation/SwiftUI/Migrating-to-New-Navigation-Types
-            // Watch: https://developer.apple.com/videos/play/wwdc2022/10054/
-            .navigationViewStyle(.stack)
         }
     }
 }
