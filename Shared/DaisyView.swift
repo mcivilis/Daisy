@@ -57,6 +57,7 @@ struct DaisyView: View {
 
   var body: some View {
     WithViewStore(self.store) { viewStore in
+        
       HStack {
         Button(action: { viewStore.send(.checkBoxToggled) }) {
           Image(systemName: viewStore.isComplete ? "checkmark.square" : "square")

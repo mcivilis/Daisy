@@ -1,5 +1,5 @@
 //
-//  DaisyAppView.swift
+//  DaisiesView.swift
 //  Shared
 //
 //  Created by Maria Civilis on 2022-07-15.
@@ -125,7 +125,7 @@ let daisyAppReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
 
 // MARK: - View
 
-struct DaisyAppView: View {
+struct DaisiesView: View {
     
     let store: Store<AppState, AppAction>
     @ObservedObject var viewStore: ViewStore<ViewState, AppAction>
@@ -177,7 +177,7 @@ struct DaisyAppView: View {
 
 // MARK: - Extensions
 
-extension DaisyAppView {
+extension DaisiesView {
     
     struct ViewState: Equatable {
       let editMode: EditMode
@@ -207,7 +207,7 @@ extension IdentifiedArray where ID == DaisyState.ID, Element == DaisyState {
 struct DaisyAppView_Previews: PreviewProvider {
     
     static var previews: some View {
-        DaisyAppView(store: Store(
+        DaisiesView(store: Store(
             initialState: AppState(daisies: .mock),
             reducer: daisyAppReducer,
             environment: AppEnvironment()

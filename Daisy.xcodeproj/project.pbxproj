@@ -11,8 +11,8 @@
 		A212D51C289411F6006A7E38 /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212D51A289411F6006A7E38 /* DaisyView.swift */; };
 		A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2612881F68A00506E32 /* DaisyApp.swift */; };
 		A2B9C2722881F68B00506E32 /* DaisyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2612881F68A00506E32 /* DaisyApp.swift */; };
-		A2B9C2732881F68B00506E32 /* DaisyAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* DaisyAppView.swift */; };
-		A2B9C2742881F68B00506E32 /* DaisyAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* DaisyAppView.swift */; };
+		A2B9C2732881F68B00506E32 /* DaisiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* DaisiesView.swift */; };
+		A2B9C2742881F68B00506E32 /* DaisiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* DaisiesView.swift */; };
 		A2B9C2752881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2762881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2812881FA1500506E32 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2B9C2802881FA1500506E32 /* ComposableArchitecture */; };
@@ -21,7 +21,7 @@
 /* Begin PBXFileReference section */
 		A212D51A289411F6006A7E38 /* DaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyView.swift; sourceTree = "<group>"; };
 		A2B9C2612881F68A00506E32 /* DaisyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyApp.swift; sourceTree = "<group>"; };
-		A2B9C2622881F68A00506E32 /* DaisyAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyAppView.swift; sourceTree = "<group>"; };
+		A2B9C2622881F68A00506E32 /* DaisiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisiesView.swift; sourceTree = "<group>"; };
 		A2B9C2632881F68B00506E32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2B9C2682881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2B9C26E2881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				A2B9C2612881F68A00506E32 /* DaisyApp.swift */,
-				A2B9C2622881F68A00506E32 /* DaisyAppView.swift */,
+				A2B9C2622881F68A00506E32 /* DaisiesView.swift */,
 				A212D51A289411F6006A7E38 /* DaisyView.swift */,
 				A2B9C2632881F68B00506E32 /* Assets.xcassets */,
 			);
@@ -188,7 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2B9C2732881F68B00506E32 /* DaisyAppView.swift in Sources */,
+				A2B9C2732881F68B00506E32 /* DaisiesView.swift in Sources */,
 				A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */,
 				A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */,
 			);
@@ -198,7 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2B9C2742881F68B00506E32 /* DaisyAppView.swift in Sources */,
+				A2B9C2742881F68B00506E32 /* DaisiesView.swift in Sources */,
 				A2B9C2722881F68B00506E32 /* DaisyApp.swift in Sources */,
 				A212D51C289411F6006A7E38 /* DaisyView.swift in Sources */,
 			);

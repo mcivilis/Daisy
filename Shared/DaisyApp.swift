@@ -19,7 +19,7 @@ struct DaisyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            DaisyAppView(store: store)
+            DaisiesView(store: store)
         }
     }
 }
