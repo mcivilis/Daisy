@@ -14,7 +14,7 @@ struct DaisyApp: App {
     let store = Store(
         initialState: AppState(),
         reducer: daisyAppReducer,
-        environment: AppEnvironment()
+        environment: AppEnvironment(mainQueue: .main, uuid: { UUID() })
     )
     
     var body: some Scene {

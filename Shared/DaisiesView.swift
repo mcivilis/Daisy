@@ -61,66 +61,64 @@ struct AppEnvironment {
 }
 
 // MARK: - Reducer
-
 let daisyAppReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
-  daisyReducer.forEach(
-    state: \.daisies,
-    action: /AppAction.selectDaisy(id:action:),
-    environment: { _ in DaisyEnvironment() }
-  ),
-  Reducer { state, action, environment in
-    switch action {
-    case .newDaisy:
-      state.daisies.insert(DaisyState(id: environment.uuid()), at: 0)
-      return .none
-
-    case .clearCompleted:
-      state.daisies.removeAll(where: \.isPast)
-      return .none
-
-    case let .delete(indexSet):
-      state.daisies.remove(atOffsets: indexSet)
-      return .none
-
-    case let .editModeChanged(editMode):
-      state.editMode = editMode
-      return .none
-
-    case let .filter(filter):
-      state.filter = filter
-      return .none
-
-    case var .move(source, destination):
-      if state.filter != .all {
-        source = IndexSet(
-          source
-            .map { state.filteredDaisys[$0] }
-            .compactMap { state.daisies.index(id: $0.id) }
-        )
-        destination =
-          state.daisies.index(id: state.filteredDaisys[destination].id)
-          ?? destination
-      }
-
-      state.daisies.move(fromOffsets: source, toOffset: destination)
-
-      return Effect(value: .sortCompletedDaisys)
-        .delay(for: .milliseconds(100), scheduler: environment.mainQueue)
-        .eraseToEffect()
-
-    case .sortCompletedDaisys:
-      state.daisies.sort { $1.isPast && !$0.isPast } // TODO MC: - sort by date
-      return .none
-
-    case .selectDaisy(id: _, action: .checkBoxToggled):
-      enum DaisyCompletionId {}
-      return Effect(value: .sortCompletedDaisys)
-        .debounce(id: DaisyCompletionId.self, for: 1, scheduler: environment.mainQueue.animation())
-
-    case .selectDaisy:
-      return .none
+    // Somehow these reducers must not be combining because the signature of line 64 is correct
+    daisyReducer.forEach(
+        state: \.daisies,
+        action: /AppAction.selectDaisy(id:action:),
+        environment: { _ in AppEnvironment() }
+    ),
+    Reducer { state, action, environment in
+        switch action {
+        case .newDaisy:
+            state.daisies.insert(DaisyState(id: environment.uuid()), at: 0)
+            return .none
+            
+        case .clearCompleted:
+            state.daisies.removeAll(where: \.isPast)
+            return .none
+            
+        case let .delete(indexSet):
+            state.daisies.remove(atOffsets: indexSet)
+            return .none
+            
+        case let .editModeChanged(editMode):
+            state.editMode = editMode
+            return .none
+            
+        case let .filter(filter):
+            state.filter = filter
+            return .none
+            
+        case var .move(source, destination):
+            if state.filter != .all {
+                source = IndexSet(
+                    source
+                        .map { state.filteredDaisys[$0] }
+                        .compactMap { state.daisies.index(of: $0) }
+                )
+                destination = state.daisies.index(of: state.filteredDaisys[destination]) ?? destination
+            }
+            
+            state.daisies.move(fromOffsets: source, toOffset: destination)
+            
+            return Effect(value: .sortCompletedDaisys)
+                .delay(for: .milliseconds(100), scheduler: environment.mainQueue)
+                .eraseToEffect()
+            
+        case .sortCompletedDaisys:
+            state.daisies.sort { $1.isPast && !$0.isPast } // TODO MC: - sort by date
+            return .none
+            
+        case .selectDaisy(id: _, action: .checkBoxToggled):
+            enum DaisyCompletionId {}
+            return Effect(value: .sortCompletedDaisys)
+                .debounce(id: DaisyCompletionId.self, for: 1, scheduler: environment.mainQueue.animation())
+            
+        case .selectDaisy:
+            return .none
+        }
     }
-  }
 )
 
 // MARK: - View
@@ -146,8 +144,12 @@ struct DaisiesView: View {
                 .pickerStyle(.segmented)
                 .padding(.horizontal)
                 List {
-                    ForEachStore(store.scope(state: \.filteredDaisys, action: AppAction.selectDaisy(id:action:))) {
-                        DaisyView(store: $0)
+                    ForEachStore(store.scope(state: \.filteredDaisys, action: AppAction.selectDaisy(id:action:))) { store in
+                        NavigationLink {
+                            DaisyDetailView()
+                        } label: {
+                            DaisyView(store: store)
+                        }
                     }
                     .onDelete { viewStore.send(.delete($0)) }
                     .onMove { viewStore.send(.move($0, $1)) }

@@ -19,39 +19,12 @@
       }
     },
     {
-      "identity" : "swift-collections",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections",
-      "state" : {
-        "revision" : "48254824bb4248676bf7ce56014ff57b142b77eb",
-        "version" : "1.0.2"
-      }
-    },
-    {
       "identity" : "swift-composable-architecture",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-composable-architecture",
       "state" : {
-        "revision" : "0a38f2c860a64a005afeb8a6fe186eb2818c9a3f",
-        "version" : "0.38.3"
-      }
-    },
-    {
-      "identity" : "swift-custom-dump",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-custom-dump",
-      "state" : {
-        "revision" : "21ec1d717c07cea5a026979cb0471dd95c7087e7",
-        "version" : "0.5.0"
-      }
-    },
-    {
-      "identity" : "swift-identified-collections",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pointfreeco/swift-identified-collections",
-      "state" : {
-        "revision" : "2d6b7ffcc67afd9077fac5e5a29bcd6d39b71076",
-        "version" : "0.4.0"
+        "revision" : "3ca8249bd3262e9837c6cb4d352cc58e370e33fc",
+        "version" : "0.20.0"
       }
     },
     {
