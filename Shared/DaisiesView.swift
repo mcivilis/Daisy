@@ -62,11 +62,10 @@ struct AppEnvironment {
 
 // MARK: - Reducer
 let daisyAppReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
-    // Somehow these reducers must not be combining because the signature of line 64 is correct
     daisyReducer.forEach(
         state: \.daisies,
         action: /AppAction.selectDaisy(id:action:),
-        environment: { _ in AppEnvironment() }
+        environment: { _ in DaisyEnvironment() }
     ),
     Reducer { state, action, environment in
         switch action {
@@ -95,9 +94,9 @@ let daisyAppReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
                 source = IndexSet(
                     source
                         .map { state.filteredDaisys[$0] }
-                        .compactMap { state.daisies.index(of: $0) }
+                        .compactMap { state.daisies.firstIndex(of: $0) }
                 )
-                destination = state.daisies.index(of: state.filteredDaisys[destination]) ?? destination
+                destination = state.daisies.firstIndex(of: state.filteredDaisys[destination]) ?? destination
             }
             
             state.daisies.move(fromOffsets: source, toOffset: destination)
