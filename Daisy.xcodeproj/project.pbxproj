@@ -18,6 +18,10 @@
 		A2B9C2752881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2762881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2812881FA1500506E32 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2B9C2802881FA1500506E32 /* ComposableArchitecture */; };
+		A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */; };
+		A2EA926928F0B3D8002BA01E /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */; };
+		A2EA926C28F0C4D0002BA01E /* RoundedRectText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA926B28F0C4D0002BA01E /* RoundedRectText.swift */; };
+		A2EA926D28F0C4D0002BA01E /* RoundedRectText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA926B28F0C4D0002BA01E /* RoundedRectText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,8 @@
 		A2B9C2682881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2B9C26E2881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2B9C2702881F68B00506E32 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
+		A2EA926B28F0C4D0002BA01E /* RoundedRectText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,8 @@
 		A2B9C2602881F68A00506E32 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				A2EA926A28F0C468002BA01E /* ViewModifiers */,
+				A2EA926628F0B3C0002BA01E /* Extensions */,
 				A2B9C2612881F68A00506E32 /* DaisyApp.swift */,
 				A2B9C2622881F68A00506E32 /* DaisiesView.swift */,
 				A212D51A289411F6006A7E38 /* DaisyView.swift */,
@@ -86,6 +94,22 @@
 				A2B9C2702881F68B00506E32 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		A2EA926628F0B3C0002BA01E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A2EA926A28F0C468002BA01E /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				A2EA926B28F0C4D0002BA01E /* RoundedRectText.swift */,
+			);
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,7 +219,9 @@
 				A2A329E728ADCE8600E7509B /* DaisyDetailView.swift in Sources */,
 				A2B9C2732881F68B00506E32 /* DaisiesView.swift in Sources */,
 				A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */,
+				A2EA926C28F0C4D0002BA01E /* RoundedRectText.swift in Sources */,
 				A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */,
+				A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +232,9 @@
 				A2A329E828ADCE8600E7509B /* DaisyDetailView.swift in Sources */,
 				A2B9C2742881F68B00506E32 /* DaisiesView.swift in Sources */,
 				A2B9C2722881F68B00506E32 /* DaisyApp.swift in Sources */,
+				A2EA926D28F0C4D0002BA01E /* RoundedRectText.swift in Sources */,
 				A212D51C289411F6006A7E38 /* DaisyView.swift in Sources */,
+				A2EA926928F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

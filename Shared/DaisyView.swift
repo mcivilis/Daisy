@@ -14,24 +14,29 @@ struct DaisyState: Equatable, Identifiable {
     let id: UUID
     var title: String
     var date: Date
-    var isComplete: Bool = false // TODO MC: remove
+    var color: Color
+    
     var isPast: Bool {
         return date >= Date.now
     }
     
-    init(id: UUID = UUID(), title: String = "", date: Date = .now) {
-        self.id = id
+    init(
+        title: String = "",
+        date: Date = .now,
+        color: Color = Color.accentColor
+    ) {
+        self.id = UUID()
         self.title = title
         self.date = date
+        self.color = color
     }
 }
 
 // MARK: Action
 
 enum DaisyAction: Equatable {
-    // TODO MC: remove action
-  case checkBoxToggled
-  case textFieldChanged(String)
+  case showDetail
+  case delete
 }
 
 // MARK: Environment
@@ -41,35 +46,53 @@ struct DaisyEnvironment {}
 // MARK: Environment
 
 let daisyReducer = Reducer<DaisyState, DaisyAction, DaisyEnvironment> { state, action, _ in
-  switch action {
-  case .checkBoxToggled:
-      state.isComplete.toggle()
-  case let .textFieldChanged(title):
-    state.title = title
-  }
+    switch action {
+    case .showDetail:
+        break
+    case .delete:
+        break
+    }
     return .none
 }
 
 // MARK: View
 
 struct DaisyView: View {
-  let store: Store<DaisyState, DaisyAction>
-
-  var body: some View {
-    WithViewStore(self.store) { viewStore in
-        
-      HStack {
-        Button(action: { viewStore.send(.checkBoxToggled) }) {
-          Image(systemName: viewStore.isComplete ? "checkmark.square" : "square")
+    let store: Store<DaisyState, DaisyAction>
+    
+    var body: some View {
+        WithViewStore(self.store) { viewStore in
+            VStack {
+                RoundedRectangle(cornerRadius: 40)
+                    .foregroundColor(viewStore.color)
+                    .aspectRatio(1, contentMode: .fit)
+                    .overlay(alignment: .topLeading) {
+                        Text(viewStore.date.daisy())
+                            .roundedRectTextStyle()
+                    }
+                    .overlay(alignment: .bottomTrailing) {
+                        Text(viewStore.date.display())
+                            .font(.caption)
+                            .bold()
+                            .roundedRectTextStyle()
+                    }
+                Text(viewStore.title)
+                
+            }
+            .padding()
         }
-        .buttonStyle(.plain)
-
-        TextField(
-          "Untitled Daisy",
-          text: viewStore.binding(get: \.title, send: DaisyAction.textFieldChanged)
-        )
-      }
-      .foregroundColor(viewStore.isComplete ? .gray : nil)
     }
+}
+
+
+struct DaisyView_Previews: PreviewProvider {
+    static var store: Store<DaisyState, DaisyAction> = Store(
+        initialState: DaisyState(title: "Amelia's Birthday", date: Date.preview("2:32 Wed, 22 Sep 2019")),
+        reducer: daisyReducer,
+        environment: DaisyEnvironment()
+    )
+  static var previews: some View {
+      DaisyView(store: store)
+          .previewLayout(.fixed(width: 300, height: 300))
   }
 }

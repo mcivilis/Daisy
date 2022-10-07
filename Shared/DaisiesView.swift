@@ -70,7 +70,8 @@ let daisyAppReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     Reducer { state, action, environment in
         switch action {
         case .newDaisy:
-            state.daisies.insert(DaisyState(id: environment.uuid()), at: 0)
+            // TODO
+            // state.daisies.insert(DaisyState(id: environment.uuid()), at: 0)
             return .none
             
         case .clearCompleted:
@@ -106,10 +107,10 @@ let daisyAppReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
                 .eraseToEffect()
             
         case .sortCompletedDaisys:
-            state.daisies.sort { $1.isPast && !$0.isPast } // TODO MC: - sort by date
+            state.daisies.sort { $1.isPast && !$0.isPast } // TODO - sort by date
             return .none
             
-        case .selectDaisy(id: _, action: .checkBoxToggled):
+        case .selectDaisy(id: _, action: .showDetail): // TODO - what should happen here?
             enum DaisyCompletionId {}
             return Effect(value: .sortCompletedDaisys)
                 .debounce(id: DaisyCompletionId.self, for: 1, scheduler: environment.mainQueue.animation())
