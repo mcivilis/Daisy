@@ -70,6 +70,15 @@ struct DaisyView: View {
                         Text(viewStore.date.daisy())
                             .roundedRectTextStyle()
                     }
+                    .overlay(content: {
+                        // TODO: Consider SF symbol picker for adding some symbols to each Daisy
+                        // Also consider switching this to a zstack if you do add the symbol
+                        // https://iosexample.com/a-simple-and-searchable-sfsymbol-picker-for-swiftui/
+                        Image(systemName: "birthday.cake.fill")
+                            .font(.system(size: 80))
+                            .foregroundColor(.black)
+                            .opacity(0.6)
+                    })
                     .overlay(alignment: .bottomTrailing) {
                         Text(viewStore.date.display())
                             .font(.caption)
