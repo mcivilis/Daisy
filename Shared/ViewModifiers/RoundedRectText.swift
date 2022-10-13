@@ -13,7 +13,6 @@ struct RoundedRectText: ViewModifier {
             .foregroundColor(.white)
             .padding(8)
             .background(.black)
-            .opacity(0.4)
             .cornerRadius(20)
             .padding()
     }

@@ -14,6 +14,7 @@ struct DaisyState: Equatable, Identifiable {
     let id: UUID
     var title: String
     var date: Date
+    var symbolName: String?
     var color: Color
     
     var isPast: Bool {
@@ -23,11 +24,13 @@ struct DaisyState: Equatable, Identifiable {
     init(
         title: String = "",
         date: Date = .now,
+        symbolName: String? = nil,
         color: Color = Color.accentColor
     ) {
         self.id = UUID()
         self.title = title
         self.date = date
+        self.symbolName = symbolName
         self.color = color
     }
 }
@@ -63,30 +66,34 @@ struct DaisyView: View {
     var body: some View {
         WithViewStore(self.store) { viewStore in
             VStack {
-                RoundedRectangle(cornerRadius: 40)
+                RoundedRectangle(cornerRadius: 60)
                     .foregroundColor(viewStore.color)
                     .aspectRatio(1, contentMode: .fit)
-                    .overlay(alignment: .topLeading) {
-                        Text(viewStore.date.daisy())
-                            .roundedRectTextStyle()
-                    }
-                    .overlay(content: {
-                        // TODO: Consider SF symbol picker for adding some symbols to each Daisy
-                        // Also consider switching this to a zstack if you do add the symbol
-                        // https://iosexample.com/a-simple-and-searchable-sfsymbol-picker-for-swiftui/
-                        Image(systemName: "birthday.cake.fill")
-                            .font(.system(size: 80))
-                            .foregroundColor(.black)
-                            .opacity(0.6)
-                    })
-                    .overlay(alignment: .bottomTrailing) {
-                        Text(viewStore.date.display())
-                            .font(.caption)
-                            .bold()
-                            .roundedRectTextStyle()
+                    .overlay {
+                        VStack {
+                            Text(viewStore.date.daisy())
+                                .font(.title2)
+                                .roundedRectTextStyle()
+                            if let symbolName = viewStore.symbolName {
+                                VStack {
+                                    Spacer()
+                                    Image(systemName: symbolName)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .foregroundColor(.black)
+                                        .padding(10)
+                                }
+                            } else {
+                                
+                            }
+                            Text(viewStore.date.display())
+                                .bold()
+                                .padding()
+                                .foregroundColor(.black)
+                        }
+                        .opacity(0.7)
                     }
                 Text(viewStore.title)
-                
             }
             .padding()
         }
@@ -96,12 +103,17 @@ struct DaisyView: View {
 
 struct DaisyView_Previews: PreviewProvider {
     static var store: Store<DaisyState, DaisyAction> = Store(
-        initialState: DaisyState(title: "Amelia's Birthday", date: Date.preview("2:32 Wed, 22 Sep 2019")),
+        initialState: DaisyState(
+            title: "Amelia's Birthday",
+            date: Date.preview("2:32 Wed, 22 Sep 2019"),
+            symbolName: "birthday.cake.fill"
+        ),
         reducer: daisyReducer,
         environment: DaisyEnvironment()
     )
-  static var previews: some View {
-      DaisyView(store: store)
-          .previewLayout(.fixed(width: 300, height: 300))
-  }
+    
+    static var previews: some View {
+            DaisyView(store: store)
+                .previewLayout(.fixed(width: 300, height: 300))
+    }
 }
