@@ -65,37 +65,36 @@ struct DaisyView: View {
     
     var body: some View {
         WithViewStore(self.store) { viewStore in
-            VStack {
-                RoundedRectangle(cornerRadius: 60)
-                    .foregroundColor(viewStore.color)
-                    .aspectRatio(1, contentMode: .fit)
-                    .overlay {
-                        VStack {
-                            Text(viewStore.date.daisy())
-                                .font(.title2)
-                                .roundedRectTextStyle()
-                            if let symbolName = viewStore.symbolName {
-                                VStack {
-                                    Spacer()
-                                    Image(systemName: symbolName)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .foregroundColor(.black)
-                                        .padding(10)
-                                }
-                            } else {
-                                
-                            }
-                            Text(viewStore.date.display())
-                                .bold()
-                                .padding()
-                                .foregroundColor(.black)
-                        }
-                        .opacity(0.7)
+            ZStack {
+                RoundedRectangle(cornerRadius: 30)
+                    .foregroundColor(.accentColor)
+                HStack {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text(viewStore.title)
+                            .font(.title2)
+                            .foregroundColor(.black)
+                        Text(viewStore.date.daisy())
+                            .foregroundColor(.white)
+                            .padding(8)
+                            .background(.black)
+                            .cornerRadius(20)
+                        Text(viewStore.date.display())
+                            .foregroundColor(.black)
+                            .font(.caption)
                     }
-                Text(viewStore.title)
+                    .opacity(0.7)
+                    .padding()
+                    Spacer()
+                    if let symbolName = viewStore.symbolName {
+                        Image(systemName: symbolName)
+                            .resizable()
+                            .frame(width: 125, height: 125)
+                            .foregroundColor(.black)
+                            .padding()
+                            .opacity(0.7)
+                    }
+                }.padding()
             }
-            .padding()
         }
     }
 }
@@ -113,7 +112,12 @@ struct DaisyView_Previews: PreviewProvider {
     )
     
     static var previews: some View {
+        VStack {
+            Spacer()
+                .frame(maxHeight: .infinity)
             DaisyView(store: store)
-                .previewLayout(.fixed(width: 300, height: 300))
+            Spacer()
+                .frame(maxHeight: .infinity)
+        }
     }
 }

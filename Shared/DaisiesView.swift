@@ -154,6 +154,7 @@ struct DaisiesView: View {
                     .onDelete { viewStore.send(.delete($0)) }
                     .onMove { viewStore.send(.move($0, $1)) }
                 }
+                .listStyle(.inset)
             }
             .navigationTitle("Daisies")
             .navigationBarItems(
