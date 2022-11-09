@@ -13,6 +13,7 @@ extension Date {
         formatter.dateFormat = "HH:mm E, d MMM y"
         return formatter.date(from: date) ?? .now
     }
+    
     func daisy() -> String {
         // TODO - Temporary formatter, this should display based on user preference of years, months, weeks, days, hours, etc...
         let relativeDateFormatter = RelativeDateTimeFormatter()

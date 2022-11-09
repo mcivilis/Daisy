@@ -12,14 +12,14 @@ import SwiftUI
 struct DaisyApp: App {
     
     let store = Store(
-        initialState: AppState(),
+        initialState: AppState(daisies: DaisyItemState.testData),
         reducer: daisyAppReducer,
         environment: AppEnvironment(mainQueue: .main, uuid: { UUID() })
     )
     
     var body: some Scene {
         WindowGroup {
-            DaisiesView(store: store)
+            DaisyListView(store: store)
         }
     }
 }

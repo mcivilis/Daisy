@@ -1,5 +1,5 @@
 //
-//  DaisiesView.swift
+//  DaisyListView.swift
 //  Shared
 //
 //  Created by Maria Civilis on 2022-07-15.
@@ -19,9 +19,9 @@ enum Filter: LocalizedStringKey, CaseIterable, Hashable {
 struct AppState: Equatable {
   var editMode: EditMode = .inactive
   var filter: Filter = .all
-  var daisies: IdentifiedArrayOf<DaisyState> = []
+  var daisies: IdentifiedArrayOf<DaisyItemState> = []
 
-  var filteredDaisys: IdentifiedArrayOf<DaisyState> {
+  var filteredDaisys: IdentifiedArrayOf<DaisyItemState> {
     switch filter {
     case .active:
         return daisies.filter { !$0.isPast }
@@ -43,7 +43,7 @@ enum AppAction: Equatable {
   case filter(Filter)
   case move(IndexSet, Int)
   case sortCompletedDaisys
-  case selectDaisy(id: DaisyState.ID, action: DaisyAction)
+  case selectDaisy(id: DaisyItemState.ID, action: DaisyItemAction)
 }
 
 // MARK: - Environment
@@ -62,10 +62,10 @@ struct AppEnvironment {
 
 // MARK: - Reducer
 let daisyAppReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
-    daisyReducer.forEach(
+    daisyItemReducer.forEach(
         state: \.daisies,
         action: /AppAction.selectDaisy(id:action:),
-        environment: { _ in DaisyEnvironment() }
+        environment: { _ in DaisyItemEnvironment() }
     ),
     Reducer { state, action, environment in
         switch action {
@@ -123,7 +123,7 @@ let daisyAppReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
 
 // MARK: - View
 
-struct DaisiesView: View {
+struct DaisyListView: View {
     
     let store: Store<AppState, AppAction>
     @ObservedObject var viewStore: ViewStore<ViewState, AppAction>
@@ -146,9 +146,9 @@ struct DaisiesView: View {
                 List {
                     ForEachStore(store.scope(state: \.filteredDaisys, action: AppAction.selectDaisy(id:action:))) { store in
                         NavigationLink {
-                            DaisyDetailView()
+                            DaisyView()
                         } label: {
-                            DaisyView(store: store)
+                            ListItemView(store: store)
                         }
                     }
                     .onDelete { viewStore.send(.delete($0)) }
@@ -180,7 +180,7 @@ struct DaisiesView: View {
 
 // MARK: - Extensions
 
-extension DaisiesView {
+extension DaisyListView {
     
     struct ViewState: Equatable {
       let editMode: EditMode
@@ -195,13 +195,13 @@ extension DaisiesView {
     }
 }
 
-extension IdentifiedArray where ID == DaisyState.ID, Element == DaisyState {
+extension IdentifiedArray where ID == DaisyItemState.ID, Element == DaisyItemState {
     static let mock: Self = [
-        DaisyState(title: "Daisy 1", date: Date(timeIntervalSinceNow: -20)),
-        DaisyState(title: "Daisy 2", date: Date(timeIntervalSinceNow: -10)),
-        DaisyState(title: "Daisy 3", date: Date(timeIntervalSinceNow: -0)),
-        DaisyState(title: "Daisy 4", date: Date(timeIntervalSinceNow: 10)),
-        DaisyState(title: "Daisy 5", date: Date(timeIntervalSinceNow: 20)),
+        DaisyItemState(title: "Daisy 1", date: Date(timeIntervalSinceNow: -20)),
+        DaisyItemState(title: "Daisy 2", date: Date(timeIntervalSinceNow: -10)),
+        DaisyItemState(title: "Daisy 3", date: Date(timeIntervalSinceNow: -0)),
+        DaisyItemState(title: "Daisy 4", date: Date(timeIntervalSinceNow: 10)),
+        DaisyItemState(title: "Daisy 5", date: Date(timeIntervalSinceNow: 20)),
     ]
 }
 
@@ -210,7 +210,7 @@ extension IdentifiedArray where ID == DaisyState.ID, Element == DaisyState {
 struct DaisyAppView_Previews: PreviewProvider {
     
     static var previews: some View {
-        DaisiesView(store: Store(
+        DaisyListView(store: Store(
             initialState: AppState(daisies: .mock),
             reducer: daisyAppReducer,
             environment: AppEnvironment()
