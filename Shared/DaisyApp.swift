@@ -28,5 +28,6 @@ struct DaisyApp: App {
  
  Future feature ideas:
  - Refactor to use tabs instead of the segmented control
+ - Navigation link -> Sheet presentation
  
  */

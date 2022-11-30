@@ -80,35 +80,40 @@ struct ListItemView: View {
         WithViewStore(self.store) { viewStore in
             RoundedRectangle(cornerRadius: 25)
                 .foregroundColor(.accentColor)
-                .frame(height: 150)
+                .frame(height: 100)
                 .overlay {
                     HStack {
                         VStack(alignment: .leading, spacing: 12) {
                             Text(viewStore.title)
                                 .font(.title3)
                                 .foregroundColor(.black)
+                                .fontWeight(.bold)
+                            Text(viewStore.date.display())
+                                .foregroundColor(.black)
+                                .font(.body)
+                        }
+                        .opacity(0.7)
+                        .padding()
+                        Spacer()
+                        VStack(alignment: .center, spacing: 12) {
+                            if let symbolName = viewStore.symbolName {
+                                Image(systemName: symbolName)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .foregroundColor(.black)
+                                    .opacity(0.7)
+                            }
                             Text(viewStore.date.daisy())
                                 .foregroundColor(.white)
                                 .padding(8)
                                 .background(.black)
                                 .cornerRadius(20)
-                            Text(viewStore.date.display())
-                                .foregroundColor(.black)
-                                .font(.caption)
+                                .opacity(0.8)
                         }
-                        .opacity(0.7)
-                        .padding()
-                        Spacer()
-                        if let symbolName = viewStore.symbolName {
-                            Image(systemName: symbolName)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(.black)
-                                .padding(multiple: 2)
-                                .opacity(0.7)
-                        }
+                        .offset(y: 20)
                     }
                 }
+                .padding(.bottom, 20)
         }
     }
 }
