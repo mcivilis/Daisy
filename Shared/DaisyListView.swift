@@ -44,16 +44,9 @@ struct DaisyList: ReducerProtocol {
         case selectDaisy(id: ListItem.State.ID, action: ListItem.Action)
     }
     
-    var mainQueue: AnySchedulerOf<DispatchQueue>
-    var uuid: () -> UUID
-    
-    init(
-        mainQueue: AnySchedulerOf<DispatchQueue> = .main,
-        uuid: @escaping () -> UUID = UUID.init
-    ) {
-        self.mainQueue = mainQueue
-        self.uuid = uuid
-    }
+    @Dependency(\.continuousClock) var clock
+    @Dependency(\.uuid) var uuid
+    private enum DaisyCompletionID {}
     
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
@@ -80,30 +73,34 @@ struct DaisyList: ReducerProtocol {
                 return .none
                 
             case var .move(source, destination):
-                if state.filter != .all {
-                    source = IndexSet(
-                        source
-                            .map { state.filteredDaisys[$0] }
-                            .compactMap { state.daisies.firstIndex(of: $0) }
-                    )
-                    destination = state.daisies.firstIndex(of: state.filteredDaisys[destination]) ?? destination
-                }
-                
-                state.daisies.move(fromOffsets: source, toOffset: destination)
-                
-                return Effect(value: .sortCompletedDaisys)
-                    .delay(for: .milliseconds(100), scheduler: self.mainQueue)
-                    .eraseToEffect()
-                
+              if state.filter == .all {
+                source = IndexSet(
+                  source
+                    .map { state.filteredDaisys[$0] }
+                    .compactMap { state.daisies.index(id: $0.id) }
+                )
+                destination =
+                  (destination < state.daisies.endIndex
+                    ? state.daisies.index(id: state.filteredDaisys[destination].id)
+                    : state.daisies.endIndex)
+                  ?? destination
+              }
+
+              state.daisies.move(fromOffsets: source, toOffset: destination)
+
+              return .task {
+                try await self.clock.sleep(for: .milliseconds(100))
+                return .sortCompletedDaisys
+              }
             case .sortCompletedDaisys:
-                state.daisies.sort { $1.isPast && !$0.isPast } // TODO - sort by date
+                state.daisies.sort  { $0.date < $1.date }
                 return .none
-                
-            case .selectDaisy(id: _, action: .showDetail): // TODO - what should happen here?
-                enum DaisyCompletionId {}
-                return Effect(value: .sortCompletedDaisys)
-                    .debounce(id: DaisyCompletionId.self, for: 1, scheduler: self.mainQueue.animation())
-                
+            case .selectDaisy(id: _, action: .showDetail):
+              return .run { send in
+                try await self.clock.sleep(for: .seconds(1)) // MC: - why wait, better visually - test it out?
+                await send(.sortCompletedDaisys, animation: .default)
+              }
+              .cancellable(id: DaisyCompletionID.self, cancelInFlight: true) // MC: - need to understand this
             case .selectDaisy:
                 return .none
             }
