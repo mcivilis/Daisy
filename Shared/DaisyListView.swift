@@ -9,48 +9,44 @@ import ComposableArchitecture
 import SwiftUI
 
 enum Filter: LocalizedStringKey, CaseIterable, Hashable {
-  case all = "All"
-  case active = "Active"
-  case past = "Past"
+    case all = "All"
+    case active = "Active"
+    case past = "Past"
 }
 
-// MARK: - State
-
-struct AppState: Equatable {
-  var editMode: EditMode = .inactive
-  var filter: Filter = .all
-  var daisies: IdentifiedArrayOf<DaisyItemState> = []
-
-  var filteredDaisys: IdentifiedArrayOf<DaisyItemState> {
-    switch filter {
-    case .active:
-        return daisies.filter { !$0.isPast }
-    case .all:
-        return daisies
-    case .past:
-        return daisies.filter { $0.isPast }
+struct DaisyList: ReducerProtocol {
+    
+    struct State: Equatable {
+        var editMode: EditMode = .inactive
+        var filter: Filter = .all
+        var daisies: IdentifiedArrayOf<ListItem.State> = []
+        
+        var filteredDaisys: IdentifiedArrayOf<ListItem.State> {
+            switch filter {
+            case .active:
+                return daisies.filter { !$0.isPast }
+            case .all:
+                return daisies
+            case .past:
+                return daisies.filter { $0.isPast }
+            }
+        }
     }
-  }
-}
-
-
-// MARK: - Action
-enum AppAction: Equatable {
-  case newDaisy
-  case clearCompleted
-  case delete(IndexSet)
-  case editModeChanged(EditMode)
-  case filter(Filter)
-  case move(IndexSet, Int)
-  case sortCompletedDaisys
-  case selectDaisy(id: DaisyItemState.ID, action: DaisyItemAction)
-}
-
-// MARK: - Environment
-struct AppEnvironment {    
+    
+    enum Action: Equatable {
+        case newDaisy
+        case clearCompleted
+        case delete(IndexSet)
+        case editModeChanged(EditMode)
+        case filter(Filter)
+        case move(IndexSet, Int)
+        case sortCompletedDaisys
+        case selectDaisy(id: ListItem.State.ID, action: ListItem.Action)
+    }
+    
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var uuid: () -> UUID
-    // TODO MC: - why do i need these properties?
+    
     init(
         mainQueue: AnySchedulerOf<DispatchQueue> = .main,
         uuid: @escaping () -> UUID = UUID.init
@@ -58,93 +54,102 @@ struct AppEnvironment {
         self.mainQueue = mainQueue
         self.uuid = uuid
     }
-}
-
-// MARK: - Reducer
-let daisyAppReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
-    daisyItemReducer.forEach(
-        state: \.daisies,
-        action: /AppAction.selectDaisy(id:action:),
-        environment: { _ in DaisyItemEnvironment() }
-    ),
-    Reducer { state, action, environment in
-        switch action {
-        case .newDaisy:
-            // TODO
-            // state.daisies.insert(DaisyState(id: environment.uuid()), at: 0)
-            return .none
-            
-        case .clearCompleted:
-            state.daisies.removeAll(where: \.isPast)
-            return .none
-            
-        case let .delete(indexSet):
-            state.daisies.remove(atOffsets: indexSet)
-            return .none
-            
-        case let .editModeChanged(editMode):
-            state.editMode = editMode
-            return .none
-            
-        case let .filter(filter):
-            state.filter = filter
-            return .none
-            
-        case var .move(source, destination):
-            if state.filter != .all {
-                source = IndexSet(
-                    source
-                        .map { state.filteredDaisys[$0] }
-                        .compactMap { state.daisies.firstIndex(of: $0) }
-                )
-                destination = state.daisies.firstIndex(of: state.filteredDaisys[destination]) ?? destination
+    
+    var body: some ReducerProtocol<State, Action> {
+        Reduce { state, action in
+            switch action {
+            case .newDaisy:
+                // TODO
+                // state.daisies.insert(DaisyState(id: environment.uuid()), at: 0)
+                return .none
+                
+            case .clearCompleted:
+                state.daisies.removeAll(where: \.isPast)
+                return .none
+                
+            case let .delete(indexSet):
+                state.daisies.remove(atOffsets: indexSet)
+                return .none
+                
+            case let .editModeChanged(editMode):
+                state.editMode = editMode
+                return .none
+                
+            case let .filter(filter):
+                state.filter = filter
+                return .none
+                
+            case var .move(source, destination):
+                if state.filter != .all {
+                    source = IndexSet(
+                        source
+                            .map { state.filteredDaisys[$0] }
+                            .compactMap { state.daisies.firstIndex(of: $0) }
+                    )
+                    destination = state.daisies.firstIndex(of: state.filteredDaisys[destination]) ?? destination
+                }
+                
+                state.daisies.move(fromOffsets: source, toOffset: destination)
+                
+                return Effect(value: .sortCompletedDaisys)
+                    .delay(for: .milliseconds(100), scheduler: self.mainQueue)
+                    .eraseToEffect()
+                
+            case .sortCompletedDaisys:
+                state.daisies.sort { $1.isPast && !$0.isPast } // TODO - sort by date
+                return .none
+                
+            case .selectDaisy(id: _, action: .showDetail): // TODO - what should happen here?
+                enum DaisyCompletionId {}
+                return Effect(value: .sortCompletedDaisys)
+                    .debounce(id: DaisyCompletionId.self, for: 1, scheduler: self.mainQueue.animation())
+                
+            case .selectDaisy:
+                return .none
             }
-            
-            state.daisies.move(fromOffsets: source, toOffset: destination)
-            
-            return Effect(value: .sortCompletedDaisys)
-                .delay(for: .milliseconds(100), scheduler: environment.mainQueue)
-                .eraseToEffect()
-            
-        case .sortCompletedDaisys:
-            state.daisies.sort { $1.isPast && !$0.isPast } // TODO - sort by date
-            return .none
-            
-        case .selectDaisy(id: _, action: .showDetail): // TODO - what should happen here?
-            enum DaisyCompletionId {}
-            return Effect(value: .sortCompletedDaisys)
-                .debounce(id: DaisyCompletionId.self, for: 1, scheduler: environment.mainQueue.animation())
-            
-        case .selectDaisy:
-            return .none
+        }
+        .forEach(\.daisies, action: /Action.selectDaisy(id:action:)) {
+            ListItem()
         }
     }
-)
+}
 
 // MARK: - View
 
 struct DaisyListView: View {
     
-    let store: Store<AppState, AppAction>
-    @ObservedObject var viewStore: ViewStore<ViewState, AppAction>
+    let store: StoreOf<DaisyList>
+    @ObservedObject var viewStore: ViewStore<ViewState, DaisyList.Action>
     
-    init(store: Store<AppState, AppAction>) {
-      self.store = store
-      self.viewStore = ViewStore(self.store.scope(state: ViewState.init(state:)))
+    init(store: StoreOf<DaisyList>) {
+        self.store = store
+        self.viewStore = ViewStore(self.store.scope(state: ViewState.init(state:)))
     }
-
+    
+    struct ViewState: Equatable {
+        let editMode: EditMode
+        let filter: Filter
+        let isClearCompletedButtonDisabled: Bool
+        
+        init(state: DaisyList.State) {
+            self.editMode = state.editMode
+            self.filter = state.filter
+            self.isClearCompletedButtonDisabled = !state.daisies.contains(where: \.isPast)
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                Picker("Filter", selection: viewStore.binding(get: \.filter, send: AppAction.filter).animation()) {
-                  ForEach(Filter.allCases, id: \.self) { filter in
-                    Text(filter.rawValue).tag(filter)
-                  }
+                Picker("Filter", selection: viewStore.binding(get: \.filter, send: DaisyList.Action.filter).animation()) {
+                    ForEach(Filter.allCases, id: \.self) { filter in
+                        Text(filter.rawValue).tag(filter)
+                    }
                 }
                 .pickerStyle(.segmented)
                 .padding(.horizontal)
                 List {
-                    ForEachStore(store.scope(state: \.filteredDaisys, action: AppAction.selectDaisy(id:action:))) { store in
+                    ForEachStore(store.scope(state: \.filteredDaisys, action: DaisyList.Action.selectDaisy(id:action:))) { store in
                         NavigationLink {
                             DaisyView()
                         } label: {
@@ -171,49 +176,32 @@ struct DaisyListView: View {
                 })
             )
             .environment(
-              \.editMode,
-              viewStore.binding(get: \.editMode, send: AppAction.editModeChanged)
+                \.editMode,
+                 viewStore.binding(get: \.editMode, send: DaisyList.Action.editModeChanged)
             )
         }
     }
 }
 
-// MARK: - Extensions
-
-extension DaisyListView {
-    
-    struct ViewState: Equatable {
-      let editMode: EditMode
-      let filter: Filter
-      let isClearCompletedButtonDisabled: Bool
-
-      init(state: AppState) {
-          self.editMode = state.editMode
-          self.filter = state.filter
-          self.isClearCompletedButtonDisabled = !state.daisies.contains(where: \.isPast)
-      }
-    }
-}
-
-extension IdentifiedArray where ID == DaisyItemState.ID, Element == DaisyItemState {
+extension IdentifiedArray where ID == ListItem.State.ID, Element == ListItem.State {
     static let mock: Self = [
-        DaisyItemState(title: "Daisy 1", date: Date(timeIntervalSinceNow: -20)),
-        DaisyItemState(title: "Daisy 2", date: Date(timeIntervalSinceNow: -10)),
-        DaisyItemState(title: "Daisy 3", date: Date(timeIntervalSinceNow: -0)),
-        DaisyItemState(title: "Daisy 4", date: Date(timeIntervalSinceNow: 10)),
-        DaisyItemState(title: "Daisy 5", date: Date(timeIntervalSinceNow: 20)),
+        ListItem.State(title: "Daisy 1", date: Date(timeIntervalSinceNow: -20)),
+        ListItem.State(title: "Daisy 2", date: Date(timeIntervalSinceNow: -10)),
+        ListItem.State(title: "Daisy 3", date: Date(timeIntervalSinceNow: -0)),
+        ListItem.State(title: "Daisy 4", date: Date(timeIntervalSinceNow: 10)),
+        ListItem.State(title: "Daisy 5", date: Date(timeIntervalSinceNow: 20)),
     ]
 }
 
 // MARK: - Preview
 
 struct DaisyAppView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        DaisyListView(store: Store(
-            initialState: AppState(daisies: .mock),
-            reducer: daisyAppReducer,
-            environment: AppEnvironment()
-        ))
+        DaisyListView(
+            store: Store(
+                initialState: DaisyList.State(daisies: .mock),
+                reducer: DaisyList()
+            )
+        )
     }
 }

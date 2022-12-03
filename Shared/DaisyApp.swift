@@ -10,18 +10,25 @@ import SwiftUI
 
 @main
 struct DaisyApp: App {
-    
-    let store = Store(
-        initialState: AppState(daisies: DaisyItemState.testData),
-        reducer: daisyAppReducer,
-        environment: AppEnvironment(mainQueue: .main, uuid: { UUID() })
-    )
-    
-    var body: some Scene {
-        WindowGroup {
-            DaisyListView(store: store)
-        }
+  var body: some Scene {
+    WindowGroup {
+      DaisyListView(
+        store: Store(
+            initialState: DaisyList.State(daisies: .testData),
+          reducer: DaisyList()._printChanges()
+        )
+      )
     }
+  }
+}
+
+// MARK: Test date
+extension IdentifiedArray where ID == ListItem.State.ID, Element == ListItem.State {
+    static let testData: Self = [
+        ListItem.State(title: "Birthday", date: Date.preview("0:00 Mon, 30 Nov 1987"), symbolName: "birthday.cake.fill"),
+        ListItem.State(title: "Exercise", date: Date.preview("0:00 Tue, 1 Dec 2022"), symbolName: "figure.indoor.cycle"),
+        ListItem.State(title: "Vacation", date: Date.preview("0:00 Sun, 19 Feb 2023"), symbolName: "beach.umbrella.fill")
+    ]
 }
 
 /*

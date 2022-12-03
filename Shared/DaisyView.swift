@@ -50,9 +50,9 @@ struct Daisy: ReducerProtocol {
 struct DaisyView: View {
     
     @BindableState
-    var daisyState: DaisyItemState
+    var daisyState: ListItem.State
     
-    init(daisyState: DaisyItemState = DaisyItemState()) {
+    init(daisyState: ListItem.State = ListItem.State()) {
         self.daisyState = daisyState
     }
     
