@@ -64,20 +64,22 @@ struct ListItemView: View {
     var body: some View {
         WithViewStore(self.store) { viewStore in
             RoundedRectangle(cornerRadius: 25)
-                .foregroundColor(.accentColor)
+                .strokeBorder(Color.black, lineWidth: 2)
+                //.foregroundColor(.white)
+                .shadow(radius: 10)
                 .frame(height: 100)
                 .overlay {
                     HStack {
                         VStack(alignment: .leading, spacing: 12) {
                             Text(viewStore.title)
-                                .font(.title3)
-                                .foregroundColor(.black)
+                                .font(.title2   )
                                 .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .shadow(color: .black, radius: 2)
                             Text(viewStore.date.display())
-                                .foregroundColor(.black)
                                 .font(.body)
                         }
-                        .opacity(0.7)
+                        .foregroundColor(.black)
                         .padding()
                         Spacer()
                         VStack(alignment: .center, spacing: 12) {
@@ -85,15 +87,21 @@ struct ListItemView: View {
                                 Image(systemName: symbolName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .foregroundColor(.black)
-                                    .opacity(0.7)
+                                    .foregroundColor(.white)
+                                    .shadow(color: .black, radius: 2)
+                                    
+
                             }
-                            Text(viewStore.date.daisy())
-                                .foregroundColor(.white)
-                                .padding(8)
-                                .background(.black)
-                                .cornerRadius(20)
-                                .opacity(0.8)
+                            Button(viewStore.date.daisy()) {
+                                // TODO: show more date formats
+                            }
+                            .buttonStyle(WhiteButton())
+//                            Text(viewStore.date.daisy())
+//                                .foregroundColor(.black)
+//                                .padding(8)
+//                                .background(.white)
+//                                .cornerRadius(20)
+//                                .shadow(color: .black, radius: 2)
                         }
                         .offset(y: 20)
                     }

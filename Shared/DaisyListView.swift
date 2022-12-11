@@ -137,45 +137,53 @@ struct DaisyListView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                Picker("Filter", selection: viewStore.binding(get: \.filter, send: DaisyList.Action.filter).animation()) {
-                    ForEach(Filter.allCases, id: \.self) { filter in
-                        Text(filter.rawValue).tag(filter)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .padding(.horizontal)
-                List {
-                    ForEachStore(store.scope(state: \.filteredDaisys, action: DaisyList.Action.selectDaisy(id:action:))) { store in
-                        NavigationLink {
-                            DaisyView()
-                        } label: {
-                            ListItemView(store: store)
+            ZStack {
+                Color.accentColor.ignoresSafeArea()
+                VStack(alignment: .leading) {
+                    Picker("Filter", selection: viewStore.binding(get: \.filter, send: DaisyList.Action.filter).animation()) {
+                        ForEach(Filter.allCases, id: \.self) { filter in
+                            Text(filter.rawValue).tag(filter)
                         }
                     }
-                    .onDelete { viewStore.send(.delete($0)) }
-                    .onMove { viewStore.send(.move($0, $1)) }
-                }
-                .listStyle(.inset)
-            }
-            .navigationTitle("Daisies")
-            .navigationBarItems(
-                leading: HStack {
-                    EditButton()
-                    Button("Clear Completed") {
-                        viewStore.send(.clearCompleted)
+                    .pickerStyle(.segmented)
+                    .padding(.horizontal)
+                    List {
+                        ForEachStore(store.scope(state: \.filteredDaisys, action: DaisyList.Action.selectDaisy(id:action:))) { store in
+                            ZStack {
+                                NavigationLink(destination: DaisyView(store: store)) {
+                                      EmptyView()
+                                  }.opacity(0)
+                                ListItemView(store: store)
+                            }
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.accentColor)
+                        }
+                        .onDelete { viewStore.send(.delete($0)) }
                     }
-                },
-                trailing: Button(action: {
-                    viewStore.send(.newDaisy)
-                }, label: {
-                    Image(systemName: "square.and.pencil")
-                })
-            )
-            .environment(
-                \.editMode,
-                 viewStore.binding(get: \.editMode, send: DaisyList.Action.editModeChanged)
-            )
+                    .listStyle(.plain)
+                    .listRowSeparator(.hidden)
+                    .background(Color.clear)
+                }
+                .navigationTitle("Daisies")
+                .navigationBarItems(
+                    leading: HStack {
+                        EditButton().buttonStyle(WhiteButton())
+                        Button("Clear Completed") {
+                            viewStore.send(.clearCompleted)
+                        }.buttonStyle(WhiteButton())
+                    },
+                    trailing: Button(action: {
+                        viewStore.send(.newDaisy)
+                    }, label: {
+                        Image(systemName: "square.and.pencil")
+                    }).buttonStyle(WhiteButton())
+                )
+                .foregroundColor(.black)
+                .environment(
+                    \.editMode,
+                     viewStore.binding(get: \.editMode, send: DaisyList.Action.editModeChanged)
+                )
+            }
         }
     }
 }
