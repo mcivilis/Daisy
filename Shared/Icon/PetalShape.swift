@@ -42,7 +42,7 @@ struct PetalParameters {
     ]
 }
 
-struct PetalShapeView: View {
+struct PetalShape: View {
     var body: some View {
         GeometryReader { geometry in
             Path { path in
@@ -76,8 +76,26 @@ struct PetalShapeView: View {
     }
 }
 
-struct PetalShapeView_Previews: PreviewProvider {
+struct RotatedPetalView: View {
+    let angle: Angle
+    
+    var body: some View {
+        PetalShape()
+            .padding(-60)
+            .rotationEffect(angle, anchor: .center)
+    }
+}
+
+struct RotatedBadgeSymbol_Previews: PreviewProvider {
     static var previews: some View {
-        PetalShapeView()
+        GeometryReader { geometry in
+            RotatedPetalView(angle: Angle(degrees: 15))
+        }
+    }
+}
+
+struct PetalShape_Previews: PreviewProvider {
+    static var previews: some View {
+        PetalShape()
     }
 }
