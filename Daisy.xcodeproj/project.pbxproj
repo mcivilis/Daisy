@@ -11,10 +11,10 @@
 		A212D51C289411F6006A7E38 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212D51A289411F6006A7E38 /* ListItemView.swift */; };
 		A236EB3C28FB5CC30033858B /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* DaisyView.swift */; };
 		A236EB3D28FB5CC30033858B /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* DaisyView.swift */; };
-		A24795DF294BFD39002F791C /* PetalShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalShape.swift */; };
-		A24795E0294BFD39002F791C /* PetalShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalShape.swift */; };
-		A24795E5294C253B002F791C /* DaisyShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795E4294C253B002F791C /* DaisyShape.swift */; };
-		A24795E6294C253B002F791C /* DaisyShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795E4294C253B002F791C /* DaisyShape.swift */; };
+		A24795DF294BFD39002F791C /* PetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalView.swift */; };
+		A24795E0294BFD39002F791C /* PetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalView.swift */; };
+		A24795E5294C253B002F791C /* DaisyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795E4294C253B002F791C /* DaisyIcon.swift */; };
+		A24795E6294C253B002F791C /* DaisyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795E4294C253B002F791C /* DaisyIcon.swift */; };
 		A25E1001291C48BF00439BF4 /* PaddingModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25E1000291C48BF00439BF4 /* PaddingModifier.swift */; };
 		A25E1002291C48BF00439BF4 /* PaddingModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25E1000291C48BF00439BF4 /* PaddingModifier.swift */; };
 		A2A3681828F79FB000C2AD02 /* SymbolPicker in Frameworks */ = {isa = PBXBuildFile; productRef = A2A3681728F79FB000C2AD02 /* SymbolPicker */; };
@@ -36,8 +36,8 @@
 /* Begin PBXFileReference section */
 		A212D51A289411F6006A7E38 /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 		A236EB3B28FB5CC30033858B /* DaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyView.swift; sourceTree = "<group>"; };
-		A24795DE294BFD39002F791C /* PetalShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetalShape.swift; sourceTree = "<group>"; };
-		A24795E4294C253B002F791C /* DaisyShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyShape.swift; sourceTree = "<group>"; };
+		A24795DE294BFD39002F791C /* PetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetalView.swift; sourceTree = "<group>"; };
+		A24795E4294C253B002F791C /* DaisyIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyIcon.swift; sourceTree = "<group>"; };
 		A25E1000291C48BF00439BF4 /* PaddingModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingModifier.swift; sourceTree = "<group>"; };
 		A2A3681928F7A28B00C2AD02 /* View+If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+If.swift"; sourceTree = "<group>"; };
 		A2B3F91A29468C570041301B /* WhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteButton.swift; sourceTree = "<group>"; };
@@ -73,8 +73,8 @@
 		A24795D4294BF562002F791C /* Icon */ = {
 			isa = PBXGroup;
 			children = (
-				A24795DE294BFD39002F791C /* PetalShape.swift */,
-				A24795E4294C253B002F791C /* DaisyShape.swift */,
+				A24795DE294BFD39002F791C /* PetalView.swift */,
+				A24795E4294C253B002F791C /* DaisyIcon.swift */,
 			);
 			path = Icon;
 			sourceTree = "<group>";
@@ -256,10 +256,10 @@
 				A2B3F91B29468C570041301B /* WhiteButton.swift in Sources */,
 				A2B9C2732881F68B00506E32 /* DaisyListView.swift in Sources */,
 				A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */,
-				A24795E5294C253B002F791C /* DaisyShape.swift in Sources */,
+				A24795E5294C253B002F791C /* DaisyIcon.swift in Sources */,
 				A2A3681A28F7A28B00C2AD02 /* View+If.swift in Sources */,
 				A25E1001291C48BF00439BF4 /* PaddingModifier.swift in Sources */,
-				A24795DF294BFD39002F791C /* PetalShape.swift in Sources */,
+				A24795DF294BFD39002F791C /* PetalView.swift in Sources */,
 				A212D51B289411F6006A7E38 /* ListItemView.swift in Sources */,
 				A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
 			);
@@ -273,10 +273,10 @@
 				A2B3F91C29468C570041301B /* WhiteButton.swift in Sources */,
 				A2B9C2742881F68B00506E32 /* DaisyListView.swift in Sources */,
 				A2B9C2722881F68B00506E32 /* DaisyApp.swift in Sources */,
-				A24795E6294C253B002F791C /* DaisyShape.swift in Sources */,
+				A24795E6294C253B002F791C /* DaisyIcon.swift in Sources */,
 				A2A3681B28F7A28B00C2AD02 /* View+If.swift in Sources */,
 				A25E1002291C48BF00439BF4 /* PaddingModifier.swift in Sources */,
-				A24795E0294BFD39002F791C /* PetalShape.swift in Sources */,
+				A24795E0294BFD39002F791C /* PetalView.swift in Sources */,
 				A212D51C289411F6006A7E38 /* ListItemView.swift in Sources */,
 				A2EA926928F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
 			);

@@ -15,7 +15,7 @@ struct DaisyApp: App {
       DaisyListView(
         store: Store(
             initialState: DaisyList.State(daisies: .testData),
-          reducer: DaisyList()._printChanges()
+          reducer: DaisyList()
         )
       )
     }
