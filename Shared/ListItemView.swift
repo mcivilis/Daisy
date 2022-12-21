@@ -74,7 +74,6 @@ struct ListItemView: View {
                                 .font(.title2   )
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.header)
-                                .shadow(color: .black, radius: 2)
                             Text(viewStore.date.display())
                                 .font(.body)
                         }

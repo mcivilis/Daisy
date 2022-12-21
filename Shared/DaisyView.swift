@@ -67,10 +67,13 @@ struct DaisyView: View {
     }
     
     var body: some View {
-        Form {
-            Text("Hello")
-            //TextField("Title", text: daisyState.title)
-        }
+
+                Form {
+                    Text("Hello World")
+                    //TextField("Title", text: daisyState.title)
+                }
+            }
+        
         //.navigationTitle(store.state.title)
 //        .navigationBarItems(
 //            leading: HStack {
@@ -87,7 +90,6 @@ struct DaisyView: View {
 //            \.editMode,
 //             viewStore.binding(get: \.editMode, send: DaisyList.Action.editModeChanged)
 //        )
-    }
 }
 
 //struct DaisyView_Previews: PreviewProvider {
