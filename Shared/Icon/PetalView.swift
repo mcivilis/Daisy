@@ -75,9 +75,9 @@ struct PetalView: View {
     var body: some View {
         GeometryReader { geometry in
             PetalShape()
-            .stroke(.black, lineWidth: 12)
+            .stroke(.black, lineWidth: 8)
             .background(PetalShape().fill(.white))
-            .shadow(color: Color.black.opacity(0.4), radius: 20, x: 5, y: 5)
+            .shadow(color: Color.gray, radius: 10, x: 5, y: 5)
         }
         .aspectRatio(1, contentMode: .fit)
     }

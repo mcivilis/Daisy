@@ -21,7 +21,7 @@ struct DaisyList: ReducerProtocol {
         var filter: Filter = .all
         var daisies: IdentifiedArrayOf<ListItem.State> = []
         
-        var filteredDaisys: IdentifiedArrayOf<ListItem.State> {
+        public var filteredDaisys: IdentifiedArrayOf<ListItem.State> {
             switch filter {
             case .active:
                 return daisies.filter { !$0.isPast }
@@ -114,7 +114,6 @@ struct DaisyList: ReducerProtocol {
 // MARK: - View
 
 struct DaisyListView: View {
-    
     let store: StoreOf<DaisyList>
     @ObservedObject var viewStore: ViewStore<ViewState, DaisyList.Action>
     
@@ -138,7 +137,7 @@ struct DaisyListView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.accentColor.ignoresSafeArea()
+                Color.background.ignoresSafeArea()
                 VStack(alignment: .leading) {
                     Picker("Filter", selection: viewStore.binding(get: \.filter, send: DaisyList.Action.filter).animation()) {
                         ForEach(Filter.allCases, id: \.self) { filter in
@@ -151,34 +150,32 @@ struct DaisyListView: View {
                         ForEachStore(store.scope(state: \.filteredDaisys, action: DaisyList.Action.selectDaisy(id:action:))) { store in
                             ZStack {
                                 NavigationLink(destination: DaisyView(store: store)) {
-                                      EmptyView()
-                                  }.opacity(0)
+                                    EmptyView()
+                                }.opacity(0)
                                 ListItemView(store: store)
                             }
                             .listRowSeparator(.hidden)
-                            .listRowBackground(Color.accentColor)
+                            .listRowBackground(Color.clear)
                         }
                         .onDelete { viewStore.send(.delete($0)) }
                     }
                     .listStyle(.plain)
                     .listRowSeparator(.hidden)
-                    .background(Color.clear)
                 }
                 .navigationTitle("Daisies")
                 .navigationBarItems(
                     leading: HStack {
-                        EditButton().buttonStyle(WhiteButton())
-                        Button("Clear Completed") {
+                        EditButton().buttonStyle(DaisyButtonStyle())
+                        Button("Clear Past") {
                             viewStore.send(.clearCompleted)
-                        }.buttonStyle(WhiteButton())
+                        }.buttonStyle(DaisyButtonStyle())
                     },
                     trailing: Button(action: {
                         viewStore.send(.newDaisy)
                     }, label: {
                         Image(systemName: "square.and.pencil")
-                    }).buttonStyle(WhiteButton())
+                    }).buttonStyle(DaisyButtonStyle())
                 )
-                .foregroundColor(.black)
                 .environment(
                     \.editMode,
                      viewStore.binding(get: \.editMode, send: DaisyList.Action.editModeChanged)

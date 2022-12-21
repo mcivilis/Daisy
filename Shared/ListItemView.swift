@@ -64,8 +64,7 @@ struct ListItemView: View {
     var body: some View {
         WithViewStore(self.store) { viewStore in
             RoundedRectangle(cornerRadius: 25)
-                .strokeBorder(Color.black, lineWidth: 2)
-                //.foregroundColor(.white)
+                .strokeBorder(Color.stroke, lineWidth: 2)
                 .shadow(radius: 10)
                 .frame(height: 100)
                 .overlay {
@@ -74,12 +73,11 @@ struct ListItemView: View {
                             Text(viewStore.title)
                                 .font(.title2   )
                                 .fontWeight(.bold)
-                                .foregroundColor(.white)
+                                .foregroundColor(Color.header)
                                 .shadow(color: .black, radius: 2)
                             Text(viewStore.date.display())
                                 .font(.body)
                         }
-                        .foregroundColor(.black)
                         .padding()
                         Spacer()
                         VStack(alignment: .center, spacing: 12) {
@@ -87,7 +85,7 @@ struct ListItemView: View {
                                 Image(systemName: symbolName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color.foreground)
                                     .shadow(color: .black, radius: 2)
                                     
 
@@ -95,7 +93,7 @@ struct ListItemView: View {
                             Button(viewStore.date.daisy()) {
                                 // TODO: show more date formats
                             }
-                            .buttonStyle(WhiteButton())
+                            .buttonStyle(DaisyButtonStyle())
 //                            Text(viewStore.date.daisy())
 //                                .foregroundColor(.black)
 //                                .padding(8)
