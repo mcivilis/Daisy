@@ -163,14 +163,9 @@ struct ListView: View {
                     .padding(.horizontal)
                     List {
                         ForEachStore(store.scope(state: \.filteredDaisys, action: DaisyList.Action.selectDaisy(id:action:))) { store in
-                            ZStack {
-                                NavigationLink(destination: EditView(store: store)) {
-                                    EmptyView()
-                                }.opacity(0)
-                                DaisyView(store: store)
-                            }
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.clear)
+                            DaisyView(store: store)
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
                         }
                         .onDelete { viewStore.send(.delete($0)) }
                     }

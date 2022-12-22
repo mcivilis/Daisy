@@ -24,6 +24,8 @@ struct Daisy: ReducerProtocol {
             return date >= Date.now
         }
         
+        var editDaisyState: EditDaisy.State?
+        
         init(
             id: UUID = UUID(),
             title: String,
@@ -41,6 +43,7 @@ struct Daisy: ReducerProtocol {
     
     enum Action: Equatable {
         case showDetail
+        case dismissDetail
         case delete
     }
     
@@ -49,8 +52,13 @@ struct Daisy: ReducerProtocol {
     func reduce(into state: inout State, action: Action) -> ComposableArchitecture.EffectTask<Action> {
         switch action {
         case .showDetail:
-            break
-        case .delete:
+            state.editDaisyState = EditDaisy.State(
+                title: state.title,
+                date: state.date,
+                symbolName: state.symbolName,
+                color: state.color
+            )
+        case .delete, .dismissDetail:
             break
         }
         return .none
@@ -91,20 +99,20 @@ struct DaisyView: View {
 
                             }
                             Button(viewStore.date.daisy()) {
-                                // TODO: show more date formats
+                                // TODO: replace this with a Text capsule as this is not a functioning button
                             }
                             .buttonStyle(DaisyButtonStyle())
-//                            Text(viewStore.date.daisy())
-//                                .foregroundColor(.black)
-//                                .padding(8)
-//                                .background(.white)
-//                                .cornerRadius(20)
-//                                .shadow(color: .black, radius: 2)
                         }
                         .offset(y: 20)
                     }
                 }
                 .padding(.bottom, 20)
+                .onTapGesture {
+                    viewStore.send(.showDetail)
+                }
+                .sheet(item: viewStore.binding(get: \.editDaisyState, send: Daisy.Action.dismissDetail)) { id in
+                    EditDaisyView(store: store)
+                }
         }
     }
 }

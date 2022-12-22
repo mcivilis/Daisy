@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 struct EditDaisy: ReducerProtocol {
     
-    struct State: Equatable {
+    struct State: Equatable, Identifiable {
 
         let id: UUID
         var title: String
@@ -58,7 +58,7 @@ struct EditDaisy: ReducerProtocol {
     }
 }
 
-struct EditView: View {
+struct EditDaisyView: View {
     
     let store: StoreOf<Daisy>
     
