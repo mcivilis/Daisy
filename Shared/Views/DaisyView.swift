@@ -1,5 +1,5 @@
 //
-//  ListItemView.swift
+//  DaisyView.swift
 //  Daisy
 //
 //  Created by Maria Civilis on 2022-07-29.
@@ -11,7 +11,7 @@ import IdentifiedCollections
 
 // MARK: Reducer
 
-struct ListItem: ReducerProtocol {
+struct Daisy: ReducerProtocol {
     
     struct State: Equatable, Identifiable {
         let id: UUID
@@ -25,12 +25,13 @@ struct ListItem: ReducerProtocol {
         }
         
         init(
-            title: String = "",
-            date: Date = .now,
-            symbolName: String? = nil,
-            color: Color = Color.accentColor
+            id: UUID = UUID(),
+            title: String,
+            date: Date,
+            symbolName: String?,
+            color: Color
         ) {
-            self.id = UUID()
+            self.id = id
             self.title = title
             self.date = date
             self.symbolName = symbolName
@@ -58,8 +59,8 @@ struct ListItem: ReducerProtocol {
 
 // MARK: View
 
-struct ListItemView: View {
-    let store: StoreOf<ListItem>
+struct DaisyView: View {
+    let store: StoreOf<Daisy>
     
     var body: some View {
         WithViewStore(self.store) { viewStore in
@@ -109,16 +110,17 @@ struct ListItemView: View {
 }
 
 struct DaisyItemView_Previews: PreviewProvider {
-    static var store: Store<ListItem.State, ListItem.Action> = Store(
-        initialState: ListItem.State(
+    static var store: Store<Daisy.State, Daisy.Action> = Store(
+        initialState: Daisy.State(
             title: "Amelia's Birthday",
             date: Date.preview("2:32 Wed, 22 Sep 2019"),
-            symbolName: "birthday.cake.fill"
+            symbolName: "birthday.cake.fill",
+            color: .accentColor
         ),
-        reducer: ListItem()
+        reducer: Daisy()
     )
     
     static var previews: some View {
-        ListItemView(store: store)
+        DaisyView(store: store)
     }
 }

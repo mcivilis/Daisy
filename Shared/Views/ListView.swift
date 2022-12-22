@@ -1,5 +1,5 @@
 //
-//  DaisyListView.swift
+//  ListView.swift
 //  Shared
 //
 //  Created by Maria Civilis on 2022-07-15.
@@ -19,9 +19,9 @@ struct DaisyList: ReducerProtocol {
     struct State: Equatable {
         var editMode: EditMode = .inactive
         var filter: Filter = .all
-        var daisies: IdentifiedArrayOf<ListItem.State> = []
+        var daisies: IdentifiedArrayOf<Daisy.State> = []
         
-        public var filteredDaisys: IdentifiedArrayOf<ListItem.State> {
+        public var filteredDaisys: IdentifiedArrayOf<Daisy.State> {
             switch filter {
             case .active:
                 return daisies.filter { !$0.isPast }
@@ -34,35 +34,70 @@ struct DaisyList: ReducerProtocol {
     }
     
     enum Action: Equatable {
+        case load
+        case save
+        case failedToSave(String)
+        case succeededToSave
+        case updateDaisies([Model])
         case newDaisy
         case clearCompleted
         case delete(IndexSet)
         case editModeChanged(EditMode)
         case filter(Filter)
-        case move(IndexSet, Int)
         case sortCompletedDaisys
-        case selectDaisy(id: ListItem.State.ID, action: ListItem.Action)
+        case selectDaisy(id: Daisy.State.ID, action: Daisy.Action)
     }
     
     @Dependency(\.continuousClock) var clock
     @Dependency(\.uuid) var uuid
+    
+    let daisySource: Source
+    
     private enum DaisyCompletionID {}
     
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
+            case .load:
+                return daisySource
+                    .loadPublisher()
+                    .map { daisies in
+                        return .updateDaisies(daisies)
+                    }
+            case .save:
+                return daisySource
+                    .savePublisher(state.daisies)
+                    .catchToEffect { result in
+                        if case let .failure(error) = result {
+                            return .failedToSave(error.localizedDescription)
+                        } else {
+                            return .succeededToSave
+                        }
+                    }
+            case .failedToSave:
+                // TODO: Handle save error
+                break
+            case let .updateDaisies(models):
+                state.daisies = IdentifiedArrayOf(uniqueElements: models.map {
+                    Daisy.State(
+                        id: $0.id,
+                        title: $0.title,
+                        date: $0.date,
+                        symbolName: $0.symbolName,
+                        color: Color.init(hex: $0.color) ?? .accentColor
+                    )
+                })
             case .newDaisy:
-                // TODO
-                // state.daisies.insert(DaisyState(id: environment.uuid()), at: 0)
-                return .none
-                
+                // TODO Remove test code and actually make new real entry
+                state.daisies.insert(Source.random, at: 0)
+                return EffectTask(value: .save)
             case .clearCompleted:
                 state.daisies.removeAll(where: \.isPast)
-                return .none
+                return EffectTask(value: .save)
                 
             case let .delete(indexSet):
                 state.daisies.remove(atOffsets: indexSet)
-                return .none
+                return EffectTask(value: .save)
                 
             case let .editModeChanged(editMode):
                 state.editMode = editMode
@@ -71,49 +106,29 @@ struct DaisyList: ReducerProtocol {
             case let .filter(filter):
                 state.filter = filter
                 return .none
-                
-            case var .move(source, destination):
-              if state.filter == .all {
-                source = IndexSet(
-                  source
-                    .map { state.filteredDaisys[$0] }
-                    .compactMap { state.daisies.index(id: $0.id) }
-                )
-                destination =
-                  (destination < state.daisies.endIndex
-                    ? state.daisies.index(id: state.filteredDaisys[destination].id)
-                    : state.daisies.endIndex)
-                  ?? destination
-              }
-
-              state.daisies.move(fromOffsets: source, toOffset: destination)
-
-              return .task {
-                try await self.clock.sleep(for: .milliseconds(100))
-                return .sortCompletedDaisys
-              }
             case .sortCompletedDaisys:
                 state.daisies.sort  { $0.date < $1.date }
                 return .none
             case .selectDaisy(id: _, action: .showDetail):
-              return .run { send in
-                try await self.clock.sleep(for: .seconds(1)) // MC: - why wait, better visually - test it out?
-                await send(.sortCompletedDaisys, animation: .default)
-              }
-              .cancellable(id: DaisyCompletionID.self, cancelInFlight: true) // MC: - need to understand this
-            case .selectDaisy:
-                return .none
+                return .run { send in
+                    try await self.clock.sleep(for: .seconds(1)) // MC: - why wait, better visually - test it out?
+                    await send(.sortCompletedDaisys, animation: .default)
+                }
+                .cancellable(id: DaisyCompletionID.self, cancelInFlight: true) // MC: - need to understand this
+            case .selectDaisy, .succeededToSave:
+                break
             }
+            return .none
         }
         .forEach(\.daisies, action: /Action.selectDaisy(id:action:)) {
-            ListItem()
+            Daisy()
         }
     }
 }
 
 // MARK: - View
 
-struct DaisyListView: View {
+struct ListView: View {
     let store: StoreOf<DaisyList>
     @ObservedObject var viewStore: ViewStore<ViewState, DaisyList.Action>
     
@@ -149,10 +164,10 @@ struct DaisyListView: View {
                     List {
                         ForEachStore(store.scope(state: \.filteredDaisys, action: DaisyList.Action.selectDaisy(id:action:))) { store in
                             ZStack {
-                                NavigationLink(destination: DaisyView(store: store)) {
+                                NavigationLink(destination: EditView(store: store)) {
                                     EmptyView()
                                 }.opacity(0)
-                                ListItemView(store: store)
+                                DaisyView(store: store)
                             }
                             .listRowSeparator(.hidden)
                             .listRowBackground(Color.clear)
@@ -162,6 +177,7 @@ struct DaisyListView: View {
                     .listStyle(.plain)
                     .listRowSeparator(.hidden)
                 }
+                .onAppear { viewStore.send(.load) }
                 .navigationTitle("Daisies")
                 .navigationBarItems(
                     leading: HStack {
@@ -185,13 +201,13 @@ struct DaisyListView: View {
     }
 }
 
-extension IdentifiedArray where ID == ListItem.State.ID, Element == ListItem.State {
+extension IdentifiedArray where ID == Daisy.State.ID, Element == Daisy.State {
     static let mock: Self = [
-        ListItem.State(title: "Daisy 1", date: Date(timeIntervalSinceNow: -20)),
-        ListItem.State(title: "Daisy 2", date: Date(timeIntervalSinceNow: -10)),
-        ListItem.State(title: "Daisy 3", date: Date(timeIntervalSinceNow: -0)),
-        ListItem.State(title: "Daisy 4", date: Date(timeIntervalSinceNow: 10)),
-        ListItem.State(title: "Daisy 5", date: Date(timeIntervalSinceNow: 20)),
+        Daisy.State(title: "Daisy 1", date: Date(timeIntervalSinceNow: -20), symbolName: "", color: .accentColor),
+        Daisy.State(title: "Daisy 2", date: Date(timeIntervalSinceNow: -10), symbolName: "", color: .accentColor),
+        Daisy.State(title: "Daisy 3", date: Date(timeIntervalSinceNow: -0), symbolName: "", color: .accentColor),
+        Daisy.State(title: "Daisy 4", date: Date(timeIntervalSinceNow: 10), symbolName: "", color: .accentColor),
+        Daisy.State(title: "Daisy 5", date: Date(timeIntervalSinceNow: 20), symbolName: "", color: .accentColor),
     ]
 }
 
@@ -199,10 +215,10 @@ extension IdentifiedArray where ID == ListItem.State.ID, Element == ListItem.Sta
 
 struct DaisyAppView_Previews: PreviewProvider {
     static var previews: some View {
-        DaisyListView(
+        ListView(
             store: Store(
-                initialState: DaisyList.State(daisies: .mock),
-                reducer: DaisyList()
+                initialState: DaisyList.State(),
+                reducer: DaisyList(daisySource: Source())
             )
         )
     }

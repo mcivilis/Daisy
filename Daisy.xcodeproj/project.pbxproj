@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A212D51B289411F6006A7E38 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212D51A289411F6006A7E38 /* ListItemView.swift */; };
-		A212D51C289411F6006A7E38 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212D51A289411F6006A7E38 /* ListItemView.swift */; };
+		A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212D51A289411F6006A7E38 /* DaisyView.swift */; };
+		A212D51C289411F6006A7E38 /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212D51A289411F6006A7E38 /* DaisyView.swift */; };
 		A22ED8FE2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */; };
 		A22ED8FF2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */; };
 		A22ED9012953B3700088D4C2 /* Color+Daisy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED9002953B3700088D4C2 /* Color+Daisy.swift */; };
 		A22ED9022953B3700088D4C2 /* Color+Daisy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED9002953B3700088D4C2 /* Color+Daisy.swift */; };
-		A236EB3C28FB5CC30033858B /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* DaisyView.swift */; };
-		A236EB3D28FB5CC30033858B /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* DaisyView.swift */; };
+		A22ED9092953F1950088D4C2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED9082953F1950088D4C2 /* Source.swift */; };
+		A22ED90A2953F1950088D4C2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED9082953F1950088D4C2 /* Source.swift */; };
+		A22ED90C2953F2950088D4C2 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED90B2953F2950088D4C2 /* Color+Hex.swift */; };
+		A22ED90D2953F2950088D4C2 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED90B2953F2950088D4C2 /* Color+Hex.swift */; };
+		A236EB3C28FB5CC30033858B /* EditDaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* EditDaisyView.swift */; };
+		A236EB3D28FB5CC30033858B /* EditDaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* EditDaisyView.swift */; };
 		A24795DF294BFD39002F791C /* PetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalView.swift */; };
 		A24795E0294BFD39002F791C /* PetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalView.swift */; };
 		A24795E5294C253B002F791C /* DaisyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795E4294C253B002F791C /* DaisyIcon.swift */; };
@@ -26,8 +30,8 @@
 		A2A3681B28F7A28B00C2AD02 /* View+If.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3681928F7A28B00C2AD02 /* View+If.swift */; };
 		A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2612881F68A00506E32 /* DaisyApp.swift */; };
 		A2B9C2722881F68B00506E32 /* DaisyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2612881F68A00506E32 /* DaisyApp.swift */; };
-		A2B9C2732881F68B00506E32 /* DaisyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* DaisyListView.swift */; };
-		A2B9C2742881F68B00506E32 /* DaisyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* DaisyListView.swift */; };
+		A2B9C2732881F68B00506E32 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* ListView.swift */; };
+		A2B9C2742881F68B00506E32 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* ListView.swift */; };
 		A2B9C2752881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2762881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2812881FA1500506E32 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2B9C2802881FA1500506E32 /* ComposableArchitecture */; };
@@ -36,16 +40,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A212D51A289411F6006A7E38 /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
+		A212D51A289411F6006A7E38 /* DaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyView.swift; sourceTree = "<group>"; };
 		A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyButtonStyle.swift; sourceTree = "<group>"; };
 		A22ED9002953B3700088D4C2 /* Color+Daisy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Daisy.swift"; sourceTree = "<group>"; };
-		A236EB3B28FB5CC30033858B /* DaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyView.swift; sourceTree = "<group>"; };
+		A22ED9082953F1950088D4C2 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		A22ED90B2953F2950088D4C2 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		A236EB3B28FB5CC30033858B /* EditDaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDaisyView.swift; sourceTree = "<group>"; };
 		A24795DE294BFD39002F791C /* PetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetalView.swift; sourceTree = "<group>"; };
 		A24795E4294C253B002F791C /* DaisyIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyIcon.swift; sourceTree = "<group>"; };
 		A25E1000291C48BF00439BF4 /* PaddingModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingModifier.swift; sourceTree = "<group>"; };
 		A2A3681928F7A28B00C2AD02 /* View+If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+If.swift"; sourceTree = "<group>"; };
 		A2B9C2612881F68A00506E32 /* DaisyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyApp.swift; sourceTree = "<group>"; };
-		A2B9C2622881F68A00506E32 /* DaisyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyListView.swift; sourceTree = "<group>"; };
+		A2B9C2622881F68A00506E32 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		A2B9C2632881F68B00506E32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2B9C2682881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2B9C26E2881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,20 +88,13 @@
 			path = Icon;
 			sourceTree = "<group>";
 		};
-		A25E0FFF291C48AC00439BF4 /* Modifiers */ = {
-			isa = PBXGroup;
-			children = (
-				A25E1000291C48BF00439BF4 /* PaddingModifier.swift */,
-			);
-			path = Modifiers;
-			sourceTree = "<group>";
-		};
-		A2B3F91929468C2E0041301B /* UI */ = {
+		A25E0FFF291C48AC00439BF4 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
 				A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */,
+				A25E1000291C48BF00439BF4 /* PaddingModifier.swift */,
 			);
-			path = UI;
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		A2B9C25B2881F68A00506E32 = {
@@ -111,13 +110,11 @@
 			isa = PBXGroup;
 			children = (
 				A24795D4294BF562002F791C /* Icon */,
-				A2B3F91929468C2E0041301B /* UI */,
-				A25E0FFF291C48AC00439BF4 /* Modifiers */,
+				A25E0FFF291C48AC00439BF4 /* SwiftUI */,
 				A2EA926628F0B3C0002BA01E /* Extensions */,
 				A2B9C2612881F68A00506E32 /* DaisyApp.swift */,
-				A2B9C2622881F68A00506E32 /* DaisyListView.swift */,
-				A212D51A289411F6006A7E38 /* ListItemView.swift */,
-				A236EB3B28FB5CC30033858B /* DaisyView.swift */,
+				A2D881B62954C7BC001ABB6E /* Views */,
+				A22ED9082953F1950088D4C2 /* Source.swift */,
 				A2B9C2632881F68B00506E32 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -140,10 +137,21 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
+		A2D881B62954C7BC001ABB6E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A2B9C2622881F68A00506E32 /* ListView.swift */,
+				A212D51A289411F6006A7E38 /* DaisyView.swift */,
+				A236EB3B28FB5CC30033858B /* EditDaisyView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A2EA926628F0B3C0002BA01E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				A22ED9002953B3700088D4C2 /* Color+Daisy.swift */,
+				A22ED90B2953F2950088D4C2 /* Color+Hex.swift */,
 				A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */,
 				A2A3681928F7A28B00C2AD02 /* View+If.swift */,
 			);
@@ -256,15 +264,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A236EB3C28FB5CC30033858B /* DaisyView.swift in Sources */,
-				A2B9C2732881F68B00506E32 /* DaisyListView.swift in Sources */,
+				A22ED90C2953F2950088D4C2 /* Color+Hex.swift in Sources */,
+				A236EB3C28FB5CC30033858B /* EditDaisyView.swift in Sources */,
+				A2B9C2732881F68B00506E32 /* ListView.swift in Sources */,
+				A22ED9092953F1950088D4C2 /* Source.swift in Sources */,
 				A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */,
 				A22ED9012953B3700088D4C2 /* Color+Daisy.swift in Sources */,
 				A24795E5294C253B002F791C /* DaisyIcon.swift in Sources */,
 				A2A3681A28F7A28B00C2AD02 /* View+If.swift in Sources */,
 				A25E1001291C48BF00439BF4 /* PaddingModifier.swift in Sources */,
 				A24795DF294BFD39002F791C /* PetalView.swift in Sources */,
-				A212D51B289411F6006A7E38 /* ListItemView.swift in Sources */,
+				A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */,
 				A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
 				A22ED8FE2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */,
 			);
@@ -274,15 +284,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A236EB3D28FB5CC30033858B /* DaisyView.swift in Sources */,
-				A2B9C2742881F68B00506E32 /* DaisyListView.swift in Sources */,
+				A22ED90D2953F2950088D4C2 /* Color+Hex.swift in Sources */,
+				A236EB3D28FB5CC30033858B /* EditDaisyView.swift in Sources */,
+				A2B9C2742881F68B00506E32 /* ListView.swift in Sources */,
+				A22ED90A2953F1950088D4C2 /* Source.swift in Sources */,
 				A2B9C2722881F68B00506E32 /* DaisyApp.swift in Sources */,
 				A22ED9022953B3700088D4C2 /* Color+Daisy.swift in Sources */,
 				A24795E6294C253B002F791C /* DaisyIcon.swift in Sources */,
 				A2A3681B28F7A28B00C2AD02 /* View+If.swift in Sources */,
 				A25E1002291C48BF00439BF4 /* PaddingModifier.swift in Sources */,
 				A24795E0294BFD39002F791C /* PetalView.swift in Sources */,
-				A212D51C289411F6006A7E38 /* ListItemView.swift in Sources */,
+				A212D51C289411F6006A7E38 /* DaisyView.swift in Sources */,
 				A2EA926928F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
 				A22ED8FF2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */,
 			);
