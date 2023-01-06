@@ -35,6 +35,8 @@
 		A2B9C2752881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2762881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2812881FA1500506E32 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2B9C2802881FA1500506E32 /* ComposableArchitecture */; };
+		A2DBF8B22968D01F00818E55 /* DaisyCapsuleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DBF8B12968D01F00818E55 /* DaisyCapsuleModifier.swift */; };
+		A2DBF8B32968D01F00818E55 /* DaisyCapsuleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DBF8B12968D01F00818E55 /* DaisyCapsuleModifier.swift */; };
 		A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */; };
 		A2EA926928F0B3D8002BA01E /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +58,7 @@
 		A2B9C2682881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2B9C26E2881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2B9C2702881F68B00506E32 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		A2DBF8B12968D01F00818E55 /* DaisyCapsuleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyCapsuleModifier.swift; sourceTree = "<group>"; };
 		A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */,
+				A2DBF8B12968D01F00818E55 /* DaisyCapsuleModifier.swift */,
 				A25E1000291C48BF00439BF4 /* PaddingModifier.swift */,
 			);
 			path = SwiftUI;
@@ -273,6 +277,7 @@
 				A24795E5294C253B002F791C /* DaisyIcon.swift in Sources */,
 				A2A3681A28F7A28B00C2AD02 /* View+If.swift in Sources */,
 				A25E1001291C48BF00439BF4 /* PaddingModifier.swift in Sources */,
+				A2DBF8B22968D01F00818E55 /* DaisyCapsuleModifier.swift in Sources */,
 				A24795DF294BFD39002F791C /* PetalView.swift in Sources */,
 				A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */,
 				A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
@@ -293,6 +298,7 @@
 				A24795E6294C253B002F791C /* DaisyIcon.swift in Sources */,
 				A2A3681B28F7A28B00C2AD02 /* View+If.swift in Sources */,
 				A25E1002291C48BF00439BF4 /* PaddingModifier.swift in Sources */,
+				A2DBF8B32968D01F00818E55 /* DaisyCapsuleModifier.swift in Sources */,
 				A24795E0294BFD39002F791C /* PetalView.swift in Sources */,
 				A212D51C289411F6006A7E38 /* DaisyView.swift in Sources */,
 				A2EA926928F0B3D8002BA01E /* Date+Helpers.swift in Sources */,

@@ -99,10 +99,8 @@ struct DaisyView: View {
                                     
 
                             }
-                            Button(viewStore.date.daisy()) {
-                                // TODO: replace this with a Text capsule as this is not a functioning button
-                            }
-                            .buttonStyle(DaisyButtonStyle())
+                            Text(viewStore.date.daisy())
+                                .capsuleStyle()
                         }
                         .offset(y: 20)
                     }
