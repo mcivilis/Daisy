@@ -45,7 +45,6 @@ struct Daisy: ReducerProtocol {
         case showDetail
         case dismissDetail
         case editDaisyAction(EditDaisy.Action)
-        case delete
     }
     
     struct Environment {}
@@ -59,8 +58,7 @@ struct Daisy: ReducerProtocol {
                 symbolName: state.symbolName,
                 color: state.color
             )
-        case .delete, .editDaisyAction, .dismissDetail:
-            // TODO ! ! !
+        case .dismissDetail, .editDaisyAction:
             break
         }
         return .none
@@ -71,7 +69,7 @@ struct Daisy: ReducerProtocol {
 
 struct DaisyView: View {
     let store: StoreOf<Daisy>
-    private let heights = stride(from: 0.4, through: 1.0, by: 0.1).map { PresentationDetent.fraction($0) }
+    private let heights = stride(from: 0.5, through: 1.0, by: 0.1).map { PresentationDetent.fraction($0) }
     
     var body: some View {
         WithViewStore(self.store) { viewStore in

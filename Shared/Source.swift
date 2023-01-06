@@ -22,7 +22,7 @@ struct Model: Hashable, Codable, Identifiable {
         id: UUID = UUID(),
         title: String,
         date: Date,
-        symbolName: String = "",
+        symbolName: String = Color.accentColorHex,
         color: String
     ) {
         self.id = id
@@ -37,7 +37,7 @@ struct Model: Hashable, Codable, Identifiable {
         self.title = state.title
         self.date = state.date
         self.symbolName = state.symbolName
-        self.color = state.color.toHex() ?? "FFCC00"
+        self.color = state.color.toHex() ?? Color.accentColorHex
     }
 }
 
@@ -138,9 +138,9 @@ extension Source {
     
     static var sampleData: [Model] {
         [
-            Model(title: "Birthday", date: Date.preview("0:00 Mon, 30 Nov 1987"), symbolName: "birthday.cake.fill", color: "FFCC00"),
-            Model(title: "Exercise", date: Date.preview("0:00 Tue, 1 Dec 2022"), symbolName: "figure.indoor.cycle", color: "FFCC00"),
-            Model(title: "Vacation", date: Date.preview("0:00 Sun, 19 Feb 2023"), symbolName: "beach.umbrella.fill", color: "FFCC00")
+            Model(title: "Birthday", date: Date.preview("0:00 Mon, 30 Nov 1987"), symbolName: "birthday.cake.fill", color: Color.accentColorHex),
+            Model(title: "Exercise", date: Date.preview("0:00 Tue, 1 Dec 2022"), symbolName: "figure.indoor.cycle", color: Color.accentColorHex),
+            Model(title: "Vacation", date: Date.preview("0:00 Sun, 19 Feb 2023"), symbolName: "beach.umbrella.fill", color: Color.accentColorHex)
         ]
     }
 }

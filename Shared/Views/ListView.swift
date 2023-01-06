@@ -109,12 +109,6 @@ struct DaisyList: ReducerProtocol {
             case .sortCompletedDaisys:
                 state.daisies.sort  { $0.date < $1.date }
                 return .none
-            case .selectDaisy(id: _, action: .showDetail):
-                return .run { send in
-                    try await self.clock.sleep(for: .seconds(1)) // MC: - why wait, better visually - test it out?
-                    await send(.sortCompletedDaisys, animation: .default)
-                }
-                .cancellable(id: DaisyCompletionID.self, cancelInFlight: true) // MC: - need to understand this
             case .selectDaisy, .succeededToSave:
                 break
             }
@@ -130,11 +124,9 @@ struct DaisyList: ReducerProtocol {
 
 struct ListView: View {
     let store: StoreOf<DaisyList>
-    @ObservedObject var viewStore: ViewStore<ViewState, DaisyList.Action>
     
     init(store: StoreOf<DaisyList>) {
         self.store = store
-        self.viewStore = ViewStore(self.store.scope(state: ViewState.init(state:)))
     }
     
     struct ViewState: Equatable {
@@ -150,27 +142,29 @@ struct ListView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.background.ignoresSafeArea()
-                VStack(alignment: .leading) {
-                    Picker("Filter", selection: viewStore.binding(get: \.filter, send: DaisyList.Action.filter).animation()) {
-                        ForEach(Filter.allCases, id: \.self) { filter in
-                            Text(filter.rawValue).tag(filter)
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            NavigationStack {
+                ZStack {
+                    Color.background.ignoresSafeArea()
+                    VStack(alignment: .leading) {
+                        Picker("Filter", selection: viewStore.binding(get: \.filter, send: DaisyList.Action.filter).animation()) {
+                            ForEach(Filter.allCases, id: \.self) { filter in
+                                Text(filter.rawValue).tag(filter)
+                            }
                         }
-                    }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal)
-                    List {
-                        ForEachStore(store.scope(state: \.filteredDaisys, action: DaisyList.Action.selectDaisy(id:action:))) { store in
-                            DaisyView(store: store)
-                                .listRowSeparator(.hidden)
-                                .listRowBackground(Color.clear)
+                        .pickerStyle(.segmented)
+                        .padding(.horizontal)
+                        List {
+                            ForEachStore(store.scope(state: \.filteredDaisys, action: DaisyList.Action.selectDaisy(id:action:))) { store in
+                                DaisyView(store: store)
+                                    .listRowSeparator(.hidden)
+                                    .listRowBackground(Color.clear)
+                            }
+                            .onDelete { viewStore.send(.delete($0)) }
                         }
-                        .onDelete { viewStore.send(.delete($0)) }
+                        .listStyle(.plain)
+                        .listRowSeparator(.hidden)
                     }
-                    .listStyle(.plain)
-                    .listRowSeparator(.hidden)
                 }
                 .onAppear { viewStore.send(.load) }
                 .navigationTitle("Daisies")

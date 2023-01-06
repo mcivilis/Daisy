@@ -22,6 +22,8 @@ extension Color {
         }
     }
     
+    static let accentColorHex: String = "FFCC00"
+    
     static var header: Color {
         Color("Header")
     }
