@@ -22,12 +22,3 @@ struct DaisyApp: App {
         }
     }
 }
-
-/*
- 
- Future feature ideas:
- - Refactor to use tabs instead of the segmented control
- - Navigation link -> Sheet presentation
- - Implement theme with accentColor background and a dark mode gray background instead of black
- 
- */

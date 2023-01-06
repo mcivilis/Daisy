@@ -15,14 +15,14 @@ struct Model: Hashable, Codable, Identifiable {
     let id: UUID
     var title: String
     var date: Date
-    var symbolName: String?
+    var symbolName: String
     var color: String
     
     init(
         id: UUID = UUID(),
         title: String,
         date: Date,
-        symbolName: String? = nil,
+        symbolName: String = "",
         color: String
     ) {
         self.id = id

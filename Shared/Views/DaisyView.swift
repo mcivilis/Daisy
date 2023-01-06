@@ -17,7 +17,7 @@ struct Daisy: ReducerProtocol {
         let id: UUID
         var title: String
         var date: Date
-        var symbolName: String?
+        var symbolName: String
         var color: Color
         
         var isPast: Bool {
@@ -30,7 +30,7 @@ struct Daisy: ReducerProtocol {
             id: UUID = UUID(),
             title: String,
             date: Date,
-            symbolName: String?,
+            symbolName: String,
             color: Color
         ) {
             self.id = id
@@ -44,6 +44,7 @@ struct Daisy: ReducerProtocol {
     enum Action: Equatable {
         case showDetail
         case dismissDetail
+        case editDaisyAction(EditDaisy.Action)
         case delete
     }
     
@@ -58,7 +59,8 @@ struct Daisy: ReducerProtocol {
                 symbolName: state.symbolName,
                 color: state.color
             )
-        case .delete, .dismissDetail:
+        case .delete, .editDaisyAction, .dismissDetail:
+            // TODO ! ! !
             break
         }
         return .none
@@ -69,6 +71,7 @@ struct Daisy: ReducerProtocol {
 
 struct DaisyView: View {
     let store: StoreOf<Daisy>
+    private let heights = stride(from: 0.3, through: 1.0, by: 0.1).map { PresentationDetent.fraction($0) }
     
     var body: some View {
         WithViewStore(self.store) { viewStore in
@@ -107,11 +110,16 @@ struct DaisyView: View {
                     }
                 }
                 .padding(.bottom, 20)
+                .contentShape(Rectangle())
                 .onTapGesture {
                     viewStore.send(.showDetail)
                 }
                 .sheet(item: viewStore.binding(get: \.editDaisyState, send: Daisy.Action.dismissDetail)) { id in
-                    EditDaisyView(store: store)
+                    IfLetStore(store.scope(state: \.editDaisyState, action: Daisy.Action.editDaisyAction)) { store in
+                        EditDaisyView(store: store)
+                            .presentationDetents(Set(heights))
+                            .presentationDragIndicator(.hidden)
+                    }
                 }
         }
     }
