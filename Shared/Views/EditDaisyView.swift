@@ -46,7 +46,7 @@ struct EditDaisy: ReducerProtocol {
         case presentSymbolPicker
         case dismissSymbolPicker
     }
-
+    
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
         case .binding:
@@ -84,6 +84,13 @@ struct EditDaisyView: View {
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Form {
+                HStack {
+                    Button("Cancel") { viewStore.send(.cancel)}
+                        .buttonStyle(DaisyButtonStyle())
+                    Spacer()
+                    Button("Save") { viewStore.send(.save) }
+                        .buttonStyle(DaisyButtonStyle())
+                }
                 TextField("Title", text: viewStore.binding(\.$title))
                 DatePicker(selection: viewStore.binding(\.$date), in: ...viewStore.date) {
                     Text("Select a date")
@@ -103,6 +110,7 @@ struct EditDaisyView: View {
                 .sheet(isPresented: viewStore.binding(get: \.symbolPickerPresented, send: EditDaisy.Action.dismissSymbolPicker)) {
                     SymbolPicker(symbol: viewStore.binding(get: \.symbolName, send: EditDaisy.Action.symbolValueChanged))
                 }
+                
             }
             .navigationTitle("Edit Daisy")
         }
