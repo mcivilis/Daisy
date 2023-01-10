@@ -8,27 +8,26 @@
 import SwiftUI
 
 struct DaisyButtonStyle: ButtonStyle {
-    @Environment(\.colorScheme) var colorScheme
+    
+    let color: Color
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(8)
             .padding(.horizontal, 8)
-            .background(Color.Button.background)
-            .foregroundColor(Color.Button.foreground)
+            .foregroundColor(.black)
+            .background(color)
             .clipShape(Capsule())
             .shadow(color: .black, radius: 3)
             .overlay {
-                Capsule().stroke(Color.Button.stroke, lineWidth: 2)
+                Capsule().stroke(Color.black, lineWidth: 2)
             }
     }
 }
 
 struct DaisyButtonStyle_Previews: PreviewProvider {
-    static var previews: some View {        
-        Button("Press Me") {
-            print("Button pressed!")
-        }
-        .buttonStyle(DaisyButtonStyle())
+    static var previews: some View {
+        Button("Press Me") {}
+            .buttonStyle(DaisyButtonStyle(color: .accentColor ))
     }
 }

@@ -9,22 +9,25 @@ import SwiftUI
 
 /// Applies capsule formatting to Text view
 public extension Text {
-    func capsuleStyle() -> some View {
-        modifier(DaisyCapsuleModifier())
+    func capsuleStyle(color: Color) -> some View {
+        modifier(DaisyCapsuleModifier(color: color))
     }
 }
 
 private struct DaisyCapsuleModifier: ViewModifier {
+    
+    let color: Color
+
     func body(content: Content) -> some View {
         content
             .padding(8)
             .padding(.horizontal, 8)
-            .background(Color.Button.background)
-            .foregroundColor(Color.Button.foreground)
+            .background(color)
+            .foregroundColor(.black)
             .clipShape(Capsule())
             .shadow(color: .black, radius: 3)
             .overlay {
-                Capsule().stroke(Color.Button.stroke, lineWidth: 2)
+                Capsule().stroke(Color.black, lineWidth: 2)
             }
     }
 }
@@ -32,6 +35,6 @@ private struct DaisyCapsuleModifier: ViewModifier {
 struct DaisyCapsuleModifier_Previews: PreviewProvider {
     static var previews: some View {
         Text("Some text")
-            .capsuleStyle()
+            .capsuleStyle(color: .accentColor)
     }
 }

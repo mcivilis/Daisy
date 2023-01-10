@@ -15,20 +15,20 @@ struct Model: Hashable, Codable, Identifiable {
     let id: UUID
     var title: String
     var date: Date
-    var symbolName: String
+    var symbol: String
     var color: String
     
     init(
         id: UUID = UUID(),
         title: String,
         date: Date,
-        symbolName: String = Color.accentColorHex,
+        symbol: String,
         color: String
     ) {
         self.id = id
         self.title = title
         self.date = date
-        self.symbolName = symbolName
+        self.symbol = symbol
         self.color = color
     }
     
@@ -36,8 +36,8 @@ struct Model: Hashable, Codable, Identifiable {
         self.id = state.id
         self.title = state.title
         self.date = state.date
-        self.symbolName = state.symbolName
-        self.color = state.color.toHex() ?? Color.accentColorHex
+        self.symbol = state.symbol
+        self.color = state.color.toHex() ?? "FFCC00"
     }
 }
 
@@ -117,9 +117,9 @@ final class Source {
 //    static var mock: Source {
 //        let source = Source()
 //        source.models = [
-//            Daisy(title: "Birthday", date: Date.preview("0:00 Mon, 30 Nov 1987"), symbolName: "birthday.cake.fill"),
-//            Daisy(title: "Exercise", date: Date.preview("0:00 Tue, 1 Dec 2022"), symbolName: "figure.indoor.cycle"),
-//            Daisy(title: "Vacation", date: Date.preview("0:00 Sun, 19 Feb 2023"), symbolName: "beach.umbrella.fill")
+//            Daisy(title: "Birthday", date: Date.preview("0:00 Mon, 30 Nov 1987"), symbol: "birthday.cake.fill"),
+//            Daisy(title: "Exercise", date: Date.preview("0:00 Tue, 1 Dec 2022"), symbol: "figure.indoor.cycle"),
+//            Daisy(title: "Vacation", date: Date.preview("0:00 Sun, 19 Feb 2023"), symbol: "beach.umbrella.fill")
 //        ]
 //        return source
 //    }
@@ -131,16 +131,12 @@ extension Source {
         return Daisy.State(
             title: model.title,
             date: model.date,
-            symbolName: model.symbolName,
-            color: .accentColor
+            symbol: model.symbol,
+            color: .yellow
         )
     }
     
     static var sampleData: [Model] {
-        [
-            Model(title: "Birthday", date: Date.preview("0:00 Mon, 30 Nov 1987"), symbolName: "birthday.cake.fill", color: Color.accentColorHex),
-            Model(title: "Exercise", date: Date.preview("0:00 Tue, 1 Dec 2022"), symbolName: "figure.indoor.cycle", color: Color.accentColorHex),
-            Model(title: "Vacation", date: Date.preview("0:00 Sun, 19 Feb 2023"), symbolName: "beach.umbrella.fill", color: Color.accentColorHex)
-        ]
+        IdentifiedArray.mock.map { Model($0) }
     }
 }

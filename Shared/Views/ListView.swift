@@ -75,7 +75,6 @@ struct DaisyList: ReducerProtocol {
                         }
                     }
             case .failedToSave:
-                // TODO: Handle save error
                 break
             case let .updateDaisies(models):
                 state.daisies = IdentifiedArrayOf(uniqueElements: models.map {
@@ -83,7 +82,7 @@ struct DaisyList: ReducerProtocol {
                         id: $0.id,
                         title: $0.title,
                         date: $0.date,
-                        symbolName: $0.symbolName,
+                        symbol: $0.symbol,
                         color: Color.init(hex: $0.color) ?? .accentColor
                     )
                 })
@@ -145,7 +144,6 @@ struct ListView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationStack {
                 ZStack {
-                    Color.background.ignoresSafeArea()
                     VStack(alignment: .leading) {
                         Picker("Filter", selection: viewStore.binding(get: \.filter, send: DaisyList.Action.filter).animation()) {
                             ForEach(Filter.allCases, id: \.self) { filter in
@@ -170,16 +168,16 @@ struct ListView: View {
                 .navigationTitle("Daisies")
                 .navigationBarItems(
                     leading: HStack {
-                        EditButton().buttonStyle(DaisyButtonStyle())
+                        EditButton().buttonStyle(DaisyButtonStyle(color: .accentColor))
                         Button("Clear Past") {
                             viewStore.send(.clearCompleted)
-                        }.buttonStyle(DaisyButtonStyle())
+                        }.buttonStyle(DaisyButtonStyle(color: .accentColor))
                     },
                     trailing: Button(action: {
                         viewStore.send(.newDaisy)
                     }, label: {
                         Image(systemName: "square.and.pencil")
-                    }).buttonStyle(DaisyButtonStyle())
+                    }).buttonStyle(DaisyButtonStyle(color: .accentColor))
                 )
                 .environment(
                     \.editMode,
@@ -192,11 +190,11 @@ struct ListView: View {
 
 extension IdentifiedArray where ID == Daisy.State.ID, Element == Daisy.State {
     static let mock: Self = [
-        Daisy.State(title: "Daisy 1", date: Date(timeIntervalSinceNow: -20), symbolName: "", color: .accentColor),
-        Daisy.State(title: "Daisy 2", date: Date(timeIntervalSinceNow: -10), symbolName: "", color: .accentColor),
-        Daisy.State(title: "Daisy 3", date: Date(timeIntervalSinceNow: -0), symbolName: "", color: .accentColor),
-        Daisy.State(title: "Daisy 4", date: Date(timeIntervalSinceNow: 10), symbolName: "", color: .accentColor),
-        Daisy.State(title: "Daisy 5", date: Date(timeIntervalSinceNow: 20), symbolName: "", color: .accentColor),
+        Daisy.State(title: "Birthday", date: Date(timeIntervalSinceNow: -1000000), symbol: "birthday.cake.fill", color: .yellow),
+        Daisy.State(title: "Exercise 2", date: Date(timeIntervalSinceNow: -400000), symbol: "figure.indoor.cycle", color: .yellow),
+        Daisy.State(title: "Vacation", date: Date(timeIntervalSinceNow: -100000), symbol: "beach.umbrella.fill", color: .yellow),
+        Daisy.State(title: "Beach", date: Date(timeIntervalSinceNow: 100000), symbol: "sun.max.fill", color: .yellow),
+        Daisy.State(title: "Journal", date: Date(timeIntervalSinceNow: -200000), symbol: "pencil", color: .yellow),
     ]
 }
 

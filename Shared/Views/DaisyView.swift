@@ -17,26 +17,27 @@ struct Daisy: ReducerProtocol {
         let id: UUID
         var title: String
         var date: Date
-        var symbolName: String
+        var symbol: String
         var color: Color
         
         var isPast: Bool {
             return date >= Date.now
         }
         
-        var editDaisyState: EditDaisy.State?
+        var isShowingDetail: Bool = false
+        var isShowingSymbolPicker: Bool = false
         
         init(
             id: UUID = UUID(),
             title: String,
             date: Date,
-            symbolName: String,
+            symbol: String,
             color: Color
         ) {
             self.id = id
             self.title = title
             self.date = date
-            self.symbolName = symbolName
+            self.symbol = symbol
             self.color = color
         }
     }
@@ -44,7 +45,12 @@ struct Daisy: ReducerProtocol {
     enum Action: Equatable {
         case showDetail
         case dismissDetail
-        case editDaisyAction(EditDaisy.Action)
+        case showSymbolPicker
+        case dismissSymbolPicker
+        case titleChanged(String)
+        case dateChanged(Date)
+        case colorChanged(Color)
+        case symbolChanged(String)
     }
     
     struct Environment {}
@@ -52,14 +58,22 @@ struct Daisy: ReducerProtocol {
     func reduce(into state: inout State, action: Action) -> ComposableArchitecture.EffectTask<Action> {
         switch action {
         case .showDetail:
-            state.editDaisyState = EditDaisy.State(
-                title: state.title,
-                date: state.date,
-                symbolName: state.symbolName,
-                color: state.color
-            )
-        case .dismissDetail, .editDaisyAction:
-            break
+            state.isShowingDetail = true
+        case .dismissDetail:
+            state.isShowingDetail = false
+        case let .titleChanged(text):
+            state.title = text
+        case let .dateChanged(date):
+            state.date = date
+        case let .colorChanged(color):
+            state.color = color
+        case let .symbolChanged(symbol):
+            state.symbol = symbol
+            state.isShowingSymbolPicker = false
+        case .showSymbolPicker:
+            state.isShowingSymbolPicker = true
+        case .dismissSymbolPicker:
+            state.isShowingSymbolPicker = false
         }
         return .none
     }
@@ -74,7 +88,7 @@ struct DaisyView: View {
     var body: some View {
         WithViewStore(self.store) { viewStore in
             RoundedRectangle(cornerRadius: 25)
-                .strokeBorder(Color.stroke, lineWidth: 2)
+                .strokeBorder(viewStore.color, lineWidth: 2)
                 .shadow(radius: 10)
                 .frame(height: 100)
                 .overlay {
@@ -83,24 +97,19 @@ struct DaisyView: View {
                             Text(viewStore.title)
                                 .font(.title2   )
                                 .fontWeight(.bold)
-                                .foregroundColor(Color.header)
+                                .foregroundColor(viewStore.color)
                             Text(viewStore.date.display())
                                 .font(.body)
                         }
                         .padding()
                         Spacer()
                         VStack(alignment: .center, spacing: 12) {
-                            if let symbolName = viewStore.symbolName {
-                                Image(systemName: symbolName)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .foregroundColor(Color.foreground)
-                                    .shadow(color: .black, radius: 2)
-                                    
-
-                            }
+                            Image(systemName: viewStore.symbol)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(viewStore.color)
                             Text(viewStore.date.daisy())
-                                .capsuleStyle()
+                                .capsuleStyle(color: viewStore.color)
                         }
                         .offset(y: 20)
                     }
@@ -110,13 +119,11 @@ struct DaisyView: View {
                 .onTapGesture {
                     viewStore.send(.showDetail)
                 }
-                .sheet(item: viewStore.binding(get: \.editDaisyState, send: Daisy.Action.dismissDetail)) { id in
-                    IfLetStore(store.scope(state: \.editDaisyState, action: Daisy.Action.editDaisyAction)) { store in
-                        EditDaisyView(store: store)
-                            .presentationDetents(Set(heights))
-                            .presentationDragIndicator(.hidden)
-                    }
-                }
+                .sheet(isPresented: viewStore.binding(get: \.isShowingDetail, send: Daisy.Action.dismissDetail), content: {
+                    EditDaisyView(store: store)
+                        .presentationDetents(Set(heights))
+                        .presentationDragIndicator(.hidden)
+                })
         }
     }
 }
@@ -126,7 +133,7 @@ struct DaisyItemView_Previews: PreviewProvider {
         initialState: Daisy.State(
             title: "Amelia's Birthday",
             date: Date.preview("2:32 Wed, 22 Sep 2019"),
-            symbolName: "birthday.cake.fill",
+            symbol: "birthday.cake.fill",
             color: .accentColor
         ),
         reducer: Daisy()
