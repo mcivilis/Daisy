@@ -21,7 +21,7 @@ struct Daisy: ReducerProtocol {
         var color: Color
         
         var isPast: Bool {
-            return date >= Date.now
+            return date <= Date.now
         }
         
         var isShowingDetail: Bool = false

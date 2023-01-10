@@ -36,8 +36,8 @@ struct DaisyList: ReducerProtocol {
     enum Action: Equatable {
         case load
         case save
-        case failedToSave(String)
-        case succeededToSave
+        case saveFailure(String)
+        case saveSuccess
         case updateDaisies([Model])
         case newDaisy
         case clearCompleted
@@ -69,13 +69,11 @@ struct DaisyList: ReducerProtocol {
                     .savePublisher(state.daisies)
                     .catchToEffect { result in
                         if case let .failure(error) = result {
-                            return .failedToSave(error.localizedDescription)
+                            return .saveFailure(error.localizedDescription)
                         } else {
-                            return .succeededToSave
+                            return .saveSuccess
                         }
                     }
-            case .failedToSave:
-                break
             case let .updateDaisies(models):
                 state.daisies = IdentifiedArrayOf(uniqueElements: models.map {
                     Daisy.State(
@@ -108,7 +106,9 @@ struct DaisyList: ReducerProtocol {
             case .sortCompletedDaisys:
                 state.daisies.sort  { $0.date < $1.date }
                 return .none
-            case .selectDaisy, .succeededToSave:
+            case .selectDaisy:
+                return EffectTask(value: .save)
+            case .saveFailure, .saveSuccess:
                 break
             }
             return .none
