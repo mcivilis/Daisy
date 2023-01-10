@@ -85,9 +85,10 @@ struct DaisyList: ReducerProtocol {
                     )
                 })
             case .newDaisy:
-                // TODO Remove test code and actually make new real entry
-                state.daisies.insert(Source.random, at: 0)
-                return EffectTask(value: .save)
+                state.filter = .all
+                let newDaisy = Daisy.State(title: "", date: .now, symbol: "", color: .accentColor)
+                state.daisies.insert(newDaisy, at: 0)
+                return EffectTask(value: .selectDaisy(id: newDaisy.id, action: Daisy.Action.showDetail))
             case .clearCompleted:
                 state.daisies.removeAll(where: \.isPast)
                 return EffectTask(value: .save)

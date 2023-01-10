@@ -11,7 +11,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct Model: Hashable, Codable, Identifiable {
-
+    
     let id: UUID
     var title: String
     var date: Date
@@ -41,9 +41,7 @@ struct Model: Hashable, Codable, Identifiable {
     }
 }
 
-// TODO makes this a struct?
-final class Source {
-    
+struct Source {
     private static var documentsFolder: URL {
         do {
             return try FileManager.default.url(
@@ -60,15 +58,15 @@ final class Source {
     private static var fileURL: URL {
         return documentsFolder.appendingPathComponent("daisy.data")
     }
-  
+    
     func loadPublisher() -> EffectPublisher<[Model], Never> {
         return EffectPublisher<[Model], Error>.catching {
             let data = try Data(contentsOf: Self.fileURL)
             return try JSONDecoder().decode([Model].self, from: data)
-
+            
         }
-            .replaceError(with: [])
-            .eraseToEffect()
+        .replaceError(with: [])
+        .eraseToEffect()
     }
     
     func savePublisher(_ daisies: IdentifiedArrayOf<Daisy.State>) -> EffectPublisher<Void, Error> {
@@ -79,64 +77,5 @@ final class Source {
             return try data.write(to: Self.fileURL)
         }
         .eraseToEffect()
-    }
-//    func load() {
-//        DispatchQueue.global(qos: .background).async { [weak self] in
-//            guard let data = try? Data(contentsOf: Self.fileURL) else {
-//                #if DEBUG
-//                DispatchQueue.main.async {
-//                    self?.models = []
-//                }
-//                #endif
-//                return
-//            }
-//            guard let models = try? JSONDecoder().decode([Daisy].self, from: data) else {
-//                fatalError("Can't decode saved session data.")
-//            }
-//            DispatchQueue.main.async {
-//                self?.models = models
-//            }
-//        }
-//    }
-//
-//    func save() {
-//        DispatchQueue.global(qos: .background).async { [weak self] in
-//            guard let models = self?.models else { fatalError("Self out of scope") }
-//            guard let data = try? JSONEncoder().encode(models) else { fatalError("Error encoding data") }
-//            do {
-//                let outfile = Self.fileURL
-//                try data.write(to: outfile)
-//            } catch {
-//                fatalError("Can't write to file")
-//            }
-//        }
-//    }
-}
-                                            
-//extension Source {
-//    static var mock: Source {
-//        let source = Source()
-//        source.models = [
-//            Daisy(title: "Birthday", date: Date.preview("0:00 Mon, 30 Nov 1987"), symbol: "birthday.cake.fill"),
-//            Daisy(title: "Exercise", date: Date.preview("0:00 Tue, 1 Dec 2022"), symbol: "figure.indoor.cycle"),
-//            Daisy(title: "Vacation", date: Date.preview("0:00 Sun, 19 Feb 2023"), symbol: "beach.umbrella.fill")
-//        ]
-//        return source
-//    }
-//}
-
-extension Source {
-    static var random: Daisy.State {
-        let model = sampleData.randomElement()!
-        return Daisy.State(
-            title: model.title,
-            date: model.date,
-            symbol: model.symbol,
-            color: .yellow
-        )
-    }
-    
-    static var sampleData: [Model] {
-        IdentifiedArray.mock.map { Model($0) }
     }
 }
