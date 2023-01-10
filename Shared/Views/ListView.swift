@@ -10,7 +10,7 @@ import SwiftUI
 
 enum Filter: LocalizedStringKey, CaseIterable, Hashable {
     case all = "All"
-    case active = "Active"
+    case future = "Future"
     case past = "Past"
 }
 
@@ -23,7 +23,7 @@ struct DaisyList: ReducerProtocol {
         
         public var filteredDaisys: IdentifiedArrayOf<Daisy.State> {
             switch filter {
-            case .active:
+            case .future:
                 return daisies.filter { !$0.isPast }
             case .all:
                 return daisies
@@ -40,7 +40,6 @@ struct DaisyList: ReducerProtocol {
         case saveSuccess
         case updateDaisies([Model])
         case newDaisy
-        case clearCompleted
         case delete(IndexSet)
         case editModeChanged(EditMode)
         case filter(Filter)
@@ -89,10 +88,6 @@ struct DaisyList: ReducerProtocol {
                 let newDaisy = Daisy.State(title: "", date: .now, symbol: "", color: .accentColor)
                 state.daisies.insert(newDaisy, at: 0)
                 return EffectTask(value: .selectDaisy(id: newDaisy.id, action: Daisy.Action.showDetail))
-            case .clearCompleted:
-                state.daisies.removeAll(where: \.isPast)
-                return EffectTask(value: .save)
-                
             case let .delete(indexSet):
                 state.daisies.remove(atOffsets: indexSet)
                 return EffectTask(value: .save)
@@ -168,12 +163,7 @@ struct ListView: View {
                 .onAppear { viewStore.send(.load) }
                 .navigationTitle("Daisies")
                 .navigationBarItems(
-                    leading: HStack {
-                        EditButton().buttonStyle(DaisyButtonStyle(color: .accentColor))
-                        Button("Clear Past") {
-                            viewStore.send(.clearCompleted)
-                        }.buttonStyle(DaisyButtonStyle(color: .accentColor))
-                    },
+                    leading: EditButton().buttonStyle(DaisyButtonStyle(color: .accentColor)).buttonStyle(DaisyButtonStyle(color: .accentColor)),
                     trailing: Button(action: {
                         viewStore.send(.newDaisy)
                     }, label: {
