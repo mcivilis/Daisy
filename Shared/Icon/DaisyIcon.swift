@@ -52,7 +52,7 @@ struct DaisyIcon: View {
                 }
                 Circle()
                     .stroke(.black.opacity(0.8), lineWidth: 12)
-                    .background(Circle().fill(Color.accentColor))
+                    .background(Circle().fill(.yellow))
                     .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 5, y: 5)
                     .scaleEffect(1.0 / 4, anchor: .center)
             }

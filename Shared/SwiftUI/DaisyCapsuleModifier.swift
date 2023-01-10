@@ -35,6 +35,6 @@ private struct DaisyCapsuleModifier: ViewModifier {
 struct DaisyCapsuleModifier_Previews: PreviewProvider {
     static var previews: some View {
         Text("Some text")
-            .capsuleStyle(color: .accentColor)
+            .capsuleStyle(color: .yellow)
     }
 }

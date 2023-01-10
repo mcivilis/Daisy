@@ -134,7 +134,7 @@ struct DaisyItemView_Previews: PreviewProvider {
             title: "Amelia's Birthday",
             date: Date.preview("2:32 Wed, 22 Sep 2019"),
             symbol: "birthday.cake.fill",
-            color: .accentColor
+            color: .yellow
         ),
         reducer: Daisy()
     )

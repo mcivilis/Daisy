@@ -28,6 +28,6 @@ struct DaisyButtonStyle: ButtonStyle {
 struct DaisyButtonStyle_Previews: PreviewProvider {
     static var previews: some View {
         Button("Press Me") {}
-            .buttonStyle(DaisyButtonStyle(color: .accentColor ))
+            .buttonStyle(DaisyButtonStyle(color: .yellow ))
     }
 }

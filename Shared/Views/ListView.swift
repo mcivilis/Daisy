@@ -80,12 +80,12 @@ struct DaisyList: ReducerProtocol {
                         title: $0.title,
                         date: $0.date,
                         symbol: $0.symbol,
-                        color: Color.init(hex: $0.color) ?? .accentColor
+                        color: Color.init(hex: $0.color) ?? .yellow
                     )
                 })
             case .newDaisy:
                 state.filter = .all
-                let newDaisy = Daisy.State(title: "", date: .now, symbol: "", color: .accentColor)
+                let newDaisy = Daisy.State(title: "", date: .now, symbol: "", color: .yellow)
                 state.daisies.insert(newDaisy, at: 0)
                 return EffectTask(value: .selectDaisy(id: newDaisy.id, action: Daisy.Action.showDetail))
             case let .delete(indexSet):
@@ -163,7 +163,7 @@ struct ListView: View {
                 .onAppear { viewStore.send(.load) }
                 .navigationTitle("Daisies")
                 .navigationBarItems(
-                    leading: EditButton().buttonStyle(DaisyButtonStyle(color: .accentColor)).buttonStyle(DaisyButtonStyle(color: .accentColor)),
+                    leading: EditButton().buttonStyle(DaisyButtonStyle(color: .yellow)).buttonStyle(DaisyButtonStyle(color: .accentColor)),
                     trailing: Button(action: {
                         viewStore.send(.newDaisy)
                     }, label: {
@@ -177,16 +177,6 @@ struct ListView: View {
             }
         }
     }
-}
-
-extension IdentifiedArray where ID == Daisy.State.ID, Element == Daisy.State {
-    static let mock: Self = [
-        Daisy.State(title: "Birthday", date: Date(timeIntervalSinceNow: -1000000), symbol: "birthday.cake.fill", color: .yellow),
-        Daisy.State(title: "Exercise 2", date: Date(timeIntervalSinceNow: -400000), symbol: "figure.indoor.cycle", color: .yellow),
-        Daisy.State(title: "Vacation", date: Date(timeIntervalSinceNow: -100000), symbol: "beach.umbrella.fill", color: .yellow),
-        Daisy.State(title: "Beach", date: Date(timeIntervalSinceNow: 100000), symbol: "sun.max.fill", color: .yellow),
-        Daisy.State(title: "Journal", date: Date(timeIntervalSinceNow: -200000), symbol: "pencil", color: .yellow),
-    ]
 }
 
 // MARK: - Preview

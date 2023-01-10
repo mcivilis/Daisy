@@ -67,7 +67,7 @@ struct EditDaisyView: View {
 struct EditDaisyView_Previews: PreviewProvider {
     
     static var store: Store<Daisy.State, Daisy.Action> = Store(
-        initialState: Daisy.State(title: "Daisy 1", date: Date(timeIntervalSinceNow: -20), symbol: "pencil", color: .accentColor),
+        initialState: Daisy.State(title: "Daisy 1", date: Date(timeIntervalSinceNow: -20), symbol: "pencil", color: .yellow),
         reducer: Daisy()
     )
     
