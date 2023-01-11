@@ -8,35 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212D51A289411F6006A7E38 /* DaisyView.swift */; };
-		A212D51C289411F6006A7E38 /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212D51A289411F6006A7E38 /* DaisyView.swift */; };
 		A22ED8FE2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */; };
-		A22ED8FF2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */; };
 		A22ED9092953F1950088D4C2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED9082953F1950088D4C2 /* Source.swift */; };
-		A22ED90A2953F1950088D4C2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED9082953F1950088D4C2 /* Source.swift */; };
 		A22ED90C2953F2950088D4C2 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED90B2953F2950088D4C2 /* Color+Hex.swift */; };
-		A22ED90D2953F2950088D4C2 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED90B2953F2950088D4C2 /* Color+Hex.swift */; };
 		A236EB3C28FB5CC30033858B /* EditDaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* EditDaisyView.swift */; };
-		A236EB3D28FB5CC30033858B /* EditDaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* EditDaisyView.swift */; };
 		A24795DF294BFD39002F791C /* PetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalView.swift */; };
-		A24795E0294BFD39002F791C /* PetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalView.swift */; };
 		A24795E5294C253B002F791C /* DaisyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795E4294C253B002F791C /* DaisyIcon.swift */; };
-		A24795E6294C253B002F791C /* DaisyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795E4294C253B002F791C /* DaisyIcon.swift */; };
 		A25E1001291C48BF00439BF4 /* PaddingModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25E1000291C48BF00439BF4 /* PaddingModifier.swift */; };
-		A25E1002291C48BF00439BF4 /* PaddingModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25E1000291C48BF00439BF4 /* PaddingModifier.swift */; };
 		A2A3681828F79FB000C2AD02 /* SymbolPicker in Frameworks */ = {isa = PBXBuildFile; productRef = A2A3681728F79FB000C2AD02 /* SymbolPicker */; };
 		A2A3681A28F7A28B00C2AD02 /* View+If.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3681928F7A28B00C2AD02 /* View+If.swift */; };
-		A2A3681B28F7A28B00C2AD02 /* View+If.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3681928F7A28B00C2AD02 /* View+If.swift */; };
 		A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2612881F68A00506E32 /* DaisyApp.swift */; };
-		A2B9C2722881F68B00506E32 /* DaisyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2612881F68A00506E32 /* DaisyApp.swift */; };
 		A2B9C2732881F68B00506E32 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* ListView.swift */; };
-		A2B9C2742881F68B00506E32 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* ListView.swift */; };
 		A2B9C2752881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
-		A2B9C2762881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2812881FA1500506E32 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2B9C2802881FA1500506E32 /* ComposableArchitecture */; };
 		A2DBF8B22968D01F00818E55 /* DaisyCapsuleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DBF8B12968D01F00818E55 /* DaisyCapsuleModifier.swift */; };
-		A2DBF8B32968D01F00818E55 /* DaisyCapsuleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DBF8B12968D01F00818E55 /* DaisyCapsuleModifier.swift */; };
 		A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */; };
-		A2EA926928F0B3D8002BA01E /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,8 +39,6 @@
 		A2B9C2622881F68A00506E32 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		A2B9C2632881F68B00506E32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2B9C2682881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2B9C26E2881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2B9C2702881F68B00506E32 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		A2DBF8B12968D01F00818E55 /* DaisyCapsuleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyCapsuleModifier.swift; sourceTree = "<group>"; };
 		A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,13 +50,6 @@
 			files = (
 				A2A3681828F79FB000C2AD02 /* SymbolPicker in Frameworks */,
 				A2B9C2812881FA1500506E32 /* ComposableArchitecture in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A2B9C26B2881F68B00506E32 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,15 +78,6 @@
 		A2B9C25B2881F68A00506E32 = {
 			isa = PBXGroup;
 			children = (
-				A2B9C2602881F68A00506E32 /* Shared */,
-				A2B9C26F2881F68B00506E32 /* macOS */,
-				A2B9C2692881F68B00506E32 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		A2B9C2602881F68A00506E32 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
 				A24795D4294BF562002F791C /* Icon */,
 				A25E0FFF291C48AC00439BF4 /* SwiftUI */,
 				A2EA926628F0B3C0002BA01E /* Extensions */,
@@ -117,25 +85,16 @@
 				A2D881B62954C7BC001ABB6E /* Views */,
 				A22ED9082953F1950088D4C2 /* Source.swift */,
 				A2B9C2632881F68B00506E32 /* Assets.xcassets */,
+				A2B9C2692881F68B00506E32 /* Products */,
 			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 		A2B9C2692881F68B00506E32 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				A2B9C2682881F68B00506E32 /* Daisy.app */,
-				A2B9C26E2881F68B00506E32 /* Daisy.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		A2B9C26F2881F68B00506E32 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				A2B9C2702881F68B00506E32 /* macOS.entitlements */,
-			);
-			path = macOS;
 			sourceTree = "<group>";
 		};
 		A2D881B62954C7BC001ABB6E /* Views */ = {
@@ -182,23 +141,6 @@
 			productReference = A2B9C2682881F68B00506E32 /* Daisy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A2B9C26D2881F68B00506E32 /* Daisy (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A2B9C27C2881F68B00506E32 /* Build configuration list for PBXNativeTarget "Daisy (macOS)" */;
-			buildPhases = (
-				A2B9C26A2881F68B00506E32 /* Sources */,
-				A2B9C26B2881F68B00506E32 /* Frameworks */,
-				A2B9C26C2881F68B00506E32 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Daisy (macOS)";
-			productName = "Daisy (macOS)";
-			productReference = A2B9C26E2881F68B00506E32 /* Daisy.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -210,9 +152,6 @@
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					A2B9C2672881F68B00506E32 = {
-						CreatedOnToolsVersion = 13.4.1;
-					};
-					A2B9C26D2881F68B00506E32 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
@@ -235,7 +174,6 @@
 			projectRoot = "";
 			targets = (
 				A2B9C2672881F68B00506E32 /* Daisy (iOS) */,
-				A2B9C26D2881F68B00506E32 /* Daisy (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -246,14 +184,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2B9C2752881F68B00506E32 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A2B9C26C2881F68B00506E32 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A2B9C2762881F68B00506E32 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,26 +207,6 @@
 				A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */,
 				A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
 				A22ED8FE2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A2B9C26A2881F68B00506E32 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A22ED90D2953F2950088D4C2 /* Color+Hex.swift in Sources */,
-				A236EB3D28FB5CC30033858B /* EditDaisyView.swift in Sources */,
-				A2B9C2742881F68B00506E32 /* ListView.swift in Sources */,
-				A22ED90A2953F1950088D4C2 /* Source.swift in Sources */,
-				A2B9C2722881F68B00506E32 /* DaisyApp.swift in Sources */,
-				A24795E6294C253B002F791C /* DaisyIcon.swift in Sources */,
-				A2A3681B28F7A28B00C2AD02 /* View+If.swift in Sources */,
-				A25E1002291C48BF00439BF4 /* PaddingModifier.swift in Sources */,
-				A2DBF8B32968D01F00818E55 /* DaisyCapsuleModifier.swift in Sources */,
-				A24795E0294BFD39002F791C /* PetalView.swift in Sources */,
-				A212D51C289411F6006A7E38 /* DaisyView.swift in Sources */,
-				A2EA926928F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
-				A22ED8FF2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,16 +327,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A922GGNRY9;
+				DEVELOPMENT_TEAM = 9HM5LLY46P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Daisy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -435,6 +348,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.civilis.Daisy;
 				PRODUCT_NAME = Daisy;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -447,16 +361,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A922GGNRY9;
+				DEVELOPMENT_TEAM = 9HM5LLY46P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Daisy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -465,67 +382,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.civilis.Daisy;
 				PRODUCT_NAME = Daisy;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		A2B9C27D2881F68B00506E32 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A922GGNRY9;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.civilis.Daisy;
-				PRODUCT_NAME = Daisy;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		A2B9C27E2881F68B00506E32 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A922GGNRY9;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.civilis.Daisy;
-				PRODUCT_NAME = Daisy;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -546,15 +408,6 @@
 			buildConfigurations = (
 				A2B9C27A2881F68B00506E32 /* Debug */,
 				A2B9C27B2881F68B00506E32 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A2B9C27C2881F68B00506E32 /* Build configuration list for PBXNativeTarget "Daisy (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A2B9C27D2881F68B00506E32 /* Debug */,
-				A2B9C27E2881F68B00506E32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
