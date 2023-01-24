@@ -56,7 +56,7 @@ struct EditDaisyView: View {
                 .navigationBarItems(
                     trailing: Button("Done") {
                         viewStore.send(.dismissDetail)
-                    }.buttonStyle(DaisyButtonStyle(color: viewStore.color))
+                    }.buttonStyle(CapsuleButtonStyle(color: viewStore.color))
                 )
             }
         }

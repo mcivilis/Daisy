@@ -163,12 +163,12 @@ struct ListView: View {
                 .onAppear { viewStore.send(.load) }
                 .navigationTitle("Daisies")
                 .navigationBarItems(
-                    leading: EditButton().buttonStyle(DaisyButtonStyle(color: .yellow)).buttonStyle(DaisyButtonStyle(color: .accentColor)),
+                    leading: EditButton().buttonStyle(.daisy),
                     trailing: Button(action: {
                         viewStore.send(.newDaisy)
                     }, label: {
                         Image(systemName: "square.and.pencil")
-                    }).buttonStyle(DaisyButtonStyle(color: .accentColor))
+                    }).buttonStyle(.daisy)
                 )
                 .environment(
                     \.editMode,

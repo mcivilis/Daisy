@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A204E0DC29807BD100D48488 /* TimeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A204E0DB29807BD100D48488 /* TimeDetailView.swift */; };
 		A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212D51A289411F6006A7E38 /* DaisyView.swift */; };
 		A22ED8FE2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */; };
 		A22ED9092953F1950088D4C2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED9082953F1950088D4C2 /* Source.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A204E0DB29807BD100D48488 /* TimeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDetailView.swift; sourceTree = "<group>"; };
 		A212D51A289411F6006A7E38 /* DaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyView.swift; sourceTree = "<group>"; };
 		A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyButtonStyle.swift; sourceTree = "<group>"; };
 		A22ED9082953F1950088D4C2 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				A2B9C2622881F68A00506E32 /* ListView.swift */,
 				A212D51A289411F6006A7E38 /* DaisyView.swift */,
 				A236EB3B28FB5CC30033858B /* EditDaisyView.swift */,
+				A204E0DB29807BD100D48488 /* TimeDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			files = (
 				A22ED90C2953F2950088D4C2 /* Color+Hex.swift in Sources */,
 				A236EB3C28FB5CC30033858B /* EditDaisyView.swift in Sources */,
+				A204E0DC29807BD100D48488 /* TimeDetailView.swift in Sources */,
 				A2B9C2732881F68B00506E32 /* ListView.swift in Sources */,
 				A22ED9092953F1950088D4C2 /* Source.swift in Sources */,
 				A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */,
@@ -329,7 +333,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9HM5LLY46P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -345,7 +349,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.civilis.Daisy;
 				PRODUCT_NAME = Daisy;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -363,7 +367,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9HM5LLY46P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -379,7 +383,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.civilis.Daisy;
 				PRODUCT_NAME = Daisy;
 				PROVISIONING_PROFILE_SPECIFIER = "";

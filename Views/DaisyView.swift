@@ -19,11 +19,13 @@ struct Daisy: ReducerProtocol {
         var date: Date
         var symbol: String
         var color: Color
+        var timeDetailState: TimeDetail.State
         
         var isPast: Bool {
             return date <= Date.now
         }
         
+        var isShowingTimeDetail: Bool = false
         var isShowingDetail: Bool = false
         var isShowingSymbolPicker: Bool = false
         
@@ -39,12 +41,16 @@ struct Daisy: ReducerProtocol {
             self.date = date
             self.symbol = symbol
             self.color = color
+            self.timeDetailState = TimeDetail.State(id: id, date: date)
         }
     }
     
     enum Action: Equatable {
+        case timeDetail(TimeDetail.Action)
+        case showTimeDetail
         case showDetail
         case dismissDetail
+        case dismissTimeDetail
         case showSymbolPicker
         case dismissSymbolPicker
         case titleChanged(String)
@@ -57,6 +63,8 @@ struct Daisy: ReducerProtocol {
     
     func reduce(into state: inout State, action: Action) -> ComposableArchitecture.EffectTask<Action> {
         switch action {
+        case .timeDetail:
+            break
         case .showDetail:
             state.isShowingDetail = true
         case .dismissDetail:
@@ -74,6 +82,10 @@ struct Daisy: ReducerProtocol {
             state.isShowingSymbolPicker = true
         case .dismissSymbolPicker:
             state.isShowingSymbolPicker = false
+        case .showTimeDetail:
+            state.isShowingTimeDetail = true
+        case .dismissTimeDetail:
+            state.isShowingTimeDetail = false
         }
         return .none
     }
@@ -108,8 +120,9 @@ struct DaisyView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .foregroundColor(viewStore.color)
-                            Text(viewStore.date.daisy())
-                                .capsuleStyle(color: viewStore.color)
+                            Button(viewStore.date.display()) {
+                                viewStore.send(.showTimeDetail)
+                            }.buttonStyle(CapsuleButtonStyle(color: viewStore.color))
                         }
                         .offset(y: 20)
                     }
@@ -121,6 +134,11 @@ struct DaisyView: View {
                 }
                 .sheet(isPresented: viewStore.binding(get: \.isShowingDetail, send: Daisy.Action.dismissDetail), content: {
                     EditDaisyView(store: store)
+                        .presentationDetents(Set(heights))
+                        .presentationDragIndicator(.hidden)
+                })
+                .sheet(isPresented: viewStore.binding(get: \.isShowingTimeDetail, send: Daisy.Action.dismissTimeDetail), content: {
+                    TimeDetailView(store: store.scope(state: \.timeDetailState, action: Daisy.Action.timeDetail))
                         .presentationDetents(Set(heights))
                         .presentationDragIndicator(.hidden)
                 })

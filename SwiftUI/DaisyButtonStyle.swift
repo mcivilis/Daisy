@@ -7,7 +7,14 @@
 
 import SwiftUI
 
-struct DaisyButtonStyle: ButtonStyle {
+
+extension ButtonStyle where Self == DaisyButtonStyle {
+    static var daisy: Self {
+        return .init()
+    }
+}
+
+struct CapsuleButtonStyle: ButtonStyle {
     
     let color: Color
     
@@ -25,9 +32,25 @@ struct DaisyButtonStyle: ButtonStyle {
     }
 }
 
+struct DaisyButtonStyle: ButtonStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(8)
+            .padding(.horizontal, 8)
+            .foregroundColor(.black)
+            .background(.yellow)
+            .clipShape(Capsule())
+            .shadow(color: .black, radius: 3)
+            .overlay {
+                Capsule().stroke(Color.black, lineWidth: 2)
+            }
+    }
+}
+
 struct DaisyButtonStyle_Previews: PreviewProvider {
     static var previews: some View {
         Button("Press Me") {}
-            .buttonStyle(DaisyButtonStyle(color: .yellow ))
+            .buttonStyle(.daisy)
     }
 }
