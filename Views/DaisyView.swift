@@ -19,7 +19,6 @@ struct Daisy: ReducerProtocol {
         var date: Date
         var symbol: String
         var color: Color
-        var timeDetailState: TimeDetail.State
         
         var isPast: Bool {
             return date <= Date.now
@@ -41,12 +40,10 @@ struct Daisy: ReducerProtocol {
             self.date = date
             self.symbol = symbol
             self.color = color
-            self.timeDetailState = TimeDetail.State(id: id, date: date)
         }
     }
     
     enum Action: Equatable {
-        case timeDetail(TimeDetail.Action)
         case showTimeDetail
         case showDetail
         case dismissDetail
@@ -63,8 +60,6 @@ struct Daisy: ReducerProtocol {
     
     func reduce(into state: inout State, action: Action) -> ComposableArchitecture.EffectTask<Action> {
         switch action {
-        case .timeDetail:
-            break
         case .showDetail:
             state.isShowingDetail = true
         case .dismissDetail:
@@ -138,7 +133,7 @@ struct DaisyView: View {
                         .presentationDragIndicator(.hidden)
                 })
                 .sheet(isPresented: viewStore.binding(get: \.isShowingTimeDetail, send: Daisy.Action.dismissTimeDetail), content: {
-                    TimeDetailView(store: store.scope(state: \.timeDetailState, action: Daisy.Action.timeDetail))
+                    TimeDetailView(store: store)
                         .presentationDetents(Set(heights))
                         .presentationDragIndicator(.hidden)
                 })

@@ -8,49 +8,52 @@
 import SwiftUI
 import ComposableArchitecture
 
-// MARK: Reducer
-
-struct TimeDetail: ReducerProtocol {
-    struct State: Equatable, Identifiable {
-        let id: UUID
+struct TimeDetailView: View {
+    
+    private struct DateComponent: View {
+        
+        let label: LocalizedStringKey
+        let component: Calendar.Component
         let date: Date
         
-        init(
-            id: UUID,
-            date: Date
-        ) {
-            self.id = id
-            self.date = date
+        var body: some View {
+            HStack {
+                Text(label)
+                Spacer()
+                Text("\(Calendar.current.component(component, from: date))")
+            }
         }
     }
     
-    enum Action: Equatable {
-        // Coming Soon...
-    }
-    
-    struct Environment {}
-    
-    func reduce(into state: inout State, action: Action) -> ComposableArchitecture.EffectTask<Action> {
-    }
-}
-struct TimeDetailView: View {
-    
-    let store: StoreOf<TimeDetail>
+    let store: StoreOf<Daisy>
 
-    init(store: StoreOf<TimeDetail>) {
+    init(store: StoreOf<Daisy>) {
         self.store = store
     }
     
     var body: some View {
-        Text("Hello, World!")
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            Form {
+                Section("Since Now") {
+                    DateComponent(label: "Years", component: .year, date: viewStore.state.date)
+                    DateComponent(label: "Months", component: .month, date: viewStore.state.date)
+                    DateComponent(label: "Days", component: .day, date: viewStore.state.date)
+                }
+            }
+        }
     }
 }
 
 struct TimeDetailView_Previews: PreviewProvider {
     
-    static var store: Store<TimeDetail.State, TimeDetail.Action> = Store(
-        initialState: TimeDetail.State(id: UUID(), date: .now),
-        reducer: TimeDetail()
+    static var store: Store<Daisy.State, Daisy.Action> = Store(
+        initialState: Daisy.State(
+            title: "Amelia's Birthday",
+            date: Date.preview("2:32 Wed, 22 Sep 2019"),
+            symbol: "birthday.cake.fill",
+            color: .yellow
+        ),
+        reducer: Daisy()
     )
     
     static var previews: some View {
