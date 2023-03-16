@@ -33,7 +33,7 @@ struct DaisyList: ReducerProtocol {
         }
     }
     
-    enum Action: Equatable {
+    enum Action {
         case load
         case save
         case saveFailure(String)
@@ -79,13 +79,14 @@ struct DaisyList: ReducerProtocol {
                         id: $0.id,
                         title: $0.title,
                         date: $0.date,
-                        symbol: $0.symbol,
+                        imageDescription: $0.imageDescription,
+                        imageData: $0.imageData,
                         color: Color.init(hex: $0.color) ?? .yellow
                     )
                 })
             case .newDaisy:
                 state.filter = .all
-                let newDaisy = Daisy.State(title: "", date: .now, symbol: "", color: .yellow)
+                let newDaisy = Daisy.State(title: "", date: .now, imageDescription: "", color: .yellow)
                 state.daisies.insert(newDaisy, at: 0)
                 return EffectTask(value: .selectDaisy(id: newDaisy.id, action: Daisy.Action.showDetail))
             case let .delete(indexSet):

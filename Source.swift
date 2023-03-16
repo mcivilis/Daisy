@@ -15,20 +15,23 @@ struct Model: Hashable, Codable, Identifiable {
     let id: UUID
     var title: String
     var date: Date
-    var symbol: String
+    var imageDescription: String
+    var imageData: Data?
     var color: String
     
     init(
         id: UUID = UUID(),
         title: String,
         date: Date,
-        symbol: String,
+        imageDescription: String,
+        imageData: Data,
         color: String
     ) {
         self.id = id
         self.title = title
         self.date = date
-        self.symbol = symbol
+        self.imageDescription = imageDescription
+        self.imageData = imageData
         self.color = color
     }
     
@@ -36,7 +39,8 @@ struct Model: Hashable, Codable, Identifiable {
         self.id = state.id
         self.title = state.title
         self.date = state.date
-        self.symbol = state.symbol
+        self.imageDescription = state.imageDescription
+        self.imageData = state.imageData
         self.color = state.color.toHex() ?? "FFCC00"
     }
 }

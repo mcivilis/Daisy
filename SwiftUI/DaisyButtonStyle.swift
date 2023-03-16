@@ -22,7 +22,7 @@ struct CapsuleButtonStyle: ButtonStyle {
         configuration.label
             .padding(8)
             .padding(.horizontal, 8)
-            .foregroundColor(.black)
+            .foregroundColor(color.luminance() > 0.1 ? .black : .white)
             .background(color)
             .clipShape(Capsule())
             .shadow(color: .black, radius: 3)

@@ -17,7 +17,8 @@ struct Daisy: ReducerProtocol {
         let id: UUID
         var title: String
         var date: Date
-        var symbol: String
+        var imageDescription: String
+        var imageData: Data?
         var color: Color
         
         var isPast: Bool {
@@ -26,39 +27,46 @@ struct Daisy: ReducerProtocol {
         
         var isShowingTimeDetail: Bool = false
         var isShowingDetail: Bool = false
-        var isShowingSymbolPicker: Bool = false
+        var isShowingImageGenerator: Bool = false
+        var imageIsLoading: Bool = false
         
         init(
             id: UUID = UUID(),
             title: String,
             date: Date,
-            symbol: String,
+            imageDescription: String,
+            imageData: Data? = nil,
             color: Color
         ) {
             self.id = id
             self.title = title
             self.date = date
-            self.symbol = symbol
+            self.imageDescription = imageDescription
+            self.imageData = imageData
             self.color = color
         }
     }
     
-    enum Action: Equatable {
+    enum Action {
         case showTimeDetail
         case showDetail
         case dismissDetail
+        case dismissImageGenerator
         case dismissTimeDetail
-        case showSymbolPicker
-        case dismissSymbolPicker
+        case showImageGenerator
         case titleChanged(String)
         case dateChanged(Date)
         case colorChanged(Color)
-        case symbolChanged(String)
+        case imageDescriptionChanged(String)
+        case generateImage
+        case imageGenerationError(Error)
+        case newImage(Data)
     }
     
-    struct Environment {}
+    @Dependency(\.imageGenerationClient) var imageGenerationClient
     
     func reduce(into state: inout State, action: Action) -> ComposableArchitecture.EffectTask<Action> {
+        
         switch action {
         case .showDetail:
             state.isShowingDetail = true
@@ -70,17 +78,26 @@ struct Daisy: ReducerProtocol {
             state.date = date
         case let .colorChanged(color):
             state.color = color
-        case let .symbolChanged(symbol):
-            state.symbol = symbol
-            state.isShowingSymbolPicker = false
-        case .showSymbolPicker:
-            state.isShowingSymbolPicker = true
-        case .dismissSymbolPicker:
-            state.isShowingSymbolPicker = false
+        case let .imageDescriptionChanged(imageDescription):
+            state.imageDescription = imageDescription
+        case .showImageGenerator:
+            state.isShowingImageGenerator = true
+        case .dismissImageGenerator:
+            state.isShowingImageGenerator = false
         case .showTimeDetail:
             state.isShowingTimeDetail = true
         case .dismissTimeDetail:
             state.isShowingTimeDetail = false
+        case .generateImage:
+            state.imageIsLoading = true
+            return imageGenerationClient.imageData(state.imageDescription)
+                .map(Action.newImage)
+                .eraseToEffect()
+        case let .newImage(data):
+            state.imageData = data
+            state.imageIsLoading = false
+        case .imageGenerationError(_):
+            break
         }
         return .none
     }
@@ -94,36 +111,36 @@ struct DaisyView: View {
     
     var body: some View {
         WithViewStore(self.store) { viewStore in
-            RoundedRectangle(cornerRadius: 25)
-                .strokeBorder(viewStore.color, lineWidth: 2)
-                .shadow(radius: 10)
-                .frame(height: 100)
-                .overlay {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text(viewStore.title)
-                                .font(.title2   )
-                                .fontWeight(.bold)
-                                .foregroundColor(viewStore.color)
-                            Text(viewStore.date.display())
-                                .font(.body)
-                        }
-                        .padding()
-                        Spacer()
-                        VStack(alignment: .center, spacing: 12) {
-                            Image(systemName: viewStore.symbol)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(viewStore.color)
-                            Button(viewStore.date.display()) {
-                                viewStore.send(.showTimeDetail)
-                            }.buttonStyle(CapsuleButtonStyle(color: viewStore.color))
-                        }
-                        .offset(y: 20)
+            HStack {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(viewStore.title)
+                        .font(.title2   )
+                        .fontWeight(.bold)
+                        .foregroundColor(viewStore.color)
+                    Text(viewStore.date.display())
+                        .font(.body)
+                    Text(viewStore.date.daisy())
+                        .font(.caption)
+                        .fontWeight(.bold)
+                }.padding()
+                Spacer()
+                VStack(alignment: .trailing) {
+                    if let imageData = viewStore.imageData, let image = Image(data: imageData) {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
                     }
                 }
-                .padding(.bottom, 20)
-                .contentShape(Rectangle())
+            }
+            .frame(height: 125)
+            .clipShape(RoundedRectangle(cornerRadius: 25))
+            .overlay {
+                RoundedRectangle(cornerRadius: 25)
+                    .strokeBorder(viewStore.color, lineWidth: 3)
+                    .shadow(radius: 10)
+                    .frame(height: 125)
+                    .foregroundColor(.clear)
+            }
                 .onTapGesture {
                     viewStore.send(.showDetail)
                 }
@@ -146,7 +163,7 @@ struct DaisyItemView_Previews: PreviewProvider {
         initialState: Daisy.State(
             title: "Amelia's Birthday",
             date: Date.preview("2:32 Wed, 22 Sep 2019"),
-            symbol: "birthday.cake.fill",
+            imageDescription: "birthday cake in neutral colors",
             color: .yellow
         ),
         reducer: Daisy()

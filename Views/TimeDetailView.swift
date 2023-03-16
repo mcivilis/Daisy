@@ -46,17 +46,7 @@ struct TimeDetailView: View {
 
 struct TimeDetailView_Previews: PreviewProvider {
     
-    static var store: Store<Daisy.State, Daisy.Action> = Store(
-        initialState: Daisy.State(
-            title: "Amelia's Birthday",
-            date: Date.preview("2:32 Wed, 22 Sep 2019"),
-            symbol: "birthday.cake.fill",
-            color: .yellow
-        ),
-        reducer: Daisy()
-    )
-    
     static var previews: some View {
-        TimeDetailView(store: store)
+        TimeDetailView(store: .preview)
     }
 }

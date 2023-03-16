@@ -7,7 +7,6 @@
 
 import SwiftUI
 import ComposableArchitecture
-import SymbolPicker
 
 struct EditDaisyView: View {
     
@@ -34,23 +33,27 @@ struct EditDaisyView: View {
                             Text("Color")
                         }
                         Button {
-                            viewStore.send(.showSymbolPicker)
+                            viewStore.send(.showImageGenerator)
                         } label: {
                             HStack {
-                                Text("Symbol")
+                                Text("Image")
                                 Spacer()
-                                if viewStore.symbol.isEmpty {
-                                    Text("None")
+                                if let data = viewStore.imageData, let image = Image(data: data) {
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 30, height: 30)
+                                        .clipShape(Circle())
                                 } else {
-                                    Image(systemName: viewStore.symbol)
+                                    Text("None")
                                 }
                             }.foregroundColor(viewStore.color)
                         }
 
                     }
                 }
-                .sheet(isPresented: viewStore.binding(get: \.isShowingSymbolPicker, send: Daisy.Action.dismissSymbolPicker)) {
-                    SymbolPicker(symbol: viewStore.binding(get: \.symbol, send: Daisy.Action.symbolChanged))
+                .sheet(isPresented: viewStore.binding(get: \.isShowingImageGenerator, send: Daisy.Action.dismissImageGenerator)) {
+                    ImageGeneratorView(store: store)
                 }
                 .navigationTitle("Daisy")
                 .navigationBarItems(
@@ -66,12 +69,7 @@ struct EditDaisyView: View {
 
 struct EditDaisyView_Previews: PreviewProvider {
     
-    static var store: Store<Daisy.State, Daisy.Action> = Store(
-        initialState: Daisy.State(title: "Daisy 1", date: Date(timeIntervalSinceNow: -20), symbol: "pencil", color: .yellow),
-        reducer: Daisy()
-    )
-    
     static var previews: some View {
-        EditDaisyView(store: store)
+        EditDaisyView(store: .preview)
     }
 }

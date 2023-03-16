@@ -9,13 +9,22 @@
 /* Begin PBXBuildFile section */
 		A204E0DC29807BD100D48488 /* TimeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A204E0DB29807BD100D48488 /* TimeDetailView.swift */; };
 		A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212D51A289411F6006A7E38 /* DaisyView.swift */; };
+		A216C69D29C8F2A400EF1B28 /* URLRequest+ImageGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A216C69C29C8F2A400EF1B28 /* URLRequest+ImageGeneration.swift */; };
 		A22ED8FE2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */; };
 		A22ED9092953F1950088D4C2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED9082953F1950088D4C2 /* Source.swift */; };
 		A22ED90C2953F2950088D4C2 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED90B2953F2950088D4C2 /* Color+Hex.swift */; };
 		A236EB3C28FB5CC30033858B /* EditDaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* EditDaisyView.swift */; };
+		A247732629C3A0AE009D0431 /* View+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247732529C3A0AE009D0431 /* View+Animation.swift */; };
+		A247732829C3AC89009D0431 /* DaisySpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247732729C3AC89009D0431 /* DaisySpinner.swift */; };
+		A247732A29C3B43A009D0431 /* Color+Luminance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247732929C3B43A009D0431 /* Color+Luminance.swift */; };
+		A247732C29C3BD1E009D0431 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247732B29C3BD1E009D0431 /* APIKey.swift */; };
 		A24795DF294BFD39002F791C /* PetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalView.swift */; };
 		A24795E5294C253B002F791C /* DaisyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795E4294C253B002F791C /* DaisyIcon.swift */; };
 		A25E1001291C48BF00439BF4 /* PaddingModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25E1000291C48BF00439BF4 /* PaddingModifier.swift */; };
+		A26D951429C009C100E518FD /* ImageGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D951329C009C100E518FD /* ImageGeneratorView.swift */; };
+		A26D951629C0100800E518FD /* Image+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D951529C0100800E518FD /* Image+Data.swift */; };
+		A26D951829C0118B00E518FD /* Daisy+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D951729C0118B00E518FD /* Daisy+Preview.swift */; };
+		A26D951B29C0B69F00E518FD /* ImageGenerationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26D951A29C0B69F00E518FD /* ImageGenerationClient.swift */; };
 		A2A3681828F79FB000C2AD02 /* SymbolPicker in Frameworks */ = {isa = PBXBuildFile; productRef = A2A3681728F79FB000C2AD02 /* SymbolPicker */; };
 		A2A3681A28F7A28B00C2AD02 /* View+If.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A3681928F7A28B00C2AD02 /* View+If.swift */; };
 		A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2612881F68A00506E32 /* DaisyApp.swift */; };
@@ -29,13 +38,22 @@
 /* Begin PBXFileReference section */
 		A204E0DB29807BD100D48488 /* TimeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDetailView.swift; sourceTree = "<group>"; };
 		A212D51A289411F6006A7E38 /* DaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyView.swift; sourceTree = "<group>"; };
+		A216C69C29C8F2A400EF1B28 /* URLRequest+ImageGeneration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+ImageGeneration.swift"; sourceTree = "<group>"; };
 		A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyButtonStyle.swift; sourceTree = "<group>"; };
 		A22ED9082953F1950088D4C2 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		A22ED90B2953F2950088D4C2 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		A236EB3B28FB5CC30033858B /* EditDaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDaisyView.swift; sourceTree = "<group>"; };
+		A247732529C3A0AE009D0431 /* View+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Animation.swift"; sourceTree = "<group>"; };
+		A247732729C3AC89009D0431 /* DaisySpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisySpinner.swift; sourceTree = "<group>"; };
+		A247732929C3B43A009D0431 /* Color+Luminance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Luminance.swift"; sourceTree = "<group>"; };
+		A247732B29C3BD1E009D0431 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		A24795DE294BFD39002F791C /* PetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetalView.swift; sourceTree = "<group>"; };
 		A24795E4294C253B002F791C /* DaisyIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyIcon.swift; sourceTree = "<group>"; };
 		A25E1000291C48BF00439BF4 /* PaddingModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingModifier.swift; sourceTree = "<group>"; };
+		A26D951329C009C100E518FD /* ImageGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGeneratorView.swift; sourceTree = "<group>"; };
+		A26D951529C0100800E518FD /* Image+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Data.swift"; sourceTree = "<group>"; };
+		A26D951729C0118B00E518FD /* Daisy+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Daisy+Preview.swift"; sourceTree = "<group>"; };
+		A26D951A29C0B69F00E518FD /* ImageGenerationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerationClient.swift; sourceTree = "<group>"; };
 		A2A3681928F7A28B00C2AD02 /* View+If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+If.swift"; sourceTree = "<group>"; };
 		A2B9C2612881F68A00506E32 /* DaisyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyApp.swift; sourceTree = "<group>"; };
 		A2B9C2622881F68A00506E32 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -63,6 +81,7 @@
 			children = (
 				A24795DE294BFD39002F791C /* PetalView.swift */,
 				A24795E4294C253B002F791C /* DaisyIcon.swift */,
+				A247732729C3AC89009D0431 /* DaisySpinner.swift */,
 			);
 			path = Icon;
 			sourceTree = "<group>";
@@ -77,9 +96,20 @@
 			path = SwiftUI;
 			sourceTree = "<group>";
 		};
+		A26D951929C0B68A00E518FD /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				A26D951A29C0B69F00E518FD /* ImageGenerationClient.swift */,
+				A216C69C29C8F2A400EF1B28 /* URLRequest+ImageGeneration.swift */,
+				A247732B29C3BD1E009D0431 /* APIKey.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
 		A2B9C25B2881F68A00506E32 = {
 			isa = PBXGroup;
 			children = (
+				A26D951929C0B68A00E518FD /* Clients */,
 				A24795D4294BF562002F791C /* Icon */,
 				A25E0FFF291C48AC00439BF4 /* SwiftUI */,
 				A2EA926628F0B3C0002BA01E /* Extensions */,
@@ -105,6 +135,7 @@
 				A2B9C2622881F68A00506E32 /* ListView.swift */,
 				A212D51A289411F6006A7E38 /* DaisyView.swift */,
 				A236EB3B28FB5CC30033858B /* EditDaisyView.swift */,
+				A26D951329C009C100E518FD /* ImageGeneratorView.swift */,
 				A204E0DB29807BD100D48488 /* TimeDetailView.swift */,
 			);
 			path = Views;
@@ -114,8 +145,12 @@
 			isa = PBXGroup;
 			children = (
 				A22ED90B2953F2950088D4C2 /* Color+Hex.swift */,
+				A247732929C3B43A009D0431 /* Color+Luminance.swift */,
+				A247732529C3A0AE009D0431 /* View+Animation.swift */,
 				A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */,
 				A2A3681928F7A28B00C2AD02 /* View+If.swift */,
+				A26D951529C0100800E518FD /* Image+Data.swift */,
+				A26D951729C0118B00E518FD /* Daisy+Preview.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -199,16 +234,25 @@
 			files = (
 				A22ED90C2953F2950088D4C2 /* Color+Hex.swift in Sources */,
 				A236EB3C28FB5CC30033858B /* EditDaisyView.swift in Sources */,
+				A26D951829C0118B00E518FD /* Daisy+Preview.swift in Sources */,
 				A204E0DC29807BD100D48488 /* TimeDetailView.swift in Sources */,
+				A26D951629C0100800E518FD /* Image+Data.swift in Sources */,
+				A26D951429C009C100E518FD /* ImageGeneratorView.swift in Sources */,
+				A247732C29C3BD1E009D0431 /* APIKey.swift in Sources */,
 				A2B9C2732881F68B00506E32 /* ListView.swift in Sources */,
+				A247732629C3A0AE009D0431 /* View+Animation.swift in Sources */,
 				A22ED9092953F1950088D4C2 /* Source.swift in Sources */,
+				A26D951B29C0B69F00E518FD /* ImageGenerationClient.swift in Sources */,
 				A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */,
 				A24795E5294C253B002F791C /* DaisyIcon.swift in Sources */,
 				A2A3681A28F7A28B00C2AD02 /* View+If.swift in Sources */,
 				A25E1001291C48BF00439BF4 /* PaddingModifier.swift in Sources */,
+				A247732829C3AC89009D0431 /* DaisySpinner.swift in Sources */,
 				A2DBF8B22968D01F00818E55 /* DaisyCapsuleModifier.swift in Sources */,
+				A247732A29C3B43A009D0431 /* Color+Luminance.swift in Sources */,
 				A24795DF294BFD39002F791C /* PetalView.swift in Sources */,
 				A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */,
+				A216C69D29C8F2A400EF1B28 /* URLRequest+ImageGeneration.swift in Sources */,
 				A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
 				A22ED8FE2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */,
 			);

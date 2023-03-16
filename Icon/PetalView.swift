@@ -71,13 +71,19 @@ struct PetalShape: Shape {
     }
 }
 
-struct PetalView: View {
-    var body: some View {
+public struct PetalView: View {
+    
+    let usesShadow: Bool
+    let strokeWidth: CGFloat
+    
+    public var body: some View {
         GeometryReader { geometry in
             PetalShape()
-            .stroke(.black, lineWidth: 8)
+            .stroke(.black, lineWidth: strokeWidth)
             .background(PetalShape().fill(.white))
-            .shadow(color: Color.gray, radius: 10, x: 5, y: 5)
+            .if(usesShadow) { view in
+                view.shadow(color: Color.gray, radius: 10, x: 5, y: 5)
+            }
         }
         .aspectRatio(1, contentMode: .fit)
     }
@@ -85,6 +91,6 @@ struct PetalView: View {
 
 struct PetalShape_Previews: PreviewProvider {
     static var previews: some View {
-        PetalView()
+        PetalView(usesShadow: true, strokeWidth: 8)
     }
 }
