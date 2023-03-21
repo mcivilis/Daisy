@@ -90,9 +90,9 @@ struct Daisy: ReducerProtocol {
             state.isShowingTimeDetail = false
         case .generateImage:
             state.imageIsLoading = true
-            return imageGenerationClient.imageData(state.imageDescription)
-                .map(Action.newImage)
-                .eraseToEffect()
+            return .task { [ description = state.imageDescription] in
+                    .newImage(try await self.imageGenerationClient.imageData(description))
+            }
         case let .newImage(data):
             state.imageData = data
             state.imageIsLoading = false

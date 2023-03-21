@@ -12,7 +12,7 @@ import UIKit
 
 public struct ImageGenerationClient {
     
-    var imageData: (String) -> AnyPublisher<Data, Never>
+    var imageData: @Sendable (String) async throws -> Data
 }
 
 extension DependencyValues {
@@ -24,12 +24,9 @@ extension DependencyValues {
 
 extension ImageGenerationClient: DependencyKey {
     public static let liveValue = ImageGenerationClient { description in
-        generateImageData(with: description)
-            .replaceError(with: Data()) // TODO: do not ignore errors but handle them properly
-            .eraseToAnyPublisher()
+        try await generateImageData(with: description)
     }
 }
-
 
 // MARK: - Fetch
 
@@ -48,6 +45,32 @@ extension ImageGenerationClient {
 
     struct ImageData: Codable {
         let url: String
+    }
+    
+    private static func generateImageData(with description: String) async throws -> Data {
+        let request = try URLRequest.imageGenerationRequest(for: description)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard
+            let httpResponse = response as? HTTPURLResponse,
+            (200..<300).contains(httpResponse.statusCode) else {
+            throw ImageGenerationClientError.badRequest
+        }
+        
+        let decoder = JSONDecoder()
+        let imageDataResponse = try decoder.decode(ImageDataResponse.self, from: data)
+        
+        guard
+            let url = imageDataResponse.data.first?.url,
+            let imageURL = URL(string: url) else {
+            throw ImageGenerationClientError.failedToGenerateImage
+        }
+        
+        let (imageData, _) = try await URLSession.shared.data(from: imageURL)
+        
+        return imageData
+        
     }
     
     private static func generateImageData(with description: String) -> AnyPublisher<Data, Error> {
