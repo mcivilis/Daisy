@@ -14,18 +14,19 @@ import UIKit
 extension StoreOf<Daisy> {
     static var preview: Store<Daisy.State, Daisy.Action> = Store(
         initialState: Daisy.State(
-            title: "Daisy",
+            title: "Vacation",
             date: Date(timeIntervalSinceNow: -20),
-            imageDescription: "Daisy",
-            imageData: UIImage(named: "AppIcon")!.pngData(),
+            icon: .preview,
             color: .yellow
         ),
         reducer: Daisy()
     )
 }
 
-extension Data {
-    static var preview: Data = UIImage(named: "AppIcon")!.pngData()!
+extension Icon {
+    static var preview: Icon {
+        Icon(type: .symbol, shape: .noShapeDark, value: "birthday.cake")
+    }
 }
 
 #endif

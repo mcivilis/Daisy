@@ -10,28 +10,51 @@ import Foundation
 import SwiftUI
 import ComposableArchitecture
 
+enum IconType: Codable {
+    case symbol
+    case text
+    case emoji
+    case none
+}
+
+enum IconShape: Codable, CaseIterable {
+    case circleDark
+    case circleLight
+    case rectangleDark
+    case rectangleLight
+    case noShapeDark
+    case noShapeLight
+}
+
+struct Icon: Hashable, Codable {
+    var type: IconType
+    var shape: IconShape
+    var value: String
+    
+    static var empty: Icon {
+        Icon(type: .none, shape: .noShapeDark, value: "")
+    }
+}
+
 struct Model: Hashable, Codable, Identifiable {
     
     let id: UUID
     var title: String
     var date: Date
-    var imageDescription: String
-    var imageData: Data?
+    var icon: Icon
     var color: String
     
     init(
         id: UUID = UUID(),
         title: String,
         date: Date,
-        imageDescription: String,
-        imageData: Data,
+        icon: Icon,
         color: String
     ) {
         self.id = id
         self.title = title
         self.date = date
-        self.imageDescription = imageDescription
-        self.imageData = imageData
+        self.icon = icon
         self.color = color
     }
     
@@ -39,8 +62,7 @@ struct Model: Hashable, Codable, Identifiable {
         self.id = state.id
         self.title = state.title
         self.date = state.date
-        self.imageDescription = state.imageDescription
-        self.imageData = state.imageData
+        self.icon = state.icon
         self.color = state.color.toHex() ?? "FFCC00"
     }
 }

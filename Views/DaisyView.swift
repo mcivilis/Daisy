@@ -17,8 +17,7 @@ struct Daisy: ReducerProtocol {
         let id: UUID
         var title: String
         var date: Date
-        var imageDescription: String
-        var imageData: Data?
+        var icon: Icon
         var color: Color
         
         var isPast: Bool {
@@ -27,22 +26,19 @@ struct Daisy: ReducerProtocol {
         
         var isShowingTimeDetail: Bool = false
         var isShowingDetail: Bool = false
-        var isShowingImageGenerator: Bool = false
-        var imageIsLoading: Bool = false
+        var isShowingIconPicker: Bool = false
         
         init(
             id: UUID = UUID(),
             title: String,
             date: Date,
-            imageDescription: String,
-            imageData: Data? = nil,
+            icon: Icon,
             color: Color
         ) {
             self.id = id
             self.title = title
             self.date = date
-            self.imageDescription = imageDescription
-            self.imageData = imageData
+            self.icon = icon
             self.color = color
         }
     }
@@ -51,19 +47,14 @@ struct Daisy: ReducerProtocol {
         case showTimeDetail
         case showDetail
         case dismissDetail
-        case dismissImageGenerator
+        case dismissSymbolPicker
         case dismissTimeDetail
-        case showImageGenerator
+        case showSymbolPicker
+        case iconChanged(Icon)
         case titleChanged(String)
         case dateChanged(Date)
         case colorChanged(Color)
-        case imageDescriptionChanged(String)
-        case generateImage
-        case imageGenerationError(Error)
-        case newImage(Data)
     }
-    
-    @Dependency(\.imageGenerationClient) var imageGenerationClient
     
     func reduce(into state: inout State, action: Action) -> ComposableArchitecture.EffectTask<Action> {
         
@@ -78,26 +69,17 @@ struct Daisy: ReducerProtocol {
             state.date = date
         case let .colorChanged(color):
             state.color = color
-        case let .imageDescriptionChanged(imageDescription):
-            state.imageDescription = imageDescription
-        case .showImageGenerator:
-            state.isShowingImageGenerator = true
-        case .dismissImageGenerator:
-            state.isShowingImageGenerator = false
+        case .showSymbolPicker:
+            state.isShowingIconPicker = true
+        case let .iconChanged(icon):
+             state.icon = icon
+             state.isShowingIconPicker = false
+        case .dismissSymbolPicker:
+            state.isShowingIconPicker = false
         case .showTimeDetail:
             state.isShowingTimeDetail = true
         case .dismissTimeDetail:
             state.isShowingTimeDetail = false
-        case .generateImage:
-            state.imageIsLoading = true
-            return .task { [ description = state.imageDescription] in
-                    .newImage(try await self.imageGenerationClient.imageData(description))
-            }
-        case let .newImage(data):
-            state.imageData = data
-            state.imageIsLoading = false
-        case .imageGenerationError(_):
-            break
         }
         return .none
     }
@@ -124,13 +106,14 @@ struct DaisyView: View {
                         .fontWeight(.bold)
                 }.padding()
                 Spacer()
-                VStack(alignment: .trailing) {
-                    if let imageData = viewStore.imageData, let image = Image(data: imageData) {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
+                VStack(alignment: .center, spacing: 12) {
+                    IconView(icon: viewStore.icon, color: viewStore.color)
+                    Button(viewStore.date.display()) {
+                        viewStore.send(.showTimeDetail)
                     }
+                    .buttonStyle(.capsule(viewStore.color))
                 }
+                .offset(y: 20)
             }
             .frame(height: 125)
             .clipShape(RoundedRectangle(cornerRadius: 25))
@@ -146,7 +129,7 @@ struct DaisyView: View {
                 }
                 .sheet(isPresented: viewStore.binding(get: \.isShowingDetail, send: Daisy.Action.dismissDetail), content: {
                     EditDaisyView(store: store)
-                        .presentationDetents(Set(heights))
+                        .presentationDetents([.medium])
                         .presentationDragIndicator(.hidden)
                 })
                 .sheet(isPresented: viewStore.binding(get: \.isShowingTimeDetail, send: Daisy.Action.dismissTimeDetail), content: {
@@ -163,7 +146,7 @@ struct DaisyItemView_Previews: PreviewProvider {
         initialState: Daisy.State(
             title: "Amelia's Birthday",
             date: Date.preview("2:32 Wed, 22 Sep 2019"),
-            imageDescription: "birthday cake in neutral colors",
+            icon: .preview,
             color: .yellow
         ),
         reducer: Daisy()

@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+extension ButtonStyle where Self == CapsuleButtonStyle {
+    static func capsule(_ color: Color) -> Self {
+        return .init(color: color)
+    }
+}
 
 extension ButtonStyle where Self == DaisyButtonStyle {
     static var daisy: Self {
@@ -50,7 +55,9 @@ struct DaisyButtonStyle: ButtonStyle {
 
 struct DaisyButtonStyle_Previews: PreviewProvider {
     static var previews: some View {
-        Button("Press Me") {}
-            .buttonStyle(.daisy)
+        VStack {
+            Button("Press Me") {}
+                .buttonStyle(.daisy)
+        }
     }
 }

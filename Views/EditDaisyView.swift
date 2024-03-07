@@ -33,34 +33,32 @@ struct EditDaisyView: View {
                             Text("Color")
                         }
                         Button {
-                            viewStore.send(.showImageGenerator)
+                            viewStore.send(.showSymbolPicker)
                         } label: {
                             HStack {
-                                Text("Image")
+                                Text("Symbol")
                                 Spacer()
-                                if let data = viewStore.imageData, let image = Image(data: data) {
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 30, height: 30)
-                                        .clipShape(Circle())
-                                } else {
-                                    Text("None")
-                                }
-                            }.foregroundColor(viewStore.color)
+                            }
                         }
-
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(viewStore.color)
+                        .overlay(alignment: .trailing) {
+                            IconView(icon: viewStore.icon, color: viewStore.color)
+                        }
                     }
-                }
-                .sheet(isPresented: viewStore.binding(get: \.isShowingImageGenerator, send: Daisy.Action.dismissImageGenerator)) {
-                    ImageGeneratorView(store: store)
                 }
                 .navigationTitle("Daisy")
                 .navigationBarItems(
                     trailing: Button("Done") {
                         viewStore.send(.dismissDetail)
-                    }.buttonStyle(CapsuleButtonStyle(color: viewStore.color))
+                    }.buttonStyle(.capsule(viewStore.color))
                 )
+                .sheet(isPresented: viewStore.binding(get: \.isShowingIconPicker, send: Daisy.Action.dismissSymbolPicker)) {
+                    IconPickerView(
+                        color: viewStore.state.color,
+                        icon: viewStore.binding(get: \.icon, send: Daisy.Action.iconChanged)
+                    )
+                }
             }
         }
     }

@@ -79,14 +79,13 @@ struct DaisyList: ReducerProtocol {
                         id: $0.id,
                         title: $0.title,
                         date: $0.date,
-                        imageDescription: $0.imageDescription,
-                        imageData: $0.imageData,
+                        icon: $0.icon,
                         color: Color.init(hex: $0.color) ?? .yellow
                     )
                 })
             case .newDaisy:
                 state.filter = .all
-                let newDaisy = Daisy.State(title: "", date: .now, imageDescription: "", color: .yellow)
+                let newDaisy = Daisy.State(title: "", date: .now, icon: .empty, color: .yellow)
                 state.daisies.insert(newDaisy, at: 0)
                 return EffectTask(value: .selectDaisy(id: newDaisy.id, action: Daisy.Action.showDetail))
             case let .delete(indexSet):
