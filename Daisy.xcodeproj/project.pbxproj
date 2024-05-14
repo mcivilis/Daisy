@@ -12,7 +12,6 @@
 		A22ED8FE2953A86E0088D4C2 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED8FD2953A86E0088D4C2 /* ButtonStyle.swift */; };
 		A22ED9092953F1950088D4C2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED9082953F1950088D4C2 /* Source.swift */; };
 		A236EB3C28FB5CC30033858B /* EditDaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* EditDaisyView.swift */; };
-		A24602732B9A3F94009DC372 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24602722B9A3F94009DC372 /* Theme.swift */; };
 		A247732629C3A0AE009D0431 /* View+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247732529C3A0AE009D0431 /* View+Animation.swift */; };
 		A247732829C3AC89009D0431 /* DaisySpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247732729C3AC89009D0431 /* DaisySpinner.swift */; };
 		A24795DF294BFD39002F791C /* PetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalView.swift */; };
@@ -29,6 +28,7 @@
 		A2B9C2732881F68B00506E32 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* ListView.swift */; };
 		A2B9C2752881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2812881FA1500506E32 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2B9C2802881FA1500506E32 /* ComposableArchitecture */; };
+		A2E12B9B2BF41A24002207D4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E12B9A2BF41A24002207D4 /* Theme.swift */; };
 		A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +38,6 @@
 		A22ED8FD2953A86E0088D4C2 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		A22ED9082953F1950088D4C2 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		A236EB3B28FB5CC30033858B /* EditDaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDaisyView.swift; sourceTree = "<group>"; };
-		A24602722B9A3F94009DC372 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A247732529C3A0AE009D0431 /* View+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Animation.swift"; sourceTree = "<group>"; };
 		A247732729C3AC89009D0431 /* DaisySpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisySpinner.swift; sourceTree = "<group>"; };
 		A24795DE294BFD39002F791C /* PetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetalView.swift; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		A2B9C2622881F68A00506E32 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		A2B9C2632881F68B00506E32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2B9C2682881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2E12B9A2BF41A24002207D4 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,12 +117,12 @@
 		A2B9C25B2881F68A00506E32 = {
 			isa = PBXGroup;
 			children = (
-				A24602722B9A3F94009DC372 /* Theme.swift */,
 				A24FA4982ABBD04500BDB873 /* Symbols */,
 				A24795D4294BF562002F791C /* Graphics */,
 				A25E0FFF291C48AC00439BF4 /* SwiftUI */,
 				A2EA926628F0B3C0002BA01E /* Extensions */,
 				A2B9C2612881F68A00506E32 /* DaisyApp.swift */,
+				A2E12B9A2BF41A24002207D4 /* Theme.swift */,
 				A2D881B62954C7BC001ABB6E /* Views */,
 				A22ED9082953F1950088D4C2 /* Source.swift */,
 				A2B9C2632881F68B00506E32 /* Assets.xcassets */,
@@ -241,7 +241,6 @@
 			files = (
 				A236EB3C28FB5CC30033858B /* EditDaisyView.swift in Sources */,
 				A24FA4932ABBA6A500BDB873 /* IconPickerView.swift in Sources */,
-				A24602732B9A3F94009DC372 /* Theme.swift in Sources */,
 				A26D951829C0118B00E518FD /* Daisy+Preview.swift in Sources */,
 				A204E0DC29807BD100D48488 /* TimeDetailView.swift in Sources */,
 				A26D74302ABC97A30022EEE9 /* IconView.swift in Sources */,
@@ -257,6 +256,7 @@
 				A24795DF294BFD39002F791C /* PetalView.swift in Sources */,
 				A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */,
 				A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
+				A2E12B9B2BF41A24002207D4 /* Theme.swift in Sources */,
 				A22ED8FE2953A86E0088D4C2 /* ButtonStyle.swift in Sources */,
 				A26D74322ABCA4C10022EEE9 /* String+Emoji.swift in Sources */,
 			);

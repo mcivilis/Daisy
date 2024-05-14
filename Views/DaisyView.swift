@@ -86,10 +86,6 @@ struct DaisyView: View {
     let store: StoreOf<Daisy>
     private let heights = stride(from: 0.5, through: 1.0, by: 0.1).map { PresentationDetent.fraction($0) }
     
-    private var countdownColor: Color  {
-        colorScheme == .dark ? Theme.muted.light : Theme.muted.dark
-    }
-    
     var body: some View {
         WithViewStore(self.store) { viewStore in
             HStack {
@@ -97,7 +93,7 @@ struct DaisyView: View {
                     Text(viewStore.title)
                         .font(.title2   )
                         .fontWeight(.bold)
-                        .foregroundColor(countdownColor)
+                        .foregroundColor(.countdownTitle)
                     Text(viewStore.date.display())
                         .font(.body)
                     Text(viewStore.date.daisy())
@@ -106,11 +102,11 @@ struct DaisyView: View {
                 }.padding()
                 Spacer()
                 VStack(alignment: .center, spacing: 12) {
-                    IconView(icon: viewStore.icon, color: countdownColor)
+                    IconView(icon: viewStore.icon, color: .countdownTitle)
                     Button(viewStore.date.display()) {
                         viewStore.send(.showTimeDetail)
                     }
-                    .buttonStyle(.capsule(.bright))
+                    .buttonStyle(.capsule)
                 }
                 .offset(y: 20)
             }
@@ -118,7 +114,7 @@ struct DaisyView: View {
             .clipShape(RoundedRectangle(cornerRadius: 25))
             .overlay {
                 RoundedRectangle(cornerRadius: 25)
-                    .strokeBorder(countdownColor, lineWidth: 3)
+                    .strokeBorder(Color.icon, lineWidth: 3)
                     .shadow(radius: 10)
                     .frame(height: 125)
                     .foregroundColor(.clear)

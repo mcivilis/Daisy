@@ -162,12 +162,12 @@ struct ListView: View {
                 .onAppear { viewStore.send(.load) }
                 .navigationTitle("Countdowns")
                 .navigationBarItems(
-                    leading: EditButton().buttonStyle(.countdown(.bright)),
+                    leading: EditButton().buttonStyle(.countdown),
                     trailing: Button(action: {
                         viewStore.send(.newDaisy)
                     }, label: {
                         Image(systemName: "square.and.pencil")
-                    }).buttonStyle(.countdown(.bright))
+                    }).buttonStyle(.countdown)
                 )
                 .environment(
                     \.editMode,

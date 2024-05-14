@@ -8,28 +8,25 @@
 import SwiftUI
 
 extension ButtonStyle where Self == CapsuleButtonStyle {
-    static func capsule(_ theme: Theme) -> Self {
-        return .init(dark: theme.dark, light: theme.light)
+    static var capsule: Self {
+        return .init()
     }
 }
 
 extension ButtonStyle where Self == CountdownButtonStyle {
-    static func countdown(_ theme: Theme) -> Self {
-        return .init(dark: theme.dark, light: theme.light)
+    static var countdown: Self {
+        return .init()
     }
 }
 
 struct CapsuleButtonStyle: ButtonStyle {
     
-    let dark: Color
-    let light: Color
-    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(8)
             .padding(.horizontal, 8)
-            .foregroundColor(dark)
-            .background(light)
+            .foregroundColor(.black)
+            .background(Color.accentColor)
             .clipShape(Capsule())
             .shadow(color: .black, radius: 3)
             .overlay {
@@ -40,15 +37,12 @@ struct CapsuleButtonStyle: ButtonStyle {
 
 struct CountdownButtonStyle: ButtonStyle {
     
-    let dark: Color
-    let light: Color
-    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(8)
             .padding(.horizontal, 8)
-            .foregroundColor(dark)
-            .background(light)
+            .foregroundColor(.black)
+            .background(Color.accentColor)
             .clipShape(Capsule())
             .shadow(color: .black, radius: 3)
             .overlay {
@@ -61,7 +55,7 @@ struct CountdownButtonStyle_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Button("Press Me") {}
-                .buttonStyle(.countdown(.bright))
+                .buttonStyle(.countdown)
         }
     }
 }

@@ -9,7 +9,6 @@ import SwiftUI
 import ComposableArchitecture
 
 struct EditDaisyView: View {
-    @Environment(\.colorScheme) var colorScheme
     
     let store: StoreOf<Daisy>
 
@@ -38,7 +37,7 @@ struct EditDaisyView: View {
                             }
                         }
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(colorScheme == .dark ? Theme.muted.light : Theme.muted.dark)
+                        .foregroundColor(.countdownTitle)
                         .overlay(alignment: .trailing) {
                             IconView(icon: viewStore.icon, color: .accentColor)
                         }
@@ -52,11 +51,11 @@ struct EditDaisyView: View {
                 Button("Done") {
                     viewStore.send(.dismissDetail)
                 }
-                .buttonStyle(.capsule(.bright))
+                .buttonStyle(.capsule)
             }
             .sheet(isPresented: viewStore.binding(get: \.isShowingIconPicker, send: Daisy.Action.dismissSymbolPicker)) {
                 IconPickerView(
-                    color: Theme.bright.dark,
+                    color: .icon,
                     icon: viewStore.binding(get: \.icon, send: Daisy.Action.iconChanged)
                 )
             }
