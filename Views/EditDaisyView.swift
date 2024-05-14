@@ -9,6 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct EditDaisyView: View {
+    @Environment(\.colorScheme) var colorScheme
     
     let store: StoreOf<Daisy>
 
@@ -18,20 +19,16 @@ struct EditDaisyView: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            
             NavigationStack {
                 Form {
-                    Section(header: Text("TITLE")) {
+                    Section {
                         TextField("Title", text: viewStore.binding(get: \.title, send: Daisy.Action.titleChanged))
                             .font(.title2)
+                    } header: {
+                        Text("TITLE")
                     }
-                    Section(header: Text("DETAILS")) {
-                        DatePicker(selection: viewStore.binding(get: \.date, send: Daisy.Action.dateChanged)) {
-                            Text("Date")
-                        }
-                        ColorPicker(selection: viewStore.binding(get: \.color, send: Daisy.Action.colorChanged)) {
-                            Text("Color")
-                        }
+                    Section {
+                        DatePicker("Date", selection: viewStore.binding(get: \.date, send: Daisy.Action.dateChanged))
                         Button {
                             viewStore.send(.showSymbolPicker)
                         } label: {
@@ -41,29 +38,31 @@ struct EditDaisyView: View {
                             }
                         }
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(viewStore.color)
+                        .foregroundColor(colorScheme == .dark ? Theme.muted.light : Theme.muted.dark)
                         .overlay(alignment: .trailing) {
-                            IconView(icon: viewStore.icon, color: viewStore.color)
+                            IconView(icon: viewStore.icon, color: .accentColor)
                         }
+                    } header: {
+                        Text("DETAILS")
                     }
                 }
-                .navigationTitle("Daisy")
-                .navigationBarItems(
-                    trailing: Button("Done") {
-                        viewStore.send(.dismissDetail)
-                    }.buttonStyle(.capsule(viewStore.color))
-                )
-                .sheet(isPresented: viewStore.binding(get: \.isShowingIconPicker, send: Daisy.Action.dismissSymbolPicker)) {
-                    IconPickerView(
-                        color: viewStore.state.color,
-                        icon: viewStore.binding(get: \.icon, send: Daisy.Action.iconChanged)
-                    )
+            }
+            .navigationTitle("Countdown")
+            .toolbar {
+                Button("Done") {
+                    viewStore.send(.dismissDetail)
                 }
+                .buttonStyle(.capsule(.bright))
+            }
+            .sheet(isPresented: viewStore.binding(get: \.isShowingIconPicker, send: Daisy.Action.dismissSymbolPicker)) {
+                IconPickerView(
+                    color: Theme.bright.dark,
+                    icon: viewStore.binding(get: \.icon, send: Daisy.Action.iconChanged)
+                )
             }
         }
     }
 }
-
 
 struct EditDaisyView_Previews: PreviewProvider {
     

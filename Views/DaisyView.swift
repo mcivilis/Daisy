@@ -18,7 +18,6 @@ struct Daisy: ReducerProtocol {
         var title: String
         var date: Date
         var icon: Icon
-        var color: Color
         
         var isPast: Bool {
             return date <= Date.now
@@ -32,14 +31,12 @@ struct Daisy: ReducerProtocol {
             id: UUID = UUID(),
             title: String,
             date: Date,
-            icon: Icon,
-            color: Color
+            icon: Icon
         ) {
             self.id = id
             self.title = title
             self.date = date
             self.icon = icon
-            self.color = color
         }
     }
     
@@ -53,7 +50,6 @@ struct Daisy: ReducerProtocol {
         case iconChanged(Icon)
         case titleChanged(String)
         case dateChanged(Date)
-        case colorChanged(Color)
     }
     
     func reduce(into state: inout State, action: Action) -> ComposableArchitecture.EffectTask<Action> {
@@ -67,8 +63,6 @@ struct Daisy: ReducerProtocol {
             state.title = text
         case let .dateChanged(date):
             state.date = date
-        case let .colorChanged(color):
-            state.color = color
         case .showSymbolPicker:
             state.isShowingIconPicker = true
         case let .iconChanged(icon):
@@ -88,8 +82,13 @@ struct Daisy: ReducerProtocol {
 // MARK: View
 
 struct DaisyView: View {
+    @Environment(\.colorScheme) var colorScheme
     let store: StoreOf<Daisy>
     private let heights = stride(from: 0.5, through: 1.0, by: 0.1).map { PresentationDetent.fraction($0) }
+    
+    private var countdownColor: Color  {
+        colorScheme == .dark ? Theme.muted.light : Theme.muted.dark
+    }
     
     var body: some View {
         WithViewStore(self.store) { viewStore in
@@ -98,7 +97,7 @@ struct DaisyView: View {
                     Text(viewStore.title)
                         .font(.title2   )
                         .fontWeight(.bold)
-                        .foregroundColor(viewStore.color)
+                        .foregroundColor(countdownColor)
                     Text(viewStore.date.display())
                         .font(.body)
                     Text(viewStore.date.daisy())
@@ -107,11 +106,11 @@ struct DaisyView: View {
                 }.padding()
                 Spacer()
                 VStack(alignment: .center, spacing: 12) {
-                    IconView(icon: viewStore.icon, color: viewStore.color)
+                    IconView(icon: viewStore.icon, color: countdownColor)
                     Button(viewStore.date.display()) {
                         viewStore.send(.showTimeDetail)
                     }
-                    .buttonStyle(.capsule(viewStore.color))
+                    .buttonStyle(.capsule(.bright))
                 }
                 .offset(y: 20)
             }
@@ -119,7 +118,7 @@ struct DaisyView: View {
             .clipShape(RoundedRectangle(cornerRadius: 25))
             .overlay {
                 RoundedRectangle(cornerRadius: 25)
-                    .strokeBorder(viewStore.color, lineWidth: 3)
+                    .strokeBorder(countdownColor, lineWidth: 3)
                     .shadow(radius: 10)
                     .frame(height: 125)
                     .foregroundColor(.clear)
@@ -146,8 +145,7 @@ struct DaisyItemView_Previews: PreviewProvider {
         initialState: Daisy.State(
             title: "Amelia's Birthday",
             date: Date.preview("2:32 Wed, 22 Sep 2019"),
-            icon: .preview,
-            color: .yellow
+            icon: .preview
         ),
         reducer: Daisy()
     )

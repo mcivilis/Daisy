@@ -1,5 +1,5 @@
 //
-//  DaisyButton.swift
+//  ButtonStyle.swift
 //  Daisy
 //
 //  Created by Maria Civilis on 2022-12-21.
@@ -8,27 +8,28 @@
 import SwiftUI
 
 extension ButtonStyle where Self == CapsuleButtonStyle {
-    static func capsule(_ color: Color) -> Self {
-        return .init(color: color)
+    static func capsule(_ theme: Theme) -> Self {
+        return .init(dark: theme.dark, light: theme.light)
     }
 }
 
-extension ButtonStyle where Self == DaisyButtonStyle {
-    static var daisy: Self {
-        return .init()
+extension ButtonStyle where Self == CountdownButtonStyle {
+    static func countdown(_ theme: Theme) -> Self {
+        return .init(dark: theme.dark, light: theme.light)
     }
 }
 
 struct CapsuleButtonStyle: ButtonStyle {
     
-    let color: Color
+    let dark: Color
+    let light: Color
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(8)
             .padding(.horizontal, 8)
-            .foregroundColor(color.luminance() > 0.1 ? .black : .white)
-            .background(color)
+            .foregroundColor(dark)
+            .background(light)
             .clipShape(Capsule())
             .shadow(color: .black, radius: 3)
             .overlay {
@@ -37,14 +38,17 @@ struct CapsuleButtonStyle: ButtonStyle {
     }
 }
 
-struct DaisyButtonStyle: ButtonStyle {
+struct CountdownButtonStyle: ButtonStyle {
+    
+    let dark: Color
+    let light: Color
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(8)
             .padding(.horizontal, 8)
-            .foregroundColor(.black)
-            .background(.yellow)
+            .foregroundColor(dark)
+            .background(light)
             .clipShape(Capsule())
             .shadow(color: .black, radius: 3)
             .overlay {
@@ -53,11 +57,11 @@ struct DaisyButtonStyle: ButtonStyle {
     }
 }
 
-struct DaisyButtonStyle_Previews: PreviewProvider {
+struct CountdownButtonStyle_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             Button("Press Me") {}
-                .buttonStyle(.daisy)
+                .buttonStyle(.countdown(.bright))
         }
     }
 }

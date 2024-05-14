@@ -9,7 +9,7 @@ import SwiftUI
 
 struct IconPickerView: View {
     
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss // TODO: Do i need this?
     
     let color: Color
     @Binding public var icon: Icon
@@ -83,34 +83,9 @@ struct IconPickerView: View {
         NavigationStack {
             VStack {
                 symbolSelectionView
-//                divider
-//                Group {
-//                    Text("Chose one of the icons above or generate an icon using a single character on a keyboard such as a letter or emoji")
-//                        .fontWeight(.semibold)
-//                        .multilineTextAlignment(.center)
-//                    ZStack {
-//                        TextField("", text: $icon.value)
-//                        Button("Use keyboard") {
-//
-//                        }
-//                        .buttonStyle(.daisy)
-//                    }
-//                }
-//                .padding()
             }
             .navigationTitle("Choose icon")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Custom") {
-                        
-                    }.buttonStyle(.capsule(color))
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Cancel") {
-                        dismiss()
-                    }.buttonStyle(.capsule(color))
-                }
-            }
+            // TODO: do i need a dismiss or do i get it for free
         }
         .searchable(text: $searchText)
     }

@@ -9,13 +9,12 @@
 /* Begin PBXBuildFile section */
 		A204E0DC29807BD100D48488 /* TimeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A204E0DB29807BD100D48488 /* TimeDetailView.swift */; };
 		A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A212D51A289411F6006A7E38 /* DaisyView.swift */; };
-		A22ED8FE2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */; };
+		A22ED8FE2953A86E0088D4C2 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED8FD2953A86E0088D4C2 /* ButtonStyle.swift */; };
 		A22ED9092953F1950088D4C2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED9082953F1950088D4C2 /* Source.swift */; };
-		A22ED90C2953F2950088D4C2 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED90B2953F2950088D4C2 /* Color+Hex.swift */; };
 		A236EB3C28FB5CC30033858B /* EditDaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* EditDaisyView.swift */; };
+		A24602732B9A3F94009DC372 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24602722B9A3F94009DC372 /* Theme.swift */; };
 		A247732629C3A0AE009D0431 /* View+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247732529C3A0AE009D0431 /* View+Animation.swift */; };
 		A247732829C3AC89009D0431 /* DaisySpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247732729C3AC89009D0431 /* DaisySpinner.swift */; };
-		A247732A29C3B43A009D0431 /* Color+Luminance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247732929C3B43A009D0431 /* Color+Luminance.swift */; };
 		A24795DF294BFD39002F791C /* PetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalView.swift */; };
 		A24795E5294C253B002F791C /* DaisyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795E4294C253B002F791C /* DaisyIcon.swift */; };
 		A24FA4932ABBA6A500BDB873 /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FA4922ABBA6A500BDB873 /* IconPickerView.swift */; };
@@ -30,20 +29,18 @@
 		A2B9C2732881F68B00506E32 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C2622881F68A00506E32 /* ListView.swift */; };
 		A2B9C2752881F68B00506E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C2632881F68B00506E32 /* Assets.xcassets */; };
 		A2B9C2812881FA1500506E32 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2B9C2802881FA1500506E32 /* ComposableArchitecture */; };
-		A2DBF8B22968D01F00818E55 /* DaisyCapsuleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DBF8B12968D01F00818E55 /* DaisyCapsuleModifier.swift */; };
 		A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A204E0DB29807BD100D48488 /* TimeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDetailView.swift; sourceTree = "<group>"; };
 		A212D51A289411F6006A7E38 /* DaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyView.swift; sourceTree = "<group>"; };
-		A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyButtonStyle.swift; sourceTree = "<group>"; };
+		A22ED8FD2953A86E0088D4C2 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		A22ED9082953F1950088D4C2 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
-		A22ED90B2953F2950088D4C2 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		A236EB3B28FB5CC30033858B /* EditDaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDaisyView.swift; sourceTree = "<group>"; };
+		A24602722B9A3F94009DC372 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		A247732529C3A0AE009D0431 /* View+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Animation.swift"; sourceTree = "<group>"; };
 		A247732729C3AC89009D0431 /* DaisySpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisySpinner.swift; sourceTree = "<group>"; };
-		A247732929C3B43A009D0431 /* Color+Luminance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Luminance.swift"; sourceTree = "<group>"; };
 		A24795DE294BFD39002F791C /* PetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetalView.swift; sourceTree = "<group>"; };
 		A24795E4294C253B002F791C /* DaisyIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyIcon.swift; sourceTree = "<group>"; };
 		A24FA4922ABBA6A500BDB873 /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
@@ -58,7 +55,6 @@
 		A2B9C2622881F68A00506E32 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		A2B9C2632881F68B00506E32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2B9C2682881F68B00506E32 /* Daisy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Daisy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2DBF8B12968D01F00818E55 /* DaisyCapsuleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyCapsuleModifier.swift; sourceTree = "<group>"; };
 		A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,8 +92,7 @@
 		A25E0FFF291C48AC00439BF4 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				A22ED8FD2953A86E0088D4C2 /* DaisyButtonStyle.swift */,
-				A2DBF8B12968D01F00818E55 /* DaisyCapsuleModifier.swift */,
+				A22ED8FD2953A86E0088D4C2 /* ButtonStyle.swift */,
 				A25E1000291C48BF00439BF4 /* PaddingModifier.swift */,
 			);
 			path = SwiftUI;
@@ -122,6 +117,7 @@
 		A2B9C25B2881F68A00506E32 = {
 			isa = PBXGroup;
 			children = (
+				A24602722B9A3F94009DC372 /* Theme.swift */,
 				A24FA4982ABBD04500BDB873 /* Symbols */,
 				A24795D4294BF562002F791C /* Graphics */,
 				A25E0FFF291C48AC00439BF4 /* SwiftUI */,
@@ -158,8 +154,6 @@
 		A2EA926628F0B3C0002BA01E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A22ED90B2953F2950088D4C2 /* Color+Hex.swift */,
-				A247732929C3B43A009D0431 /* Color+Luminance.swift */,
 				A247732529C3A0AE009D0431 /* View+Animation.swift */,
 				A2EA926728F0B3D8002BA01E /* Date+Helpers.swift */,
 				A2A3681928F7A28B00C2AD02 /* View+If.swift */,
@@ -245,9 +239,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A22ED90C2953F2950088D4C2 /* Color+Hex.swift in Sources */,
 				A236EB3C28FB5CC30033858B /* EditDaisyView.swift in Sources */,
 				A24FA4932ABBA6A500BDB873 /* IconPickerView.swift in Sources */,
+				A24602732B9A3F94009DC372 /* Theme.swift in Sources */,
 				A26D951829C0118B00E518FD /* Daisy+Preview.swift in Sources */,
 				A204E0DC29807BD100D48488 /* TimeDetailView.swift in Sources */,
 				A26D74302ABC97A30022EEE9 /* IconView.swift in Sources */,
@@ -260,12 +254,10 @@
 				A2A3681A28F7A28B00C2AD02 /* View+If.swift in Sources */,
 				A25E1001291C48BF00439BF4 /* PaddingModifier.swift in Sources */,
 				A247732829C3AC89009D0431 /* DaisySpinner.swift in Sources */,
-				A2DBF8B22968D01F00818E55 /* DaisyCapsuleModifier.swift in Sources */,
-				A247732A29C3B43A009D0431 /* Color+Luminance.swift in Sources */,
 				A24795DF294BFD39002F791C /* PetalView.swift in Sources */,
 				A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */,
 				A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
-				A22ED8FE2953A86E0088D4C2 /* DaisyButtonStyle.swift in Sources */,
+				A22ED8FE2953A86E0088D4C2 /* ButtonStyle.swift in Sources */,
 				A26D74322ABCA4C10022EEE9 /* String+Emoji.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,8 +385,8 @@
 				DEVELOPMENT_TEAM = 9HM5LLY46P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Daisy;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_CFBundleDisplayName = Countdown;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -405,7 +397,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.civilis.Daisy;
 				PRODUCT_NAME = Daisy;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -427,8 +419,8 @@
 				DEVELOPMENT_TEAM = 9HM5LLY46P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Daisy;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_CFBundleDisplayName = Countdown;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -439,7 +431,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.civilis.Daisy;
 				PRODUCT_NAME = Daisy;
 				PROVISIONING_PROFILE_SPECIFIER = "";

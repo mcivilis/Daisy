@@ -16,8 +16,7 @@ extension StoreOf<Daisy> {
         initialState: Daisy.State(
             title: "Vacation",
             date: Date(timeIntervalSinceNow: -20),
-            icon: .preview,
-            color: .yellow
+            icon: .preview
         ),
         reducer: Daisy()
     )

@@ -79,13 +79,12 @@ struct DaisyList: ReducerProtocol {
                         id: $0.id,
                         title: $0.title,
                         date: $0.date,
-                        icon: $0.icon,
-                        color: Color.init(hex: $0.color) ?? .yellow
+                        icon: $0.icon
                     )
                 })
             case .newDaisy:
                 state.filter = .all
-                let newDaisy = Daisy.State(title: "", date: .now, icon: .empty, color: .yellow)
+                let newDaisy = Daisy.State(title: "", date: .now, icon: .empty)
                 state.daisies.insert(newDaisy, at: 0)
                 return EffectTask(value: .selectDaisy(id: newDaisy.id, action: Daisy.Action.showDetail))
             case let .delete(indexSet):
@@ -161,14 +160,14 @@ struct ListView: View {
                     }
                 }
                 .onAppear { viewStore.send(.load) }
-                .navigationTitle("Daisies")
+                .navigationTitle("Countdowns")
                 .navigationBarItems(
-                    leading: EditButton().buttonStyle(.daisy),
+                    leading: EditButton().buttonStyle(.countdown(.bright)),
                     trailing: Button(action: {
                         viewStore.send(.newDaisy)
                     }, label: {
                         Image(systemName: "square.and.pencil")
-                    }).buttonStyle(.daisy)
+                    }).buttonStyle(.countdown(.bright))
                 )
                 .environment(
                     \.editMode,

@@ -42,20 +42,17 @@ struct Model: Hashable, Codable, Identifiable {
     var title: String
     var date: Date
     var icon: Icon
-    var color: String
     
     init(
         id: UUID = UUID(),
         title: String,
         date: Date,
-        icon: Icon,
-        color: String
+        icon: Icon
     ) {
         self.id = id
         self.title = title
         self.date = date
         self.icon = icon
-        self.color = color
     }
     
     init(_ state: Daisy.State) {
@@ -63,7 +60,6 @@ struct Model: Hashable, Codable, Identifiable {
         self.title = state.title
         self.date = state.date
         self.icon = state.icon
-        self.color = state.color.toHex() ?? "FFCC00"
     }
 }
 
