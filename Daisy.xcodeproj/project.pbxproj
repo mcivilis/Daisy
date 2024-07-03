@@ -13,9 +13,6 @@
 		A22ED9092953F1950088D4C2 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22ED9082953F1950088D4C2 /* Source.swift */; };
 		A236EB3C28FB5CC30033858B /* EditDaisyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236EB3B28FB5CC30033858B /* EditDaisyView.swift */; };
 		A247732629C3A0AE009D0431 /* View+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247732529C3A0AE009D0431 /* View+Animation.swift */; };
-		A247732829C3AC89009D0431 /* DaisySpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247732729C3AC89009D0431 /* DaisySpinner.swift */; };
-		A24795DF294BFD39002F791C /* PetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795DE294BFD39002F791C /* PetalView.swift */; };
-		A24795E5294C253B002F791C /* DaisyIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24795E4294C253B002F791C /* DaisyIcon.swift */; };
 		A24FA4932ABBA6A500BDB873 /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FA4922ABBA6A500BDB873 /* IconPickerView.swift */; };
 		A24FA49A2ABBD05800BDB873 /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24FA4992ABBD05800BDB873 /* Symbols.swift */; };
 		A24FA49C2ABBD23200BDB873 /* sfsymbols.txt in Resources */ = {isa = PBXBuildFile; fileRef = A24FA49B2ABBD23200BDB873 /* sfsymbols.txt */; };
@@ -39,9 +36,6 @@
 		A22ED9082953F1950088D4C2 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		A236EB3B28FB5CC30033858B /* EditDaisyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDaisyView.swift; sourceTree = "<group>"; };
 		A247732529C3A0AE009D0431 /* View+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Animation.swift"; sourceTree = "<group>"; };
-		A247732729C3AC89009D0431 /* DaisySpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisySpinner.swift; sourceTree = "<group>"; };
-		A24795DE294BFD39002F791C /* PetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetalView.swift; sourceTree = "<group>"; };
-		A24795E4294C253B002F791C /* DaisyIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaisyIcon.swift; sourceTree = "<group>"; };
 		A24FA4922ABBA6A500BDB873 /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
 		A24FA4992ABBD05800BDB873 /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
 		A24FA49B2ABBD23200BDB873 /* sfsymbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = sfsymbols.txt; sourceTree = "<group>"; };
@@ -70,16 +64,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A24795D4294BF562002F791C /* Graphics */ = {
-			isa = PBXGroup;
-			children = (
-				A24795DE294BFD39002F791C /* PetalView.swift */,
-				A24795E4294C253B002F791C /* DaisyIcon.swift */,
-				A247732729C3AC89009D0431 /* DaisySpinner.swift */,
-			);
-			path = Graphics;
-			sourceTree = "<group>";
-		};
 		A24FA4982ABBD04500BDB873 /* Symbols */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				A24FA4982ABBD04500BDB873 /* Symbols */,
-				A24795D4294BF562002F791C /* Graphics */,
 				A25E0FFF291C48AC00439BF4 /* SwiftUI */,
 				A2EA926628F0B3C0002BA01E /* Extensions */,
 				A2B9C2612881F68A00506E32 /* DaisyApp.swift */,
@@ -249,11 +232,8 @@
 				A22ED9092953F1950088D4C2 /* Source.swift in Sources */,
 				A24FA49A2ABBD05800BDB873 /* Symbols.swift in Sources */,
 				A2B9C2712881F68B00506E32 /* DaisyApp.swift in Sources */,
-				A24795E5294C253B002F791C /* DaisyIcon.swift in Sources */,
 				A2A3681A28F7A28B00C2AD02 /* View+If.swift in Sources */,
 				A25E1001291C48BF00439BF4 /* PaddingModifier.swift in Sources */,
-				A247732829C3AC89009D0431 /* DaisySpinner.swift in Sources */,
-				A24795DF294BFD39002F791C /* PetalView.swift in Sources */,
 				A212D51B289411F6006A7E38 /* DaisyView.swift in Sources */,
 				A2EA926828F0B3D8002BA01E /* Date+Helpers.swift in Sources */,
 				A2E12B9B2BF41A24002207D4 /* Theme.swift in Sources */,
